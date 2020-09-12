@@ -1,13 +1,13 @@
-defmodule LiveChart.MixProject do
+defmodule LiveChartWeb.MixProject do
   use Mix.Project
 
   def project do
     [
-      app: :live_chart,
+      app: :live_chart_web,
       version: "0.1.0",
       elixir: "~> 1.7",
       elixirc_paths: elixirc_paths(Mix.env()),
-      compilers: Mix.compilers(),
+      compilers: [:phoenix] ++ Mix.compilers(),
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
       deps: deps()
@@ -31,7 +31,11 @@ defmodule LiveChart.MixProject do
   #
   # Type `mix help deps` for examples and options.
   defp deps do
-    []
+    [
+      {:jason, "~> 1.0"},
+      {:live_chart, path: "../live_chart"},
+      {:phoenix_live_view, "~> 0.14.4"}
+    ]
   end
 
   # Aliases are shortcuts or tasks specific to the current project.
