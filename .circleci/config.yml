@@ -72,26 +72,6 @@ jobs:
             - uncharted_phoenix/deps
             - uncharted_phoenix/_build
 
-      # demo
-      - restore_cache:
-          keys:
-            - v2-mix-compile-{{ checksum "OTP_VERSION.lock" }}-{{ checksum "ELIXIR_VERSION.lock" }}-{{ checksum "demo/mix.lock" }}
-            - v2-mix-compile-{{ checksum "OTP_VERSION.lock" }}-{{ checksum "ELIXIR_VERSION.lock" }}
-      - run:
-          name: compile demo
-          command: mix do deps.get, compile
-          working_directory: ~/project/demo
-      - save_cache:
-          key: v2-mix-compile-{{ checksum "OTP_VERSION.lock" }}-{{ checksum "ELIXIR_VERSION.lock" }}-{{ checksum "demo/mix.lock" }}
-          paths:
-            - demo/deps
-            - demo/_build
-      - save_cache:
-          key: v2-mix-compile-{{ checksum "OTP_VERSION.lock" }}-{{ checksum "ELIXIR_VERSION.lock" }}
-          paths:
-            - demo/deps
-            - demo/_build
-
       - persist_to_workspace:
           root: .
           paths:
@@ -103,7 +83,6 @@ jobs:
             - OTP_VERSION.lock
             - uncharted
             - uncharted_phoenix
-            - demo
             - VERSION
 
   test:
@@ -125,10 +104,6 @@ jobs:
       #    name: Start Chrome Driver
       #    command: /usr/local/bin/chromedriver
       #    background: true
-      # - run:
-      #     name: Create Test Database
-      #     command: mix do ecto.create, ecto.migrate
-      #     working_directory: ~/project/demo
       - run:
           name: mix test
           command: mix coveralls.html
@@ -211,22 +186,6 @@ jobs:
           command: mix format --check-formatted
           working_directory: ~/project/<< parameters.project_name >>
 
-  deploy_artifacts:
-    docker:
-      - image: circleci/elixir:1.10.4-node-browsers
-
-    steps:
-      - checkout
-      - attach_workspace:
-          at: .
-      - <<: *install_ghr
-      - run:
-          name: Build release notes
-          command: grep -Pazo "(?s)(?<=## ${CIRCLE_TAG})[^#]+" ~/project/uncharted/CHANGELOG.md | sed '/./,$!d' > ~/project/RELEASE_NOTES
-      - run:
-          name: Deploy artifacts to GitHub
-          command: ./ghr -t $GITHUB_TOKEN -u $CIRCLE_PROJECT_USERNAME -r $CIRCLE_PROJECT_REPONAME -b "$(cat ~/project/RELEASE_NOTES)" -replace $CIRCLE_TAG deploy
-
 workflows:
   version: 2
   primary:
@@ -299,48 +258,3 @@ workflows:
       #       - uncharted_phoenix_credo
       #       - uncharted_phoenix_test
       #       - uncharted_phoenix_check_formatted
-
-      - check-formatted:
-          project_name: demo
-          name: demo_check_formatted
-          requires:
-            - build
-          filters:
-            tags:
-              only: /v.*/
-      - test:
-          project_name: demo
-          name: demo_test
-          requires:
-            - build
-          filters:
-            tags:
-              only: /v.*/
-      - credo:
-          project_name: demo
-          name: demo_credo
-          requires:
-            - build
-          filters:
-            tags:
-              only: /v.*/
-      # - dialyzer:
-      #     project_name: demo
-      #     name: demo_dialyzer
-      #     requires:
-      #       - demo_credo
-      #       - demo_test
-      #       - demo_check_formatted
-      - deploy_artifacts:
-          filters:
-            branches:
-              ignore: /.*/
-            tags:
-              only: /v.*/
-          requires:
-            - uncharted_check_formatted
-            - uncharted_test
-            - uncharted_credo
-            - uncharted_phoenix_check_formatted
-            - uncharted_phoenix_test
-            - uncharted_phoenix_credo
