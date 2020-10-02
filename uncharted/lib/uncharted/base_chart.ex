@@ -21,7 +21,7 @@ defmodule Uncharted.BaseChart do
     def title(%BaseChart{title: nil}), do: ""
     def title(%BaseChart{title: title}), do: title
 
-    def colors(%BaseChart{colors: nil}), do: {}
+    def colors(%BaseChart{colors: nil}), do: %{}
     def colors(%BaseChart{colors: colors}), do: colors
 
     def gradient_colors(%BaseChart{colors: nil}), do: %{}
