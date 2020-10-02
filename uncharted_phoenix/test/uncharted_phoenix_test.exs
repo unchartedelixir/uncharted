@@ -49,7 +49,7 @@ defmodule UnchartedPhoenixTest do
         | dataset: %Uncharted.BarChart.Dataset{data: [], axes: @axes}
       }
 
-      assert render_component(DummyLiveComponent, chart_type: :bar, chart: bar_chart) =~
+      assert render_component(DummyLiveComponent, chart: bar_chart) =~
                ~s(data-testid="lc-live-bar-component")
     end
 
@@ -59,7 +59,7 @@ defmodule UnchartedPhoenixTest do
         | dataset: %Uncharted.ColumnChart.Dataset{data: [], axes: @axes}
       }
 
-      assert render_component(DummyLiveComponent, chart_type: :column, chart: column_chart) =~
+      assert render_component(DummyLiveComponent, chart: column_chart) =~
                ~s(data-testid="lc-live-column-component")
     end
 
@@ -71,7 +71,7 @@ defmodule UnchartedPhoenixTest do
         | dataset: %Uncharted.ColumnChart.Dataset{axes: xy_axes, data: []}
       }
 
-      assert render_component(DummyLiveComponent, chart_type: :line, chart: line_chart) =~
+      assert render_component(DummyLiveComponent, chart: line_chart) =~
                ~s(data-testid="lc-live-line-component")
     end
 
@@ -85,7 +85,7 @@ defmodule UnchartedPhoenixTest do
                ~s(data-testid="lc-live-progress-component")
     end
 
-    test "raises an UnchartedPhoenix.NoSuchChartError exception when an invalid chart type is given" do
+    test "raises an Protocol.UndefinedError exception when an invalid chart type is given" do
       assert_raise Protocol.UndefinedError,
                    ~r/^protocol Uncharted.Component not implemented/,
                    fn ->
