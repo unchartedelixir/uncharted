@@ -1,8 +1,8 @@
-<svg id"<%= svg_id(@chart, "results") %>" class="columns__results" width="100%" height="96%" x="0%" y="2%">
+<svg id"<%= svg_id(@chart, "results") %>" class="chart-results" width="100%" height="96%" x="0%" y="2%">
   <g>
     <%= for %Column{label: label, bar_width: bar_width, bar_offset: bar_offset, column_height: column_height, fill_color: fill_color} <- @columns do %>
       <rect id="<%= label %>"
-            class="column"
+            class="chart-column"
             width="<%= bar_width %>%"
             height="<%= column_height %>%"
             x="<%= bar_offset %>%"
