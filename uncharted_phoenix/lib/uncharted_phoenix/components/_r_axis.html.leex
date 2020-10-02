@@ -1,0 +1,5 @@
+<g id="<%= svg_id(@chart, "radial_circles") %>" class="columns__lines">
+  <%= for radius <- @grid_lines do %>
+    <circle class="counter__ring" cx="0" cy="0" r="<%= radius %>" fill="transparent" stroke="#BBBBBB" stroke-width="0.1"></circle>
+  <% end %>
+</g>
