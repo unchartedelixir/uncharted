@@ -1,6 +1,6 @@
 <svg id="<%= svg_id(@chart, "bars") %>" width="96%" height="100%" x="2%" y="0">
   <%= for {bar, index} <- Enum.with_index(@bars) do %>
-    <g class="bar">
+    <g class="chart-bar">
       <rect
         id="bar-<%= index %>"
         width="<%= bar.bar_width %>%"
