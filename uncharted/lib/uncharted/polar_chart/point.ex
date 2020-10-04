@@ -7,7 +7,7 @@ defmodule Uncharted.PolarChart.Point do
 
   @type t :: %__MODULE__{
           label: String.t(),
-          r: Float.t(),
-          t: Float.t()
+          r: float(),
+          t: float()
         }
 end
