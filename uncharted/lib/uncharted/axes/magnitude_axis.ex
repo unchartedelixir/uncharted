@@ -13,7 +13,7 @@ defmodule Uncharted.Axes.MagnitudeAxis do
   is used to determine the spacial offsets of the labels on the axis and the
   gridlines of the chart.
   """
-  @type grid_lines_func :: ({min, max}, step -> list(Float.t()))
+  @type grid_lines_func :: ({min, max}, step -> list(float()))
   @type t() :: %__MODULE__{
           min: number(),
           max: number(),
@@ -30,7 +30,7 @@ defmodule Uncharted.Axes.MagnitudeAxis do
   when you create a `Uncharted.Axes.MagnitudeAxis` struct, this
   implementation will be provided used.
   """
-  @spec default_grid_lines_fun({min, max}, step) :: list(Float.t())
+  @spec default_grid_lines_fun({min, max}, step) :: list(float())
   def default_grid_lines_fun({min, max}, step) do
     min..max
     |> Enum.take_every(div(max - min, step))

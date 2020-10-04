@@ -8,7 +8,7 @@ defmodule Uncharted.LineChart.Point do
   @type t :: %__MODULE__{
           label: String.t(),
           fill_color: atom(),
-          x_offset: Float.t(),
-          y_offset: Float.t()
+          x_offset: float(),
+          y_offset: float()
         }
 end

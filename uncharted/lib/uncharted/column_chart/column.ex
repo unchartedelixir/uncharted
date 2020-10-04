@@ -6,12 +6,12 @@ defmodule Uncharted.ColumnChart.Column do
   defstruct [:width, :offset, :label, :bar_width, :bar_offset, :column_height, :fill_color]
 
   @type t() :: %__MODULE__{
-          width: Float.t(),
-          offset: Float.t(),
+          width: float(),
+          offset: float(),
           label: String.t(),
-          bar_width: Float.t(),
-          bar_offset: Float.t(),
-          column_height: Float.t(),
+          bar_width: float(),
+          bar_offset: float(),
+          column_height: float(),
           fill_color: atom()
         }
 end
