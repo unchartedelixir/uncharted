@@ -13,10 +13,11 @@ defmodule Uncharted do
   is a union type
   """
   @type dataset ::
-          Uncharted.ColumnChart.Dataset.t()
+          Uncharted.BarChart.Dataset.t()
+          | Uncharted.ColumnChart.Dataset.t()
+          | Uncharted.LineChart.Dataset.t()
           | Uncharted.PieChart.Dataset.t()
           | Uncharted.ProgressChart.Dataset.t()
-          | Uncharted.BarChart.Dataset.t()
   @type gen_chart :: %{
           title: String.t(),
           colors: %{color_name() => String.t() | Uncharted.Gradient.t()},

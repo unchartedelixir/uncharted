@@ -6,12 +6,12 @@ defmodule Uncharted.BarChart.Bar do
   defstruct [:height, :offset, :label, :bar_height, :bar_offset, :bar_width, :fill_color]
 
   @type t() :: %__MODULE__{
-          height: Float.t(),
-          offset: Float.t(),
+          height: float(),
+          offset: float(),
           label: String.t(),
-          bar_height: Float.t(),
-          bar_offset: Float.t(),
-          bar_width: Float.t(),
+          bar_height: float(),
+          bar_offset: float(),
+          bar_width: float(),
           fill_color: atom()
         }
 end

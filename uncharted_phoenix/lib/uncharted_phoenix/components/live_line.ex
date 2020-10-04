@@ -8,7 +8,7 @@ defmodule UnchartedPhoenix.LiveLineComponent do
   def update(assigns, socket) do
     x_axis = assigns.chart.dataset.axes.x
     y_axis = assigns.chart.dataset.axes.y
-    # # Hardcode the number of steps to take as 5 for now
+    # Hardcode the number of steps to take as 5 for now
     x_grid_lines = x_axis.grid_lines.({x_axis.min, x_axis.max}, 5)
     x_grid_line_offsetter = fn grid_line -> 100 * grid_line / x_axis.max end
 

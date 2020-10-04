@@ -68,7 +68,7 @@ defmodule UnchartedPhoenixTest do
 
       line_chart = %Uncharted.BaseChart{
         @base_chart
-        | dataset: %Uncharted.ColumnChart.Dataset{axes: xy_axes, data: []}
+        | dataset: %Uncharted.LineChart.Dataset{axes: xy_axes, data: []}
       }
 
       assert render_component(DummyLiveComponent, chart: line_chart) =~

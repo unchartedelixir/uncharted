@@ -1,7 +1,7 @@
 defmodule UnchartedPhoenix.LiveLineComponentTest do
   alias Uncharted.BaseChart
   alias Uncharted.Axes.{MagnitudeAxis, XYAxes}
-  alias Uncharted.ColumnChart.Dataset
+  alias Uncharted.LineChart.Dataset
   alias UnchartedPhoenix.LiveLineComponent
   import Phoenix.LiveViewTest
   use ExUnit.Case

@@ -20,7 +20,7 @@ defmodule UnchartedPhoenix.MixProject do
       compilers: [:phoenix] ++ Mix.compilers(),
       dialyzer: [
         plt_add_apps: ~w(ex_unit mix)a,
-        plt_add_deps: :transitive,
+        plt_add_deps: :app_tree,
         plt_file: {:no_warn, "priv/plts/dialyzer.plt"}
         # ignore_warnings: "../.dialyzer-ignore.exs"
       ],

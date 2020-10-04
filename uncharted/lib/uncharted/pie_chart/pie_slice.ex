@@ -7,7 +7,7 @@ defmodule Uncharted.PieChart.PieSlice do
 
   @type t() :: %__MODULE__{
           label: String.t(),
-          percentage: Float.t(),
+          percentage: float(),
           fill_color: atom()
         }
 end

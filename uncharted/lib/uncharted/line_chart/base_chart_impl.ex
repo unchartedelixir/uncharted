@@ -1,6 +1,6 @@
 defimpl Uncharted.LineChart, for: Uncharted.BaseChart do
   alias Uncharted.BaseChart
-  alias Uncharted.ColumnChart.Dataset
+  alias Uncharted.LineChart.Dataset
   alias Uncharted.LineChart.{Line, Point}
 
   def points(%BaseChart{dataset: nil}), do: []
