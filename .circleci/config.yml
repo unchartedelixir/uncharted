@@ -100,10 +100,6 @@ jobs:
           at: .
       - <<: *install_hex_rebar
 
-      # - run:
-      #    name: Start Chrome Driver
-      #    command: /usr/local/bin/chromedriver
-      #    background: true
       - run:
           name: mix test
           command: mix coveralls.html
@@ -219,13 +215,13 @@ workflows:
           filters:
             tags:
               only: /v.*/
-      # - dialyzer:
-      #     project_name: uncharted
-      #     name: uncharted_dialyzer
-      #     requires:
-      #       - uncharted_credo
-      #       - uncharted_test
-      #       - uncharted_check_formatted
+      - dialyzer:
+          project_name: uncharted
+          name: uncharted_dialyzer
+          requires:
+            - uncharted_credo
+            - uncharted_test
+            - uncharted_check_formatted
 
       - check-formatted:
           project_name: uncharted_phoenix
@@ -251,10 +247,10 @@ workflows:
           filters:
             tags:
               only: /v.*/
-      # - dialyzer:
-      #     project_name: uncharted_phoenix
-      #     name: uncharted_phoenix_dialyzer
-      #     requires:
-      #       - uncharted_phoenix_credo
-      #       - uncharted_phoenix_test
-      #       - uncharted_phoenix_check_formatted
+      - dialyzer:
+          project_name: uncharted_phoenix
+          name: uncharted_phoenix_dialyzer
+          requires:
+            - uncharted_phoenix_credo
+            - uncharted_phoenix_test
+            - uncharted_phoenix_check_formatted
