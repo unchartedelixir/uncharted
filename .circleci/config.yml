@@ -144,7 +144,7 @@ jobs:
             - << parameters.project_name >>/priv/plts
 
       - run:
-          command: mix dialyzer --halt-exit-status
+          command: mix dialyzer
           working_directory: ~/project/<< parameters.project_name >>
           no_output_timeout: 20m
 

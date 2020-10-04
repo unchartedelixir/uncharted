@@ -1,7 +1,7 @@
 defmodule Uncharted.LineChartTest do
   alias Uncharted.{BaseChart, BaseDatum, LineChart}
   alias Uncharted.Axes.{MagnitudeAxis, XYAxes}
-  alias Uncharted.ColumnChart.Dataset
+  alias Uncharted.LineChart.Dataset
   alias Uncharted.LineChart.Line
   use ExUnit.Case
 
