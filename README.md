@@ -3,7 +3,7 @@ A simple ***Elixir*** charting library that generates easy to customize charts.
 
 Build status: [![CircleCI](https://circleci.com/gh/spawnfest/livechart/tree/master.svg?style=svg)](https://circleci.com/gh/spawnfest/livechart/tree/master)
 
-![Bar Chart](/uncharted_phoenix/assets/static/images/uncharted.jpg?raw=true "Bar Chart")
+![Bar Chart](uncharted_phoenix/assets/images/uncharted.jpg?raw=true "Uncharted Charts")
 
 ## Features
 - Easily generate pie charts, column charts, bar charts, progress counters, and line charts
