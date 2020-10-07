@@ -29,7 +29,7 @@
   </svg>
 </object>
 
-<table style="height: 0; overflow: hidden;">
+<table style="position: absolute; left: -100000px; top: auto; height: 1px; width: 1px; overflow: hidden;">
   <caption><%= Chart.title(@chart) %></caption>
   <%= for slice <- svg_pie_slices(@pie_slices) do %>
     <tr>
