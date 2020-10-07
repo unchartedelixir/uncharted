@@ -37,6 +37,7 @@
 </object>
 
 <table style="height: 0; overflow: hidden; display: block;">
+  <caption><%= @chart.title %></caption>
   <tr>
     <td><%= if @data.label, do: @data.label %> <%= if @data.secondary_label, do: @data.secondary_label %></td>
     <td><%= @progress %>%</td>

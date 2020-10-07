@@ -30,6 +30,7 @@
 </object>
 
 <table style="height: 0; overflow: hidden; display: block;">
+  <caption><%= Chart.title(@chart) %></caption>
   <%= for slice <- svg_pie_slices(@pie_slices) do %>
     <tr>
       <td><%= slice.label %></td>
