@@ -17,8 +17,8 @@
   <caption><%= Chart.title(@chart) %></caption>
   <%= for column <- @columns do %>
     <tr>
-      <td><%= column.label %></td>
-      <td>Reverse math with column_height</td>
+      <th scope="row"><%= column.label %></th>
+      <td><%= column.column_value %></td>
     </tr>
   <% end %>
 </table>
