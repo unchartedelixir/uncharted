@@ -61,9 +61,9 @@
       <th scope="col">Population</th>
     </tr>
   </thead>
-  <%= for point <- @points do %>
+  <%= for {point, index} <- Enum.with_index(@points, 1) do %>
     <tr>
-      <th scope="row">Point #</th>
+      <th scope="row">Point <%= index %></th>
       <td><%= point.x_offset %></td>
       <td><%= point.y_offset %></td>
     </tr>
