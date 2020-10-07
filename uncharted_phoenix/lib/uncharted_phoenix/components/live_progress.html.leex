@@ -1,6 +1,6 @@
 <object data-testid="lc-live-progress-component" role="img" aria-label="Progress chart visualizing <%= Chart.title(@chart) %>" alt="Progress chart visualizing <%= Chart.title(@chart) %>">
   <svg id="<%= svg_id(@chart, "chart") %>" class="progress-chart" width="100%" height="100%" viewBox="0 0 42 42">
-      <title id="progressChartTitle"><%= @chart.title %></title>
+      <title id="progressChartTitle">Progress chart visualizing <%= @chart.title %></title>
 
     <g id="<%= svg_id(@chart, "circle") %>">
       <circle class="chart-center" cx="21" cy="21" r="16" fill="transparent"></circle>

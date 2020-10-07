@@ -1,7 +1,7 @@
 <object data-testid="lc-live-bar-component" role="img" aria-label="Bar chart visualizing <%= Chart.title(@chart) %>" alt="Bar chart visualizing <%= Chart.title(@chart) %>">
   <svg class="bar-chart" aria-labelledby="barChartTitle" aria-describedby="barChartDesc" width="100%" height="100%" viewBox="0 0 600 400" style="overflow: visible;">
 
-    <title id="barChartTitle"><%= Chart.title(@chart) %></title>
+    <title id="barChartTitle">Bar chart visualizing <%= Chart.title(@chart) %></title>
 
     <%= render "_color_defs.html", chart: @chart %>
     <%= render "_bar_labels.html", chart: @chart %>
