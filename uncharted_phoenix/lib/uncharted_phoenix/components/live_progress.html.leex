@@ -1,6 +1,6 @@
-<figure data-testid="lc-live-progress-component">
-  <svg id="<%= svg_id(@chart, "chart") %>" class="progress-chart" aria-labelledby="chartTitle" role="group" width="100%" height="100%" viewBox="0 0 42 42">
-      <title id="chartTitle"><%= @chart.title %></title>
+<object data-testid="lc-live-progress-component" role="img" aria-label="Progress chart visualizing <%= Chart.title(@chart) %>" alt="Progress chart visualizing <%= Chart.title(@chart) %>">
+  <svg id="<%= svg_id(@chart, "chart") %>" class="progress-chart" width="100%" height="100%" viewBox="0 0 42 42">
+      <title id="progressChartTitle">Progress chart visualizing <%= @chart.title %></title>
 
     <g id="<%= svg_id(@chart, "circle") %>">
       <circle class="chart-center" cx="21" cy="21" r="16" fill="transparent"></circle>
@@ -34,4 +34,12 @@
 
     <%= render "_color_defs.html", chart: @chart %>
   </svg>
-</figure>
+</object>
+
+<table style="position: absolute; left: -100000px; top: auto; height: 1px; width: 1px; overflow: hidden;">
+  <caption><%= @chart.title %></caption>
+  <tr>
+    <th scope="row"><%= if @data.label, do: @data.label %> <%= if @data.secondary_label, do: @data.secondary_label %></th>
+    <td><%= @progress %>%</td>
+  </tr>
+</table>

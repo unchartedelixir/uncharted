@@ -1,6 +1,6 @@
-<figure data-testid="lc-live-line-component">
-  <svg id="<%= svg_id(@chart, "chart") %>" class="line-chart" aria-labelledby="chartTitle" role="group" width="100%" height="100%" viewBox="0 0 700 400" style="overflow: visible;">
-    <title id="chartTitle"><%= Chart.title(@chart) %></title>
+<object data-testid="lc-live-line-component" role="img" aria-label="Line chart visualizing <%= Chart.title(@chart) %>" alt="Line chart visualizing <%= Chart.title(@chart) %>">
+  <svg id="<%= svg_id(@chart, "chart") %>" class="line-chart" width="100%" height="100%" viewBox="0 0 700 400" style="overflow: visible;">
+    <title id="lineChartTitle">Line chart visualizing <%= Chart.title(@chart) %></title>
 
     <%= render "_y_axis.html", chart: @chart, grid_lines: @y_grid_lines, offsetter: @y_grid_line_offsetter %>
     <%= render "_bar_grid_line_labels.html", chart: @chart, grid_lines: @x_grid_lines, offsetter: @x_grid_line_offsetter %>
@@ -50,4 +50,22 @@
         <%= render "_color_defs.html", chart: @chart %>
       </defs>
     </svg>
-</figure>
+</object>
+
+<table style="position: absolute; left: -100000px; top: auto; height: 1px; width: 1px; overflow: hidden;">
+  <caption><%= Chart.title(@chart) %> for [Data set title]</caption>
+  <thead>
+    <tr>
+      <th scope="col">Point</th>
+      <th scope="col">Year</th>
+      <th scope="col">Population</th>
+    </tr>
+  </thead>
+  <%= for {point, index} <- Enum.with_index(@points, 1) do %>
+    <tr>
+      <th scope="row">Point <%= index %></th>
+      <td><%= point.x_value %></td>
+      <td><%= point.y_value %></td>
+    </tr>
+  <% end %>
+</table>

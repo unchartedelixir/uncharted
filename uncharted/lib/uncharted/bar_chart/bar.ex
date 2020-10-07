@@ -3,7 +3,16 @@ defmodule Uncharted.BarChart.Bar do
   A struct representing bar-level display properties.
   """
 
-  defstruct [:height, :offset, :label, :bar_height, :bar_offset, :bar_width, :fill_color]
+  defstruct [
+    :height,
+    :offset,
+    :label,
+    :bar_height,
+    :bar_offset,
+    :bar_width,
+    :bar_value,
+    :fill_color
+  ]
 
   @type t() :: %__MODULE__{
           height: float(),
@@ -12,6 +21,7 @@ defmodule Uncharted.BarChart.Bar do
           bar_height: float(),
           bar_offset: float(),
           bar_width: float(),
+          bar_value: float(),
           fill_color: atom()
         }
 end

@@ -1,16 +1,24 @@
-<div data-testid="lc-live-column-component">
-  <figure>
-    <svg id="<%= svg_id(@chart, "chart") %>" class="column-chart" aria-labelledby="chartTitle" role="group" width="100%" height="100%" viewBox="0 0 700 400">
-      <title id="chartTitle"><%= Chart.title(@chart) %></title>
+<object data-testid="lc-live-column-component" role="img" aria-label="Column chart visualizing <%= Chart.title(@chart) %>" alt="Column chart visualizing <%= Chart.title(@chart) %>">
+  <svg id="<%= svg_id(@chart, "chart") %>" class="column-chart" width="100%" height="100%" viewBox="0 0 700 400">
+    <title id="columnChartTitle">Column chart visualizing <%= Chart.title(@chart) %></title>
 
-      <%= render "_y_axis.html", chart: @chart, grid_lines: @grid_lines, offsetter: @grid_line_offsetter %>
-      <%= render "_x_axis.html", chart: @chart, columns: @columns %>
+    <%= render "_y_axis.html", chart: @chart, grid_lines: @grid_lines, offsetter: @grid_line_offsetter %>
+    <%= render "_x_axis.html", chart: @chart, columns: @columns %>
 
-      <svg id="<%= svg_id(@chart, "graph") %>" class="chart-lines" width="90%" height="92%" x="10%" y="0">
-        <%= render "_chart_lines.html", chart: @chart, grid_lines: @grid_lines, offsetter: @grid_line_offsetter %>
-        <%= render "_column_chart_graph.html", chart: @chart, columns: @columns %>
-      </svg>
-      <%= render "_color_defs.html", chart: @chart %>
+    <svg id="<%= svg_id(@chart, "graph") %>" class="chart-lines" width="90%" height="92%" x="10%" y="0">
+      <%= render "_chart_lines.html", chart: @chart, grid_lines: @grid_lines, offsetter: @grid_line_offsetter %>
+      <%= render "_column_chart_graph.html", chart: @chart, columns: @columns %>
     </svg>
-  </figure>
-</div>
+    <%= render "_color_defs.html", chart: @chart %>
+  </svg>
+</object>
+
+<table style="position: absolute; left: -100000px; top: auto; height: 1px; width: 1px; overflow: hidden;">
+  <caption><%= Chart.title(@chart) %></caption>
+  <%= for column <- @columns do %>
+    <tr>
+      <th scope="row"><%= column.label %></th>
+      <td><%= column.column_value %></td>
+    </tr>
+  <% end %>
+</table>

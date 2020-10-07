@@ -23,6 +23,7 @@ defimpl Uncharted.BarChart, for: Uncharted.BaseChart do
         bar_offset: offset + margin,
         bar_height: height / 2.0,
         bar_width: bar_width,
+        bar_value: List.first(datum.values),
         fill_color: datum.fill_color
       }
     end)
