@@ -20,7 +20,9 @@ defimpl Uncharted.LineChart, for: Uncharted.BaseChart do
         label: datum.name,
         fill_color: datum.fill_color,
         x_offset: x_offset,
-        y_offset: y_offset
+        y_offset: y_offset,
+        x_value: Enum.at(datum.values, 0),
+        y_value: Enum.at(datum.values, 1)
       }
     end)
   end
