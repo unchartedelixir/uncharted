@@ -51,3 +51,21 @@
       </defs>
     </svg>
 </object>
+
+<table style="height: 0; overflow: hidden; display: block;">
+  <caption>Data set title</caption>
+  <thead>
+    <tr>
+      <th scope="col">Point</th>
+      <th scope="col">Year</th>
+      <th scope="col">Population</th>
+    </tr>
+  </thead>
+  <%= for point <- @points do %>
+    <tr>
+      <th scope="row">Point #</th>
+      <td><%= point.x_offset %></td>
+      <td><%= point.y_offset %></td>
+    </tr>
+  <% end %>
+</table>
