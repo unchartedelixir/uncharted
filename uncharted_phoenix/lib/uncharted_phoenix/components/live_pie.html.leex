@@ -33,7 +33,7 @@
   <caption><%= Chart.title(@chart) %></caption>
   <%= for slice <- svg_pie_slices(@pie_slices) do %>
     <tr>
-      <td><%= slice.label %></td>
+      <th scope="row"><%= slice.label %></th>
       <td><%= slice.percentage %></td>
     </tr>
   <% end %>

@@ -36,10 +36,10 @@
   </svg>
 </object>
 
-<table style="height: 0; overflow: hidden; display: block;">
+<table style="height: 0; overflow: hidden;">
   <caption><%= @chart.title %></caption>
   <tr>
-    <td><%= if @data.label, do: @data.label %> <%= if @data.secondary_label, do: @data.secondary_label %></td>
+    <th scope="row"><%= if @data.label, do: @data.label %> <%= if @data.secondary_label, do: @data.secondary_label %></th>
     <td><%= @progress %>%</td>
   </tr>
 </table>
