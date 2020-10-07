@@ -3,7 +3,16 @@ defmodule Uncharted.ColumnChart.Column do
   A struct representing column-level display properties.
   """
 
-  defstruct [:width, :offset, :label, :bar_width, :bar_offset, :column_height, :column_value, :fill_color]
+  defstruct [
+    :width,
+    :offset,
+    :label,
+    :bar_width,
+    :bar_offset,
+    :column_height,
+    :column_value,
+    :fill_color
+  ]
 
   @type t() :: %__MODULE__{
           width: float(),
