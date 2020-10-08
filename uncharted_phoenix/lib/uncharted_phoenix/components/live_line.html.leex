@@ -30,7 +30,7 @@
           </g>
         </svg>
         <g id="<%= svg_id(@chart, "dots") %>" class="line_dots">
-          <%= for %Point{x_offset: x_offset, y_offset: y_offset, fill_color: fill_color} <- @points do %>
+          <%= for %CartesianPoint{x_offset: x_offset, y_offset: y_offset, fill_color: fill_color} <- @points do %>
             <circle
               fill="<%= color_to_fill(@chart.colors(), fill_color) %>"
               cx="<%= x_offset %>%"

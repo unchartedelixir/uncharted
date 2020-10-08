@@ -1,0 +1,36 @@
+<figure data-testid="lc-live-line-component">
+  <svg id="<%= svg_id(@chart, "chart") %>" class="polar__chart" aria-labelledby="chartTitle" role="group" width="100%" height="100%" viewBox="0 0 700 400" style="overflow: visible;">
+    <title id="chartTitle"><%= Chart.title(@chart) %></title>
+
+    <%#= render "_y_axis.html", chart: @chart, grid_lines: @y_grid_lines, offsetter: @y_grid_line_offsetter %>
+    <%#= render "_bar_grid_line_labels.html", chart: @chart, grid_lines: @x_grid_lines, offsetter: @x_grid_line_offsetter %>
+
+    <svg id="<%= svg_id(@chart, "graph") %>" class="line__graph" width="90%" height="92%" x="10%" y="0">
+      <svg id="<%= svg_id(@chart, "results") %>" class="line__results" width="100%" height="100%" x="0%" y="0%" viewBox="<%= polar_viewbox(@chart) %>">
+        <%= render "_t_axis.html", chart: @chart, grid_lines: @t_grid_lines, offsetter: @t_grid_line_offsetter %>
+        <%= render "_r_axis.html", chart: @chart, grid_lines: @r_grid_lines, offsetter: @r_grid_line_offsetter %>
+        <g id="<%= svg_id(@chart, "dots") %>" class="line_dots">
+          <%= for %CartesianPoint{x_offset: x_offset, y_offset: y_offset, label: label} <- convert_points(@points) do %>
+            <circle
+              cx="<%= x_offset %>"
+              cy="<%= -1 * y_offset %>"
+              r="1%">
+              <animate attributeName="cx" values="0;0" dur="0.5s" repeatCount="freeze" />
+            </circle>
+            <g>
+              <animate attributeName="cx" values="0;<%= x_offset %>" dur="0.5s" repeatCount="freeze" />
+              <text x="<%= x_offset + 0.75 %>" y="<%= -1 * y_offset %>" font-size="0.9px" alignment-baseline="middle" text-anchor="left"><%= label %></text>
+            </g>
+          <% end %>
+        </g>
+      </svg>
+
+      <defs>
+        <linearGradient id="grad" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" style="stop-color:rgba(54, 209, 220, .5);stop-opacity:1"></stop>
+          <stop offset="100%" style="stop-color:white;stop-opacity:0"></stop>
+        </linearGradient>
+        <%= render "_color_defs.html", chart: @chart %>
+      </defs>
+    </svg>
+</figure>

@@ -17,6 +17,7 @@ defmodule Uncharted do
           | Uncharted.ColumnChart.Dataset.t()
           | Uncharted.LineChart.Dataset.t()
           | Uncharted.PieChart.Dataset.t()
+          | Uncharted.PolarChart.Dataset.t()
           | Uncharted.ProgressChart.Dataset.t()
   @type gen_chart :: %{
           title: String.t(),

@@ -8,7 +8,9 @@ defmodule UnchartedPhoenix.ComponentView do
 
   alias Uncharted.{Chart, Gradient}
   alias Uncharted.ColumnChart.Column
-  alias Uncharted.LineChart.{Line, Point}
+  alias Uncharted.LineChart.Line
+  alias Uncharted.LineChart.Point, as: CartesianPoint
+  alias Uncharted.PolarChart.Point, as: PolarPoint
 
   def color_to_fill(colors, name) do
     case Map.get(colors, name) do
@@ -55,9 +57,39 @@ defmodule UnchartedPhoenix.ComponentView do
 
   def svg_polyline_points(points) do
     points
-    |> Enum.map(fn %Point{x_offset: x, y_offset: y} -> "#{10 * x},#{1000 - 10 * y}" end)
+    |> Enum.map(fn %CartesianPoint{x_offset: x, y_offset: y} -> "#{10 * x},#{1000 - 10 * y}" end)
     |> List.insert_at(0, "#{hd(points).x_offset * 10},1000")
     |> List.insert_at(-1, "#{List.last(points).x_offset * 10},1000")
+    |> Enum.join(" ")
+  end
+
+  def convert_points(polar_points) do
+    Enum.map(polar_points, &polar_to_cartesian/1)
+  end
+
+  def polar_to_cartesian(%PolarPoint{r: r, t: t, label: label}) do
+    %CartesianPoint{
+      x_offset: r * :math.cos(t),
+      y_offset: r * :math.sin(t),
+      label: label
+    }
+  end
+
+  def angular_to_cartesian_gridlines(angles, r_max) do
+    Enum.map(angles, fn t ->
+      polar_to_cartesian(%PolarPoint{r: 0, t: 0}, %PolarPoint{r: r_max, t: t})
+    end)
+  end
+
+  def polar_to_cartesian(%PolarPoint{} = p1, %PolarPoint{} = p2) do
+    %Line{
+      start: polar_to_cartesian(p1),
+      end: polar_to_cartesian(p2)
+    }
+  end
+
+  def polar_viewbox(%{dataset: %{axes: %{r: %{max: r_max}}}} = _chart) do
+    [-r_max, -r_max, 2 * r_max, 2 * r_max]
     |> Enum.join(" ")
   end
 end
