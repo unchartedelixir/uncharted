@@ -3,11 +3,12 @@ defmodule Uncharted.PieChart.PieSlice do
   A struct representing pie chart slice display properties.
   """
 
-  defstruct [:label, :percentage, :fill_color]
+  defstruct [:label, :percentage, :fill_color, :emphasize]
 
   @type t() :: %__MODULE__{
           label: String.t(),
           percentage: float(),
-          fill_color: atom()
+          fill_color: atom(),
+          emphasize: boolean()
         }
 end
