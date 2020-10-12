@@ -13,10 +13,13 @@ defmodule UnchartedPhoenix.LiveColumnComponent do
 
     socket =
       socket
-      |> assign(:chart, assigns.chart)
-      |> assign(:columns, Uncharted.ColumnChart.columns(assigns.chart))
-      |> assign(:grid_lines, grid_lines)
-      |> assign(:grid_line_offsetter, grid_line_offsetter)
+      |> assign(%{
+        chart: assigns.chart,
+        columns: Uncharted.ColumnChart.columns(assigns.chart),
+        grid_lines: grid_lines,
+        grid_line_offsetter: grid_line_offsetter,
+        axis: y_axis
+      })
 
     {:ok, socket}
   end

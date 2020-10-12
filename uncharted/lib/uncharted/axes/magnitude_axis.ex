@@ -2,7 +2,17 @@ defmodule Uncharted.Axes.MagnitudeAxis do
   @moduledoc """
   Exposes a struct representing configuration for an axis that has values that increase in a particular direction
   """
-  defstruct [:min, :max, :step, :label, grid_lines: &__MODULE__.default_grid_lines_fun/2]
+  defstruct [
+    :min,
+    :max,
+    :step,
+    :label,
+    grid_lines: &__MODULE__.default_grid_lines_fun/2,
+    display_lines: true,
+    line_color: "#efefef",
+    line_width: 2
+  ]
+
   @type min :: number()
   @type max :: number()
   @type step :: integer()
@@ -19,7 +29,10 @@ defmodule Uncharted.Axes.MagnitudeAxis do
           max: number(),
           step: integer(),
           label: String.t() | nil,
-          grid_lines: grid_lines_func
+          grid_lines: grid_lines_func,
+          display_lines: boolean(),
+          line_color: String.t() | atom(),
+          line_width: integer()
         }
 
   @doc """

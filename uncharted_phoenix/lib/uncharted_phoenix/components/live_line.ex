@@ -17,13 +17,16 @@ defmodule UnchartedPhoenix.LiveLineComponent do
 
     socket =
       socket
-      |> assign(:chart, assigns.chart)
-      |> assign(:points, Uncharted.LineChart.points(assigns.chart))
-      |> assign(:lines, Uncharted.LineChart.lines(assigns.chart))
-      |> assign(:x_grid_lines, x_grid_lines)
-      |> assign(:x_grid_line_offsetter, x_grid_line_offsetter)
-      |> assign(:y_grid_lines, y_grid_lines)
-      |> assign(:y_grid_line_offsetter, y_grid_line_offsetter)
+      |> assign(%{
+        chart: assigns.chart,
+        points: Uncharted.LineChart.points(assigns.chart),
+        lines: Uncharted.LineChart.lines(assigns.chart),
+        x_grid_lines: x_grid_lines,
+        x_grid_line_offsetter: x_grid_line_offsetter,
+        x_axis: x_axis,
+        y_grid_lines: y_grid_lines,
+        y_grid_line_offsetter: y_grid_line_offsetter
+      })
 
     {:ok, socket}
   end
