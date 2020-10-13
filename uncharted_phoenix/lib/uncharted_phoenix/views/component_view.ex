@@ -37,13 +37,22 @@ defmodule UnchartedPhoenix.ComponentView do
     pie_slices
     |> Enum.with_index()
     |> Enum.reduce([], fn {pie_slice, index}, acc ->
+      degree_start =
+        case acc do
+          [] -> 0
+          [head | _rest] -> Map.get(head, :degree_end)
+        end
+      degree_end = pie_slice.percentage * 3.60 + degree_start
+
       remaining_percentage =
         100 - Enum.reduce(acc, 0, fn slice, sum -> sum + slice.percentage end)
+      start_degrees = remaining_percentage
 
       svg_slice =
         pie_slice
         |> Map.from_struct()
-        |> Map.put(:remaining_percentage, remaining_percentage)
+        |> Map.put(:degree_start, degree_start)
+        |> Map.put(:degree_end, degree_end)
         |> Map.put(:label_width, label_width)
         |> Map.put(:label_position, index * label_width)
 

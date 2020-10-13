@@ -3,15 +3,16 @@
     <title id="pieChartTitle">Pie chart visualizing <%= Chart.title(@chart) %></title>
 
     <svg id="<%= svg_id(@chart, "title") %>" class="chart-data" y="0" x="0" width="100%" height="90%">
-      <circle r="10" cx="10" cy="10" fill="transparent" />
-      <%= for %{remaining_percentage: remaining_percentage, fill_color: fill_color} <- svg_pie_slices(@pie_slices) do %>
+      <circle r="15" cx="10" cy="10" fill="transparent" />
+      <%= for %{degree_start: degree_start, degree_end: degree_end, fill_color: fill_color} <- svg_pie_slices(@pie_slices) do %>
         <circle class="data-slice" r="5" cx="10" cy="10" fill="transparent"
           style="transition: all 0.5s ease"
           stroke="<%= color_to_fill(Chart.colors(@chart), fill_color) %>"
           stroke-width="10"
-          stroke-dasharray="calc(<%= remaining_percentage %> * 31.4 / 100) 31.4"
-          transform="rotate(-90) translate(-20)" >
-          <animate attributeName="stroke-dasharray" values=" calc(0 * 31.4 / 100) 31.4;calc(<%= remaining_percentage %> * 31.4 / 100) 31.4" dur="1s" repeatCount="freeze" />
+          stroke-dasharray="calc(<%= 2 * 22 / 7.0 * 5 * (degree_end - degree_start) / 360.0 %> ) calc(<%= 2 * 22 / 7.0 * 5 %>)"
+          transform-origin="10 10"
+          transform="rotate(<%= -90 + degree_start %>)" >
+          <animate attributeName="stroke-dasharray" values="0 <%= 2 * 22 / 7.0 * 5 %>" dur="0.5s" repeatCount="freeze" />
         </circle>
       <% end %>
     </svg>
