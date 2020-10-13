@@ -1,5 +1,5 @@
-<object data-testid="lc-live-bar-component" role="img" aria-label="Bar chart visualizing <%= Chart.title(@chart) %>" alt="Bar chart visualizing <%= Chart.title(@chart) %>">
-  <svg class="bar-chart" aria-labelledby="barChartTitle" aria-describedby="barChartDesc" width="100%" height="100%" viewBox="0 0 600 400" style="overflow: visible;">
+<figure data-testid="lc-live-bar-component" role="img" aria-label="Bar chart visualizing <%= Chart.title(@chart) %>" alt="Bar chart visualizing <%= Chart.title(@chart) %>" tabindex="0">
+  <svg class="bar-chart" width="100%" height="100%" viewBox="0 0 600 400" style="overflow: visible;">
 
     <title id="barChartTitle">Bar chart visualizing <%= Chart.title(@chart) %></title>
 
@@ -11,9 +11,9 @@
       <%= render "_bars.html", chart: @chart, bars: @bars %>
     </svg>
   </svg>
-</object>
+</figure>
 
-<table style="position: absolute; left: -100000px; top: auto; height: 1px; width: 1px; overflow: hidden;">
+<table tabindex="0" style="position: absolute; left: -100000px; top: auto; height: 1px; width: 1px; overflow: hidden;">
   <caption><%= Chart.title(@chart) %></caption>
   <%= for bar <- @bars do %>
     <tr>

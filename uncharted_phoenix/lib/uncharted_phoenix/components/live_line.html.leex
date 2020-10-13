@@ -1,4 +1,4 @@
-<object data-testid="lc-live-line-component" role="img" aria-label="Line chart visualizing <%= Chart.title(@chart) %>" alt="Line chart visualizing <%= Chart.title(@chart) %>">
+<figure data-testid="lc-live-line-component" role="img" aria-label="Line chart visualizing <%= Chart.title(@chart) %>" alt="Line chart visualizing <%= Chart.title(@chart) %>" tabindex="0">
   <svg id="<%= svg_id(@chart, "chart") %>" class="line-chart" width="100%" height="100%" viewBox="0 0 700 400" style="overflow: visible;">
     <title id="lineChartTitle">Line chart visualizing <%= Chart.title(@chart) %></title>
 
@@ -50,9 +50,9 @@
         <%= render "_color_defs.html", chart: @chart %>
       </defs>
     </svg>
-</object>
+</figure>
 
-<table style="position: absolute; left: -100000px; top: auto; height: 1px; width: 1px; overflow: hidden;">
+<table tabindex="0" style="position: absolute; left: -100000px; top: auto; height: 1px; width: 1px; overflow: hidden;">
   <caption><%= Chart.title(@chart) %> for [Data set title]</caption>
   <thead>
     <tr>
