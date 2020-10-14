@@ -38,6 +38,12 @@
 
 <table tabindex="0" phx-target="<%= @myself %>" phx-focus="show_table" phx-blur="hide_table"  style="<%= maybe_show_table(@show_table) %>">
   <caption><%= @chart.title %></caption>
+  <thead>
+    <tr>
+      <th scope="col">[Data title]</th>
+      <th scope="col">Progress</th>
+    </tr>
+  </thead>
   <tr>
     <th scope="row"><%= if @data.label, do: @data.label %> <%= if @data.secondary_label, do: @data.secondary_label %></th>
     <td><%= @progress %>%</td>

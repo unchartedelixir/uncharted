@@ -15,6 +15,12 @@
 
 <table tabindex="0" phx-target="<%= @myself %>" phx-focus="show_table" phx-blur="hide_table"  style="<%= maybe_show_table(@show_table) %>">
   <caption><%= Chart.title(@chart) %></caption>
+  <thead>
+    <tr>
+      <th scope="col">[Data Title]</th>
+      <th scope="col">[Data Title]</th>
+    </tr>
+  </thead>
   <%= for bar <- @bars do %>
     <tr>
       <th scope="row"><%= bar.label %></th>

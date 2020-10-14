@@ -53,12 +53,12 @@
 </figure>
 
 <table tabindex="0" phx-target="<%= @myself %>" phx-focus="show_table" phx-blur="hide_table"  style="<%= maybe_show_table(@show_table) %>">
-  <caption><%= Chart.title(@chart) %> for [Data set title]</caption>
+  <caption><%= Chart.title(@chart) %> for [Line Title]</caption>
   <thead>
     <tr>
       <th scope="col">Point</th>
-      <th scope="col">Year</th>
-      <th scope="col">Population</th>
+      <th scope="col">[Data Title]</th>
+      <th scope="col">[Data Title]</th>
     </tr>
   </thead>
   <%= for {point, index} <- Enum.with_index(@points, 1) do %>
