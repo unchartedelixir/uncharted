@@ -13,7 +13,7 @@
   </svg>
 </figure>
 
-<table tabindex="0" style="position: absolute; left: -100000px; top: auto; height: 1px; width: 1px; overflow: hidden;">
+<table tabindex="0" phx-target="<%= @myself %>" phx-focus="show_table" phx-blur="hide_table"  style="<%= maybe_show_table(@show_table) %>">
   <caption><%= Chart.title(@chart) %></caption>
   <%= for bar <- @bars do %>
     <tr>
