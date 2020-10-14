@@ -22,6 +22,7 @@ defmodule UnchartedPhoenix.LiveLineComponent do
       |> assign(:lines, Uncharted.LineChart.lines(assigns.chart))
       |> assign(:x_grid_lines, x_grid_lines)
       |> assign(:x_grid_line_offsetter, x_grid_line_offsetter)
+      |> assign(:x_axis, x_axis)
       |> assign(:y_grid_lines, y_grid_lines)
       |> assign(:y_grid_line_offsetter, y_grid_line_offsetter)
 

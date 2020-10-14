@@ -17,6 +17,7 @@ defmodule UnchartedPhoenix.LiveColumnComponent do
       |> assign(:columns, Uncharted.ColumnChart.columns(assigns.chart))
       |> assign(:grid_lines, grid_lines)
       |> assign(:grid_line_offsetter, grid_line_offsetter)
+      |> assign(:axis, y_axis)
 
     {:ok, socket}
   end

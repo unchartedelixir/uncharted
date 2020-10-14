@@ -51,5 +51,5 @@ To run the tests and formatting tools:
 $ mix deps.get
 $ mix test
 $ mix format
-$ mix credo--strict
+$ mix credo --strict
  ```

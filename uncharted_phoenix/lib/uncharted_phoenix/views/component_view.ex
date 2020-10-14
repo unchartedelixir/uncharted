@@ -10,9 +10,10 @@ defmodule UnchartedPhoenix.ComponentView do
   alias Uncharted.ColumnChart.Column
   alias Uncharted.LineChart.{Line, Point}
 
-  def color_to_fill(colors, name) do
-    case Map.get(colors, name) do
-      %Gradient{} -> "url(##{Atom.to_string(name)})"
+  def color_to_fill(colors, name, is_line \\ false) do
+    case Map.get(colors, name, nil) do
+      %Gradient{} -> "url(##{Atom.to_string(name) <> if is_line, do: "_line", else: ""})"
+      nil -> name
       value -> value
     end
   end
