@@ -85,9 +85,9 @@ defmodule UnchartedPhoenixTest do
                ~s(data-testid="lc-live-progress-component")
     end
 
-    test "raises an Protocol.UndefinedError exception when an invalid chart type is given" do
-      assert_raise Protocol.UndefinedError,
-                   ~r/^protocol Uncharted.Component not implemented/,
+    test "raises an UnchartedPhoenix.ComponentUndefinedError exception when an invalid chart type is given" do
+      assert_raise UnchartedPhoenix.ComponentUndefinedError,
+                   ~r/^No UnchartedPhoenix Component defined for dataset/,
                    fn ->
                      render_component(DummyLiveComponent,
                        chart: @base_chart

@@ -1,5 +1,6 @@
 defmodule UnchartedPhoenix.LiveLineComponentTest do
   alias Uncharted.BaseChart
+  alias Uncharted.Component
   alias Uncharted.Axes.{MagnitudeAxis, XYAxes}
   alias Uncharted.LineChart.Dataset
   alias UnchartedPhoenix.LiveLineComponent
@@ -22,12 +23,13 @@ defmodule UnchartedPhoenix.LiveLineComponentTest do
 
   describe "LiveLineComponent" do
     test "renders" do
-      assert render_component(LiveLineComponent, chart: @base_chart) =~
+      assert render_component(LiveLineComponent, chart: @base_chart, id: Component.id(@base_chart)) =~
                ~s(data-testid="lc-live-line-component")
     end
 
     test "renders the chart's title" do
-      assert render_component(LiveLineComponent, chart: @base_chart) =~ @base_chart.title
+      assert render_component(LiveLineComponent, chart: @base_chart, id: Component.id(@base_chart)) =~
+               @base_chart.title
     end
   end
 
