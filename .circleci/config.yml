@@ -55,19 +55,19 @@ jobs:
       # uncharted_phoenix
       - restore_cache:
           keys:
-            - v2-mix-compile-{{ checksum "OTP_VERSION.lock" }}-{{ checksum "ELIXIR_VERSION.lock" }}-{{ checksum "uncharted_phoenix/mix.lock" }}
-            - v2-mix-compile-{{ checksum "OTP_VERSION.lock" }}-{{ checksum "ELIXIR_VERSION.lock" }}
+            - v3-mix-compile-{{ checksum "OTP_VERSION.lock" }}-{{ checksum "ELIXIR_VERSION.lock" }}-{{ checksum "uncharted_phoenix/mix.lock" }}
+            - v3-mix-compile-{{ checksum "OTP_VERSION.lock" }}-{{ checksum "ELIXIR_VERSION.lock" }}
       - run:
           name: compile uncharted_phoenix
           command: mix do deps.get, compile
           working_directory: ~/project/uncharted_phoenix
       - save_cache:
-          key: v2-mix-compile-{{ checksum "OTP_VERSION.lock" }}-{{ checksum "ELIXIR_VERSION.lock" }}-{{ checksum "uncharted_phoenix/mix.lock" }}
+          key: v3-mix-compile-{{ checksum "OTP_VERSION.lock" }}-{{ checksum "ELIXIR_VERSION.lock" }}-{{ checksum "uncharted_phoenix/mix.lock" }}
           paths:
             - uncharted_phoenix/deps
             - uncharted_phoenix/_build
       - save_cache:
-          key: v2-mix-compile-{{ checksum "OTP_VERSION.lock" }}-{{ checksum "ELIXIR_VERSION.lock" }}
+          key: v3-mix-compile-{{ checksum "OTP_VERSION.lock" }}-{{ checksum "ELIXIR_VERSION.lock" }}
           paths:
             - uncharted_phoenix/deps
             - uncharted_phoenix/_build
