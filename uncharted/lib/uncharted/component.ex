@@ -15,7 +15,9 @@ defprotocol Uncharted.Component do
 
   ```elixir
   defimpl Uncharted.Component, for: Uncharted.BaseChart do
-    def for_dataset(%Uncharted.BarChart.Dataset{}), do: UnchartedPhoenix.LiveBarComponent
+    def for_dataset(%Uncharted.Basechart{dataset: %Uncharted.BarChart.Dataset{}}) do
+      UnchartedPhoenix.LiveBarComponent
+    end
   end
   ```
 
