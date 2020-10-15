@@ -6,13 +6,14 @@ defmodule Uncharted.BaseChart do
   """
   alias __MODULE__
 
-  defstruct [:title, :colors, :dataset]
+  defstruct [:title, :colors, :component_id, :dataset]
 
   @typep color_name() :: atom()
 
   @type t() :: %__MODULE__{
           title: String.t(),
           colors: %{color_name() => String.t() | Uncharted.Gradient.t()},
+          component_id: String.t() | integer() | nil,
           dataset: Uncharted.dataset()
         }
 

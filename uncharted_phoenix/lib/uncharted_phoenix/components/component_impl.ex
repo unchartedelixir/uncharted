@@ -18,15 +18,15 @@ defimpl Uncharted.Component, for: Uncharted.BaseChart do
   end
 
   def id(%BaseChart{component_id: nil, dataset: dataset}) do
-    Atom.to_string(dataset.__struct__)
+    strip_prefix(Atom.to_string(dataset.__struct__))
   end
 
   def id(%BaseChart{component_id: id, dataset: dataset}) when is_binary(id) do
-    Atom.to_string(dataset.__struct__) <> "__" <> id
+    strip_prefix(Atom.to_string(dataset.__struct__) <> "__" <> id)
   end
 
   def id(%BaseChart{component_id: id, dataset: dataset}) when is_number(id) do
-    Atom.to_string(dataset.__struct__) <> "__" <> "#{id}"
+    strip_prefix(Atom.to_string(dataset.__struct__) <> "__" <> "#{id}")
   end
 
   def error_message(dataset) do
@@ -34,5 +34,9 @@ defimpl Uncharted.Component, for: Uncharted.BaseChart do
     No UnchartedPhoenix Component defined for dataset: #{inspect(dataset)}.
     To define your own Component, implement the Uncharted.Component protocol for your own chart and datasets.
     """
+  end
+
+  defp strip_prefix(id) do
+    String.replace(id, "Elixir.", "")
   end
 end
