@@ -1,6 +1,6 @@
 defmodule UnchartedPhoenix.ComponentImplTest do
-  alias Uncharted.BaseChart
   alias Uncharted.BarChart.Dataset
+  alias Uncharted.BaseChart
   alias Uncharted.Component
   use ExUnit.Case
 
