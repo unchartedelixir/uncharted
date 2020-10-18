@@ -6,7 +6,7 @@ defmodule Uncharted.BaseChart do
   """
   alias __MODULE__
 
-  defstruct [:title, :colors, :component_id, :dataset, show_table: false]
+  defstruct [:title, :colors, :component_id, :dataset, :width, :height show_table: false]
 
   @typep color_name() :: atom()
 
@@ -14,7 +14,9 @@ defmodule Uncharted.BaseChart do
           title: String.t(),
           colors: %{color_name() => String.t() | Uncharted.Gradient.t()},
           dataset: Uncharted.dataset(),
-          show_table: boolean()
+          show_table: boolean(),
+          width: number(),
+          height: number()
         }
 
   defimpl Uncharted.Chart, for: __MODULE__ do
