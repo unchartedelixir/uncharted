@@ -25,6 +25,8 @@ Add this to your mix.exs deps:
 column_chart = %BaseChart{
   title: "Cheese Coney Consumption by Neighborhood",
   colors: colors,
+  width: 700,
+  height: 400,
   dataset: %ColumnChart.Dataset{
     axes: %BaseAxes{
       magnitude_axis: %MagnitudeAxis{
