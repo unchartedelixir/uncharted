@@ -22,6 +22,7 @@ defmodule UnchartedPhoenix.LiveColumnComponent do
       |> assign(:grid_lines, grid_lines)
       |> assign(:grid_line_offsetter, grid_line_offsetter)
       |> assign(:axis, y_axis)
+      |> assign(:show_table, assigns.chart.show_table)
 
     {:ok, socket}
   end

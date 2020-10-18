@@ -16,6 +16,7 @@ defmodule UnchartedPhoenix.LiveProgressComponent do
       |> assign(:chart, assigns.chart)
       |> assign(:data, ProgressChart.data(assigns.chart))
       |> assign(:progress, ProgressChart.progress(assigns.chart))
+      |> assign(:show_table, assigns.chart.show_table)
 
     {:ok, socket}
   end
