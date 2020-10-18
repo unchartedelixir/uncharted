@@ -121,6 +121,8 @@ pie_chart = %BaseChart{
 line_chart = %BaseChart{
   title: "Live Line Chart",
   colors: colors,
+  width: 700,
+  height: 400,
   dataset: %ColumnChart.Dataset{
     axes: %XYAxes{
       x: %MagnitudeAxis{
