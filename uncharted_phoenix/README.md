@@ -49,6 +49,8 @@ defp bar_chart do
 
   %BaseChart{
     title: "Live Beam Memory Stats",
+    width: 600,
+    height: 400,
     colors: %{
       blue: "#36D1DC",
       rosy_gradient: %Gradient{
