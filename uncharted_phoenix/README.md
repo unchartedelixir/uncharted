@@ -220,7 +220,7 @@ colors = %{
 ```
 
 ### Configure Grid Line Display
-You can configure the color and width of grid lines, as well as whether or not to display them. Set `line_color` to a string or the atom key of a set base color or gradient (see above). Set `line_width` to an integer to change the width of grid lines. Set `display_lines` to `false` to hide grid lines along that axis. This will work for column charts and the x-axis of line charts.
+You can configure the color and width of grid lines, as well as whether or not to display them. Set `line_color` to a string or the atom key of a set base color or gradient (see above). Set `line_width` to an integer to change the width of grid lines. Set `display_lines` to `false` to hide grid lines along that axis. Set `show_gridlines` on `XYAxes` or `BaseAxes` to `false` to hide all grid lines.
 ```elixir
 %MagnitudeAxis{
   line_color: "#efefef"
