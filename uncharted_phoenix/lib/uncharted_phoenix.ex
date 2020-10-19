@@ -4,6 +4,9 @@ defmodule UnchartedPhoenix do
   @moduledoc false
 
   def render(socket, chart) do
-    live_component(socket, Component.for_dataset(chart.dataset), chart: chart)
+    live_component(socket, Component.for_dataset(chart),
+      chart: chart,
+      id: Component.id(chart)
+    )
   end
 end

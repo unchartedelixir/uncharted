@@ -2,6 +2,7 @@ defmodule UnchartedPhoenix.LiveColumnComponentTest do
   alias Uncharted.BaseChart
   alias Uncharted.Axes.{BaseAxes, MagnitudeAxis}
   alias Uncharted.ColumnChart.Dataset
+  alias Uncharted.Component
   alias UnchartedPhoenix.LiveColumnComponent
   import Phoenix.LiveViewTest
   use ExUnit.Case
@@ -38,12 +39,18 @@ defmodule UnchartedPhoenix.LiveColumnComponentTest do
 
   describe "LiveColumnComponent" do
     test "renders" do
-      assert render_component(LiveColumnComponent, chart: @base_chart) =~
+      assert render_component(LiveColumnComponent,
+               chart: @base_chart,
+               id: Component.id(@base_chart)
+             ) =~
                ~s(data-testid="lc-live-column-component")
     end
 
     test "renders the chart's title" do
-      assert render_component(LiveColumnComponent, chart: @base_chart) =~ @base_chart.title
+      assert render_component(LiveColumnComponent,
+               chart: @base_chart,
+               id: Component.id(@base_chart)
+             ) =~ @base_chart.title
     end
 
     test "renders grid lines according to configuration" do
