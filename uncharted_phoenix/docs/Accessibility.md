@@ -1,4 +1,4 @@
-# Uncharted Phoenix Accessibility Documentation
+# Accessibility
 We've worked hard to ensure each chart can be accessed by screen readers and keyboards in a meaningful way, and are continuing to improve upon those efforts. Here's what we have in place so far.
 
 ## Figure element
