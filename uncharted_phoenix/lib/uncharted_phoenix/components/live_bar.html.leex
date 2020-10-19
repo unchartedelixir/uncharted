@@ -1,4 +1,4 @@
-<figure data-testid="lc-live-bar-component" role="img" aria-label="Bar chart visualizing <%= Chart.title(@chart) %>" alt="Bar chart visualizing <%= Chart.title(@chart) %>" tabindex="0">
+<figure data-testid="lc-live-bar-component" role="img" aria-label="Bar chart visualizing <%= Chart.title(@chart) %>" alt="Bar chart visualizing <%= Chart.title(@chart) %>" tabindex="0"  phx-target="<%= @myself %>" phx-focus="show_table">
   <svg class="bar-chart" width="100%" height="100%" viewBox="0 0 600 400" style="overflow: visible;">
 
     <title id="barChartTitle">Bar chart visualizing <%= Chart.title(@chart) %></title>
@@ -13,7 +13,7 @@
   </svg>
 </figure>
 
-<table tabindex="0" phx-target="<%= @myself %>" phx-focus="show_table" phx-blur="hide_table"  style="<%= maybe_show_table(@show_table) %>">
+<table tabindex="0" phx-target="<%= @myself %>" phx-blur="hide_table"  style="<%= maybe_show_table(@show_table) %>">
   <caption><%= Chart.title(@chart) %></caption>
   <thead>
     <tr>
