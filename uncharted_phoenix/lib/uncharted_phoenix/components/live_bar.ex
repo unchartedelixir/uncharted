@@ -21,6 +21,7 @@ defmodule UnchartedPhoenix.LiveBarComponent do
       |> assign(:bars, Uncharted.BarChart.bars(assigns.chart))
       |> assign(:grid_lines, grid_lines)
       |> assign(:offsetter, grid_line_offsetter)
+      |> assign(:axis, x_axis)
 
     {:ok, socket}
   end

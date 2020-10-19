@@ -7,8 +7,10 @@
 
     <svg id="<%= svg_id(@chart, "graph") %>" class="chart-lines" width="90%" height="92%" x="10%" y="0">
       <g>
-        <%= render "_bar_grid_lines.html", chart: @chart, grid_lines: @x_grid_lines, offsetter: @x_grid_line_offsetter %>
-        <%= render "_chart_lines.html", chart: @chart, grid_lines: @x_grid_lines, offsetter: @x_grid_line_offsetter, axis: @x_axis %>
+        <%= if @show_gridlines do %>
+          <%= render "_bar_grid_lines.html", chart: @chart, grid_lines: @y_grid_lines, offsetter: @y_grid_line_offsetter, axis: @y_axis %>
+          <%= render "_chart_lines.html", chart: @chart, grid_lines: @x_grid_lines, offsetter: @x_grid_line_offsetter, axis: @x_axis %>
+        <% end %>
         <%= for %Line{start: %{x_offset: x1, y_offset: y1}, end: %{x_offset: x2, y_offset: y2}} <- @lines do %>
           <line
             x1="<%= x1 %>%"

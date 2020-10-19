@@ -6,7 +6,9 @@
     <%= render "_x_axis.html", chart: @chart, columns: @columns %>
 
     <svg id="<%= svg_id(@chart, "graph") %>" class="chart-lines" width="90%" height="92%" x="10%" y="0">
-      <%= render "_chart_lines.html", chart: @chart, grid_lines: @grid_lines, offsetter: @grid_line_offsetter, axis: @axis %>
+      <%= if @chart.dataset.axes.show_gridlines do %>
+        <%= render "_chart_lines.html", chart: @chart, grid_lines: @grid_lines, offsetter: @grid_line_offsetter, axis: @axis %>
+      <% end %>
       <%= render "_column_chart_graph.html", chart: @chart, columns: @columns %>
     </svg>
     <%= render "_color_defs.html", chart: @chart %>
