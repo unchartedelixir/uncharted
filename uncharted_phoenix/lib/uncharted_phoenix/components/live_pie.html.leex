@@ -38,9 +38,9 @@
     </tr>
   </thead>
   <%= for slice <- svg_pie_slices(@pie_slices) do %>
-  <tr>
-    <th scope="row"><%= slice.label %></th>
-    <td><%= slice.percentage %></td>
-  </tr>
+    <tr>
+      <th scope="row"><%= slice.label %></th>
+      <td><%= slice.percentage %></td>
+    </tr>
   <% end %>
 </table>

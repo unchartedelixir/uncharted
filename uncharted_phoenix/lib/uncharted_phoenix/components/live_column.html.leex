@@ -22,9 +22,9 @@
     </tr>
   </thead>
   <%= for column <- @columns do %>
-  <tr>
-    <th scope="row"><%= column.label %></th>
-    <td><%= column.column_value %></td>
-  </tr>
+    <tr>
+      <th scope="row"><%= column.label %></th>
+      <td><%= column.column_value %></td>
+    </tr>
   <% end %>
 </table>
