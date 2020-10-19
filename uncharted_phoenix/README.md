@@ -7,8 +7,10 @@ A simple ***Elixir*** charting library that generates easy to customize charts f
 - Provides advanced styling like gradients and rounded corners
 - Smooth animations for updating live data to the UI
 
+### Accessibility
+We've worked hard to ensure Uncharted Phoenix is both screen reader and keyboard accessible. Learn more about our approach here: [Accessibility Documentation](/docs/Accessibility.md)
+
 [API Documentation](https://hexdocs.pm/uncharted_phoenix/)
-[Accessibility Documentation](/docs/Accessibility.md)
 
 ## HEX Installation
 Add this to your mix.exs deps:
