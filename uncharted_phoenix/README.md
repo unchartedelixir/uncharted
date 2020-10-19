@@ -8,6 +8,7 @@ A simple ***Elixir*** charting library that generates easy to customize charts f
 - Smooth animations for updating live data to the UI
 
 [API Documentation](https://hexdocs.pm/uncharted_phoenix/)
+[Accessibility Documentation](/docs/Accessibility.md)
 
 ## HEX Installation
 Add this to your mix.exs deps:
