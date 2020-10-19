@@ -90,7 +90,7 @@ defmodule UnchartedPhoenix.MixProject do
 
   defp docs do
     [
-      extras: ["README.md", "CHANGELOG.md"],
+      extras: ["README.md", "CHANGELOG.md", "docs/Accessibility.md"],
       main: "readme",
       source_ref: "v#{@version}",
       source_url: @source_url,
