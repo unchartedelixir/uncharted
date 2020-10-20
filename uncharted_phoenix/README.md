@@ -195,7 +195,9 @@ defp progress_chart(from: %BaseChart{} = chart) do
         current_value: memory.process,
         percentage_text_fill_color: :blue_gradient,
         percentage_fill_color: :rose_gradient,
-        label_fill_color: :rose_gradient
+        label_fill_color: :rose_gradient,
+        doughnut_width: 5,
+        progress_shape: :round
       }
   }
 end
