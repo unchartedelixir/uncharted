@@ -1,29 +1,27 @@
 <object data-testid="lc-live-pie-component" role="img" aria-label="Pie chart visualizing <%= Chart.title(@chart) %>" alt="Pie chart visualizing <%= Chart.title(@chart) %>">
-  <svg overflow="visible">
-    <svg id="<%= svg_id(@chart, "chart") %>" class="pie-chart" height="100%" width="100%" viewBox="0 0 20 24">
-      <title id="pieChartTitle">Pie chart visualizing <%= Chart.title(@chart) %></title>
+  <svg id="<%= svg_id(@chart, "chart") %>" class="pie-chart" height="100%" width="100%" viewBox="0 0 20 24">
+    <title id="pieChartTitle">Pie chart visualizing <%= Chart.title(@chart) %></title>
 
-      <svg id="<%= svg_id(@chart, "title") %>" class="chart-data" y="0" x="0" width="100%" height="90%">
-        <circle r="10" cx="10" cy="10" fill="transparent" />
-        <%= for %{remaining_percentage: remaining_percentage, fill_color: fill_color} <- svg_pie_slices(@pie_slices) do %>
-          <circle class="data-slice" r="5" cx="10" cy="10" fill="transparent"
-            style="transition: all 0.5s ease"
-            stroke="<%= color_to_fill(Chart.colors(@chart), fill_color) %>"
-            stroke-width="10"
-            stroke-dasharray="calc(<%= remaining_percentage %> * 31.4 / 100) 31.4"
-            transform="rotate(-90) translate(-20)" >
-            <animate attributeName="stroke-dasharray" values=" calc(0 * 31.4 / 100) 31.4;calc(<%= remaining_percentage %> * 31.4 / 100) 31.4" dur="1s" repeatCount="freeze" />
-          </circle>
-        <% end %>
-      </svg>
+    <svg id="<%= svg_id(@chart, "title") %>" class="chart-data" y="0" x="0" width="100%" height="90%">
+      <circle r="10" cx="10" cy="10" fill="transparent" />
+      <%= for %{remaining_percentage: remaining_percentage, fill_color: fill_color} <- svg_pie_slices(@pie_slices) do %>
+        <circle class="data-slice" r="5" cx="10" cy="10" fill="transparent"
+          style="transition: all 0.5s ease"
+          stroke="<%= color_to_fill(Chart.colors(@chart), fill_color) %>"
+          stroke-width="10"
+          stroke-dasharray="calc(<%= remaining_percentage %> * 31.4 / 100) 31.4"
+          transform="rotate(-90) translate(-20)" >
+          <animate attributeName="stroke-dasharray" values=" calc(0 * 31.4 / 100) 31.4;calc(<%= remaining_percentage %> * 31.4 / 100) 31.4" dur="1s" repeatCount="freeze" />
+        </circle>
+      <% end %>
     </svg>
 
-    <svg id="<%= svg_id(@chart, "key") %>" class="chart-key" height="60%" width="80%" y="100%" x="10%" aria-hidden="true" overflow="visible">
+    <svg id="<%= svg_id(@chart, "key") %>" class="chart-key" height="10%" width="100%" y="90%" x="0" aria-hidden="true" overflow="visible">
       <%= for %{label: label, fill_color: fill_color, label_width: label_width, label_position: label_position} <- svg_pie_slices(@pie_slices) do %>
-        <svg id="<%= label %>" class="chart-label" width="<%= label_width %>%" height="100%" y="0" x="<%= label_position %>%">
-          <rect width="90%" x="5%" height="5px" rx="3" ry="3" fill="<%= color_to_fill(Chart.colors(@chart), fill_color) %>" />
-          <foreignObject x="0" y="5%" width="100%" height="100%" overflow="visible">
-            <p style="font-size:8px; text-align: center;">
+        <svg id="<%= label %>" class="chart-label" width="<%= label_width %>%" height="100%" y="0" x="<%= label_position %>%" overflow="visible">
+          <rect width="90%" x="5%" height=".5" rx=".3" ry=".3" fill="<%= color_to_fill(Chart.colors(@chart), fill_color) %>" />
+          <foreignObject x="0" y="25%" width="100%" height="100%" overflow="visible">
+            <p style="font-size:.8px; text-align: center; letter-spacing: .2px;">
               <%= label %>
             </p>
           </foreignObject>

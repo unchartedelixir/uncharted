@@ -1,4 +1,4 @@
-<svg id="<%= svg_id(@chart, "ylabels") %>" class="chart-y-labels" width="8%" height="90%" y="0" x="0" overflow="visible">
+<svg id="<%= svg_id(@chart, "ylabels") %>" class="chart-y-labels" width="10%" height="90%" y="0" x="0" overflow="visible">
   <%= for grid_line <- @grid_lines do %>
     <foreignObject x="0" y="<%= @offsetter.(grid_line) %>%" height="20px" width="100%"  overflow="visible">
       <div xmlns="http://www.w3.org/1999/xhtml">
