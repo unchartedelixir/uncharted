@@ -21,7 +21,7 @@
         <svg id="<%= label %>" class="chart-label" width="<%= label_width %>%" height="100%" y="0" x="<%= label_position %>%" overflow="visible">
           <rect width="90%" x="5%" height=".5" rx=".3" ry=".3" fill="<%= color_to_fill(Chart.colors(@chart), fill_color) %>" />
           <foreignObject x="0" y="25%" width="100%" height="100%" overflow="visible">
-            <p style="font-size:.8px; text-align: center; letter-spacing: .2px;">
+            <p title="<%= label %>" style="font-size:.8px; text-align: center; letter-spacing: .2px;">
               <%= label %>
             </p>
           </foreignObject>

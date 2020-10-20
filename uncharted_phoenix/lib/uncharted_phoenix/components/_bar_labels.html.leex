@@ -2,7 +2,7 @@
   <%= for %Uncharted.BarChart.Bar{label: label, height: height, offset: offset} <- Uncharted.BarChart.bars(@chart) do %>
     <foreignObject x="0" y="<%= offset %>%" height="<%= height %>%" width="100%"  overflow="visible">
       <div xmlns="http://www.w3.org/1999/xhtml" style="padding: 25% 0;">
-        <p xmlns="http://www.w3.org/1999/xhtml" style="font-size:9px;">
+        <p xmlns="http://www.w3.org/1999/xhtml" title="<%= label %>" style="font-size:9px;">
           <%= label %>
         </p>
       </div>
