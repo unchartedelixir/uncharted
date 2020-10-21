@@ -1,9 +1,9 @@
-<svg id="<%= svg_id(@chart, "ylabels") %>" class="chart-y-labels" width="10%" height="92%" y="0" x="0">
-  <%= for %Uncharted.BarChart.Bar{label: label, height: height, offset: offset} <- Uncharted.BarChart.bars(@chart) do %>
-    <svg x="0" y="<%= offset %>%" height="<%= height %>%" width="100%">
-        <svg width="100%" height="100%">
-        <text x="50%" y="50%" font-size="8px" alignment-baseline="middle" text-anchor="middle"><%= label %></text>
-      </svg>
-    </svg>
+<svg id="<%= svg_id(@chart, "ylabels") %>" class="chart-y-labels" width="10%" height="92%" y="0" x="0"  overflow="visible">
+  <%= for %Uncharted.BarChart.Bar{label: label, bar_offset: bar_offset, bar_height: bar_height} <- Uncharted.BarChart.bars(@chart) do %>
+    <foreignObject x="0" y="<%= bar_offset %>%" height="<%= bar_height %>%" width="100%">
+      <p xmlns="http://www.w3.org/1999/xhtml" title="<%= label %>" style="font-size:9px; overflow: hidden; text-overflow: ellipsis;">
+        <%= label %>
+      </p>
+    </foreignObject>
   <% end %>
 </svg>

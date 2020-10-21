@@ -1,5 +1,5 @@
 <figure data-testid="lc-live-pie-component" role="img" aria-label="Pie chart visualizing <%= Chart.title(@chart) %>" alt="Pie chart visualizing <%= Chart.title(@chart) %>" tabindex="0"  phx-target="<%= @myself %>" phx-focus="show_table">
-  <svg id="<%= svg_id(@chart, "chart") %>" class="pie-chart" height="100%" width="100%" viewBox="0 0 20 24">
+  <svg id="<%= svg_id(@chart, "chart") %>" class="pie-chart" height="100%" width="100%" viewBox="0 0 20 24" overflow="visible">
     <title id="pieChartTitle">Pie chart visualizing <%= Chart.title(@chart) %></title>
 
     <svg id="<%= svg_id(@chart, "title") %>" class="chart-data" y="0" x="0" width="100%" height="90%">
@@ -16,11 +16,15 @@
       <% end %>
     </svg>
 
-    <svg id="<%= svg_id(@chart, "key") %>" class="chart-key" height="10%" width="100%" y="90%" x="0%" aria-hidden="true">
+    <svg id="<%= svg_id(@chart, "key") %>" class="chart-key" height="10%" width="100%" y="90%" x="0" aria-hidden="true" overflow="visible">
       <%= for %{label: label, fill_color: fill_color, label_width: label_width, label_position: label_position} <- svg_pie_slices(@pie_slices) do %>
-        <svg id="<%= label %>" class="chart-label" width="<%= label_width %>%" height="100%" y="0" x="<%= label_position %>%">
-          <rect width="90%" x="5%" height="0.5px" rx="0.3" ry="0.3" fill="<%= color_to_fill(Chart.colors(@chart), fill_color) %>" />
-          <text x="50%" y="50%" fill="#0c0c0c" font-size="0.7px" font-weight="400" font-family="sans-serif" alignment-baseline="middle" text-anchor="middle"><%= label %></text>
+        <svg id="<%= label %>" class="chart-label" width="<%= label_width %>%" height="100%" y="0" x="<%= label_position %>%" overflow="visible">
+          <rect width="90%" x="5%" height=".5" rx=".3" ry=".3" fill="<%= color_to_fill(Chart.colors(@chart), fill_color) %>" />
+          <foreignObject x="0" y="25%" width="100%" height="100%" overflow="visible">
+            <p title="<%= label %>" style="font-size:.8px; text-align: center; letter-spacing: .1px; line-height: 2px; padding: 0 5%; overflow: hidden; text-overflow: ellipsis;">
+              <%= label %>
+            </p>
+          </foreignObject>
         </svg>
       <% end %>
     </svg>
