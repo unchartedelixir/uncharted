@@ -9,8 +9,9 @@
             y="<%= 100 - column_height %>%"
             rx="10"
             ry="10"
+            style="transition: all 1s ease;"
             fill="<%= color_to_fill(@chart.colors(), fill_color) %>"
-      >
+          >
         <animate attributeName="height" values="0;30%" dur="1s" repeatCount="freeze" />
         <animate attributeName="y" values="100%;70%" dur="1s" repeatCount="freeze" />
       </rect>
