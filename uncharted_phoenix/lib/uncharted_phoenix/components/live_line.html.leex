@@ -1,4 +1,4 @@
-<object data-testid="lc-live-line-component" role="img" aria-label="Line chart visualizing <%= Chart.title(@chart) %>" alt="Line chart visualizing <%= Chart.title(@chart) %>">
+<figure data-testid="lc-live-line-component" role="img" aria-label="Line chart visualizing <%= Chart.title(@chart) %>" alt="Line chart visualizing <%= Chart.title(@chart) %>" tabindex="0"  phx-target="<%= @myself %>" phx-focus="show_table">
   <svg id="<%= svg_id(@chart, "chart") %>" class="line-chart" width="100%" height="100%" viewBox="0 0 700 400" style="overflow: visible;">
     <title id="lineChartTitle">Line chart visualizing <%= Chart.title(@chart) %></title>
 
@@ -7,8 +7,10 @@
 
     <svg id="<%= svg_id(@chart, "graph") %>" class="chart-lines" width="90%" height="92%" x="10%" y="0">
       <g>
-        <%= render "_bar_grid_lines.html", chart: @chart, grid_lines: @x_grid_lines, offsetter: @x_grid_line_offsetter %>
-        <%= render "_chart_lines.html", chart: @chart, grid_lines: @x_grid_lines, offsetter: @x_grid_line_offsetter, axis: @x_axis %>
+        <%= if @show_gridlines do %>
+          <%= render "_bar_grid_lines.html", chart: @chart, grid_lines: @y_grid_lines, offsetter: @y_grid_line_offsetter, axis: @y_axis %>
+          <%= render "_chart_lines.html", chart: @chart, grid_lines: @x_grid_lines, offsetter: @x_grid_line_offsetter, axis: @x_axis %>
+        <% end %>
         <%= for %Line{start: %{x_offset: x1, y_offset: y1}, end: %{x_offset: x2, y_offset: y2}} <- @lines do %>
           <line
             x1="<%= x1 %>%"
@@ -50,15 +52,15 @@
         <%= render "_color_defs.html", chart: @chart %>
       </defs>
     </svg>
-</object>
+</figure>
 
-<table style="position: absolute; left: -100000px; top: auto; height: 1px; width: 1px; overflow: hidden;">
-  <caption><%= Chart.title(@chart) %> for [Data set title]</caption>
+<table tabindex="0" phx-target="<%= @myself %>" phx-blur="hide_table"  style="<%= maybe_show_table(@show_table) %>">
+  <caption><%= Chart.title(@chart) %> for [Line Title]</caption>
   <thead>
     <tr>
       <th scope="col">Point</th>
-      <th scope="col">Year</th>
-      <th scope="col">Population</th>
+      <th scope="col">[Data Title]</th>
+      <th scope="col">[Data Title]</th>
     </tr>
   </thead>
   <%= for {point, index} <- Enum.with_index(@points, 1) do %>

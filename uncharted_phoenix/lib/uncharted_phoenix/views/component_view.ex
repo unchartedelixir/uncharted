@@ -61,4 +61,10 @@ defmodule UnchartedPhoenix.ComponentView do
     |> List.insert_at(-1, "#{List.last(points).x_offset * 10},1000")
     |> Enum.join(" ")
   end
+
+  def maybe_show_table(true), do: ""
+
+  def maybe_show_table(_),
+    do:
+      "position: absolute; left: -100000px; top: auto; height: 1px; width: 1px; overflow: hidden;"
 end

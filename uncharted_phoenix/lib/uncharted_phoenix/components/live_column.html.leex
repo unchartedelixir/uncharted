@@ -1,4 +1,4 @@
-<object data-testid="lc-live-column-component" role="img" aria-label="Column chart visualizing <%= Chart.title(@chart) %>" alt="Column chart visualizing <%= Chart.title(@chart) %>">
+<figure data-testid="lc-live-column-component" role="img" aria-label="Column chart visualizing <%= Chart.title(@chart) %>" alt="Column chart visualizing <%= Chart.title(@chart) %>" tabindex="0" phx-target="<%= @myself %>" phx-focus="show_table">
   <svg id="<%= svg_id(@chart, "chart") %>" class="column-chart" width="100%" height="100%" viewBox="0 0 700 400">
     <title id="columnChartTitle">Column chart visualizing <%= Chart.title(@chart) %></title>
 
@@ -6,15 +6,23 @@
     <%= render "_x_axis.html", chart: @chart, columns: @columns %>
 
     <svg id="<%= svg_id(@chart, "graph") %>" class="chart-lines" width="90%" height="92%" x="10%" y="0">
-      <%= render "_chart_lines.html", chart: @chart, grid_lines: @grid_lines, offsetter: @grid_line_offsetter, axis: @axis %>
+      <%= if @chart.dataset.axes.show_gridlines do %>
+        <%= render "_chart_lines.html", chart: @chart, grid_lines: @grid_lines, offsetter: @grid_line_offsetter, axis: @axis %>
+      <% end %>
       <%= render "_column_chart_graph.html", chart: @chart, columns: @columns %>
     </svg>
     <%= render "_color_defs.html", chart: @chart %>
   </svg>
-</object>
+</figure>
 
-<table style="position: absolute; left: -100000px; top: auto; height: 1px; width: 1px; overflow: hidden;">
+<table tabindex="0" phx-target="<%= @myself %>" phx-blur="hide_table"  style="<%= maybe_show_table(@show_table) %>">
   <caption><%= Chart.title(@chart) %></caption>
+  <thead>
+    <tr>
+      <th scope="col">[Data Title]</th>
+      <th scope="col">[Data Title]</th>
+    </tr>
+  </thead>
   <%= for column <- @columns do %>
     <tr>
       <th scope="row"><%= column.label %></th>

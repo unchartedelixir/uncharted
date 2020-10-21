@@ -7,6 +7,9 @@ A simple ***Elixir*** charting library that generates easy to customize charts f
 - Provides advanced styling like gradients and rounded corners
 - Smooth animations for updating live data to the UI
 
+### Accessibility
+We've worked hard to ensure Uncharted Phoenix is both screen reader and keyboard accessible. Learn more about our approach here: [Accessibility Documentation](/docs/Accessibility.md)
+
 [API Documentation](https://hexdocs.pm/uncharted_phoenix/)
 
 ## HEX Installation
@@ -192,7 +195,9 @@ defp progress_chart(from: %BaseChart{} = chart) do
         current_value: memory.process,
         percentage_text_fill_color: :blue_gradient,
         percentage_fill_color: :rose_gradient,
-        label_fill_color: :rose_gradient
+        label_fill_color: :rose_gradient,
+        doughnut_width: 5,
+        progress_shape: :round
       }
   }
 end
@@ -220,7 +225,7 @@ colors = %{
 ```
 
 ### Configure Grid Line Display
-You can configure the color and width of grid lines, as well as whether or not to display them. Set `line_color` to a string or the atom key of a set base color or gradient (see above). Set `line_width` to an integer to change the width of grid lines. Set `display_lines` to `false` to hide grid lines along that axis. This will work for column charts and the x-axis of line charts.
+You can configure the color and width of grid lines, as well as whether or not to display them. Set `line_color` to a string or the atom key of a set base color or gradient (see above). Set `line_width` to an integer to change the width of grid lines. Set `display_lines` to `false` to hide grid lines along that axis. Set `show_gridlines` on `XYAxes` or `BaseAxes` to `false` to hide all grid lines.
 ```elixir
 %MagnitudeAxis{
   line_color: "#efefef"

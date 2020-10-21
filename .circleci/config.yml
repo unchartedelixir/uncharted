@@ -35,19 +35,19 @@ jobs:
       # uncharted
       - restore_cache:
           keys:
-            - v2-mix-compile-{{ checksum "OTP_VERSION.lock" }}-{{ checksum "ELIXIR_VERSION.lock" }}-{{ checksum "uncharted/mix.lock" }}
-            - v2-mix-compile-{{ checksum "OTP_VERSION.lock" }}-{{ checksum "ELIXIR_VERSION.lock" }}
+            - v3-mix-compile-{{ checksum "OTP_VERSION.lock" }}-{{ checksum "ELIXIR_VERSION.lock" }}-{{ checksum "uncharted/mix.lock" }}
+            - v3-mix-compile-{{ checksum "OTP_VERSION.lock" }}-{{ checksum "ELIXIR_VERSION.lock" }}
       - run:
           name: Compile uncharted
           command: mix do deps.get, compile
           working_directory: ~/project/uncharted
       - save_cache:
-          key: v2-mix-compile-{{ checksum "OTP_VERSION.lock" }}-{{ checksum "ELIXIR_VERSION.lock" }}-{{ checksum "uncharted/mix.lock" }}
+          key: v3-mix-compile-{{ checksum "OTP_VERSION.lock" }}-{{ checksum "ELIXIR_VERSION.lock" }}-{{ checksum "uncharted/mix.lock" }}
           paths:
             - uncharted/deps
             - uncharted/_build
       - save_cache:
-          key: v2-mix-compile-{{ checksum "OTP_VERSION.lock" }}-{{ checksum "ELIXIR_VERSION.lock" }}
+          key: v3-mix-compile-{{ checksum "OTP_VERSION.lock" }}-{{ checksum "ELIXIR_VERSION.lock" }}
           paths:
             - uncharted/deps
             - uncharted/_build
@@ -55,19 +55,19 @@ jobs:
       # uncharted_phoenix
       - restore_cache:
           keys:
-            - v2-mix-compile-{{ checksum "OTP_VERSION.lock" }}-{{ checksum "ELIXIR_VERSION.lock" }}-{{ checksum "uncharted_phoenix/mix.lock" }}
-            - v2-mix-compile-{{ checksum "OTP_VERSION.lock" }}-{{ checksum "ELIXIR_VERSION.lock" }}
+            - v3-mix-compile-{{ checksum "OTP_VERSION.lock" }}-{{ checksum "ELIXIR_VERSION.lock" }}-{{ checksum "uncharted_phoenix/mix.lock" }}
+            - v3-mix-compile-{{ checksum "OTP_VERSION.lock" }}-{{ checksum "ELIXIR_VERSION.lock" }}
       - run:
           name: compile uncharted_phoenix
           command: mix do deps.get, compile
           working_directory: ~/project/uncharted_phoenix
       - save_cache:
-          key: v2-mix-compile-{{ checksum "OTP_VERSION.lock" }}-{{ checksum "ELIXIR_VERSION.lock" }}-{{ checksum "uncharted_phoenix/mix.lock" }}
+          key: v3-mix-compile-{{ checksum "OTP_VERSION.lock" }}-{{ checksum "ELIXIR_VERSION.lock" }}-{{ checksum "uncharted_phoenix/mix.lock" }}
           paths:
             - uncharted_phoenix/deps
             - uncharted_phoenix/_build
       - save_cache:
-          key: v2-mix-compile-{{ checksum "OTP_VERSION.lock" }}-{{ checksum "ELIXIR_VERSION.lock" }}
+          key: v3-mix-compile-{{ checksum "OTP_VERSION.lock" }}-{{ checksum "ELIXIR_VERSION.lock" }}
           paths:
             - uncharted_phoenix/deps
             - uncharted_phoenix/_build
@@ -126,8 +126,8 @@ jobs:
 
       - restore_cache:
           keys:
-            - v2-<< parameters.project_name >>-mix-dialyzer-{{ checksum "OTP_VERSION.lock" }}-{{ checksum "ELIXIR_VERSION.lock" }}-{{ checksum "<< parameters.project_name >>/mix.lock" }}
-            - v2-<< parameters.project_name >>-mix-dialyzer-{{ checksum "OTP_VERSION.lock" }}-{{ checksum "ELIXIR_VERSION.lock" }}
+            - v3-<< parameters.project_name >>-mix-dialyzer-{{ checksum "OTP_VERSION.lock" }}-{{ checksum "ELIXIR_VERSION.lock" }}-{{ checksum "<< parameters.project_name >>/mix.lock" }}
+            - v3-<< parameters.project_name >>-mix-dialyzer-{{ checksum "OTP_VERSION.lock" }}-{{ checksum "ELIXIR_VERSION.lock" }}
 
       - run:
           command: mix dialyzer --plt
@@ -135,11 +135,11 @@ jobs:
           no_output_timeout: 20m
 
       - save_cache:
-          key: v2-<< parameters.project_name >>-mix-dialyzer-{{ checksum "OTP_VERSION.lock" }}-{{ checksum "ELIXIR_VERSION.lock" }}-{{ checksum "<< parameters.project_name >>/mix.lock" }}
+          key: v3-<< parameters.project_name >>-mix-dialyzer-{{ checksum "OTP_VERSION.lock" }}-{{ checksum "ELIXIR_VERSION.lock" }}-{{ checksum "<< parameters.project_name >>/mix.lock" }}
           paths:
             - << parameters.project_name >>/priv/plts
       - save_cache:
-          key: v2-<< parameters.project_name >>-mix-dialyzer-{{ checksum "OTP_VERSION.lock" }}-{{ checksum "ELIXIR_VERSION.lock" }}
+          key: v3-<< parameters.project_name >>-mix-dialyzer-{{ checksum "OTP_VERSION.lock" }}-{{ checksum "ELIXIR_VERSION.lock" }}
           paths:
             - << parameters.project_name >>/priv/plts
 

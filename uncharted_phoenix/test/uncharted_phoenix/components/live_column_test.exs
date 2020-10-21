@@ -2,10 +2,9 @@ defmodule UnchartedPhoenix.LiveColumnComponentTest do
   alias Uncharted.BaseChart
   alias Uncharted.Axes.{BaseAxes, MagnitudeAxis}
   alias Uncharted.ColumnChart.Dataset
-  alias UnchartedPhoenix.LiveColumnComponent
-  import Phoenix.LiveViewTest
+  import UnchartedPhoenix.TestRenderer
   use ExUnit.Case
-  @endpoint Endpoint
+
   @axes %BaseAxes{
     magnitude_axis: %MagnitudeAxis{
       min: 0,
@@ -38,26 +37,21 @@ defmodule UnchartedPhoenix.LiveColumnComponentTest do
 
   describe "LiveColumnComponent" do
     test "renders" do
-      assert render_component(LiveColumnComponent, chart: @base_chart) =~
-               ~s(data-testid="lc-live-column-component")
+      assert render_chart(@base_chart) =~ ~s(data-testid="lc-live-column-component")
     end
 
     test "renders the chart's title" do
-      assert render_component(LiveColumnComponent, chart: @base_chart) =~ @base_chart.title
+      assert render_chart(@base_chart) =~ @base_chart.title
     end
 
     test "renders grid lines according to configuration" do
-      assert render_component(LiveColumnComponent, chart: @configured_graph_chart) =~
-               "stroke=\"red\""
+      assert render_chart(@configured_graph_chart) =~ "stroke=\"red\""
 
-      assert render_component(LiveColumnComponent, chart: @configured_graph_chart) =~
-               "stroke-width=\"7px\""
+      assert render_chart(@configured_graph_chart) =~ "stroke-width=\"7px\""
 
-      refute render_component(LiveColumnComponent, chart: @nondisplayed_graph_chart) =~
-               "stroke=\"red\""
+      refute render_chart(@nondisplayed_graph_chart) =~ "stroke=\"red\""
 
-      refute render_component(LiveColumnComponent, chart: @nondisplayed_graph_chart) =~
-               "stroke-width=\"7px\""
+      refute render_chart(@nondisplayed_graph_chart) =~ "stroke-width=\"7px\""
     end
   end
 

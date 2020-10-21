@@ -1,10 +1,10 @@
-<object data-testid="lc-live-progress-component" role="img" aria-label="Progress chart visualizing <%= Chart.title(@chart) %>" alt="Progress chart visualizing <%= Chart.title(@chart) %>">
+<figure data-testid="lc-live-progress-component" role="img" aria-label="Progress chart visualizing <%= @chart.title %>" alt="Progress chart visualizing <%= Chart.title(@chart) %>" tabindex="0"  phx-target="<%= @myself %>" phx-focus="show_table">
   <svg id="<%= svg_id(@chart, "chart") %>" class="progress-chart" width="100%" height="100%" viewBox="0 0 42 42">
       <title id="progressChartTitle">Progress chart visualizing <%= @chart.title %></title>
 
     <g id="<%= svg_id(@chart, "circle") %>">
       <circle class="chart-center" cx="21" cy="21" r="16" fill="transparent"></circle>
-      <circle class="chart-ring" cx="21" cy="21" r="16" fill="transparent" stroke="<%= color_to_fill(Chart.colors(@chart), @data.background_stroke_color)  %>" stroke-width="5"></circle>
+      <circle class="chart-ring" cx="21" cy="21" r="16" fill="transparent" stroke="<%= color_to_fill(Chart.colors(@chart), @data.background_stroke_color)  %>" stroke-width="<%= @chart.dataset.doughnut_width %>"></circle>
 
       <svg class="chart-label" width="100%" height="100%" y="0" x="0">
         <text class="label-percentage" x="50%" y="50%" fill="<%= color_to_fill(Chart.colors(@chart), @data.percentage_text_fill_color) %>" font-size="10px" font-weight="100" font-family="sans-serif" alignment-baseline="middle" text-anchor="middle"><%= @progress %>%</text>
@@ -24,20 +24,26 @@
           fill="transparent"
           stroke="<%= color_to_fill(Chart.colors(@chart), @data.percentage_fill_color) %>"
           style="transition: all 0.5s ease"
-          stroke-width="5"
+          stroke-width="<%= @chart.dataset.doughnut_width %>"
           stroke-dasharray="<%= @progress %> <%= 100 - @progress %>"
           stroke-dashoffset="25"
-          stroke-linecap="round">
+          stroke-linecap="<%= @chart.dataset.progress_shape %>">
           <animate attributeName="stroke-dasharray" values=" 0 100;<%= @progress %> <%= 100 - @progress %>" dur="1s" repeatCount="freeze" />
         </circle>
     </g>
 
     <%= render "_color_defs.html", chart: @chart %>
   </svg>
-</object>
+</figure>
 
-<table style="position: absolute; left: -100000px; top: auto; height: 1px; width: 1px; overflow: hidden;">
+<table tabindex="0" phx-target="<%= @myself %>" phx-blur="hide_table"  style="<%= maybe_show_table(@show_table) %>">
   <caption><%= @chart.title %></caption>
+  <thead>
+    <tr>
+      <th scope="col">[Data title]</th>
+      <th scope="col">Progress</th>
+    </tr>
+  </thead>
   <tr>
     <th scope="row"><%= if @data.label, do: @data.label %> <%= if @data.secondary_label, do: @data.secondary_label %></th>
     <td><%= @progress %>%</td>

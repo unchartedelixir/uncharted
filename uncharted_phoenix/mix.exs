@@ -21,8 +21,8 @@ defmodule UnchartedPhoenix.MixProject do
       dialyzer: [
         plt_add_apps: ~w(ex_unit mix)a,
         plt_add_deps: :app_tree,
-        plt_file: {:no_warn, "priv/plts/dialyzer.plt"}
-        # ignore_warnings: "../.dialyzer-ignore.exs"
+        plt_file: {:no_warn, "priv/plts/dialyzer.plt"},
+        ignore_warnings: "../.dialyzer-ignore.exs"
       ],
       preferred_cli_env: [
         coveralls: :test,
@@ -90,7 +90,7 @@ defmodule UnchartedPhoenix.MixProject do
 
   defp docs do
     [
-      extras: ["README.md", "CHANGELOG.md"],
+      extras: ["README.md", "CHANGELOG.md", "docs/Accessibility.md"],
       main: "readme",
       source_ref: "v#{@version}",
       source_url: @source_url,

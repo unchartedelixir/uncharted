@@ -2,10 +2,9 @@ defmodule UnchartedPhoenix.LiveLineComponentTest do
   alias Uncharted.BaseChart
   alias Uncharted.Axes.{MagnitudeAxis, XYAxes}
   alias Uncharted.LineChart.Dataset
-  alias UnchartedPhoenix.LiveLineComponent
-  import Phoenix.LiveViewTest
+  import UnchartedPhoenix.TestRenderer
   use ExUnit.Case
-  @endpoint Endpoint
+
   @axes %XYAxes{
     x: %MagnitudeAxis{
       min: 0,
@@ -40,20 +39,17 @@ defmodule UnchartedPhoenix.LiveLineComponentTest do
 
   describe "LiveLineComponent" do
     test "renders" do
-      assert render_component(LiveLineComponent, chart: @base_chart) =~
-               ~s(data-testid="lc-live-line-component")
+      assert render_chart(@base_chart) =~ ~s(data-testid="lc-live-line-component")
     end
 
     test "renders the chart's title" do
-      assert render_component(LiveLineComponent, chart: @base_chart) =~ @base_chart.title
+      assert render_chart(@base_chart) =~ @base_chart.title
     end
 
     test "renders grid lines according to configuration" do
-      assert render_component(LiveLineComponent, chart: @configured_chart) =~
-               "stroke=\"green\""
+      assert render_chart(@configured_chart) =~ "stroke=\"green\""
 
-      assert render_component(LiveLineComponent, chart: @configured_chart) =~
-               "stroke-width=\"7px\""
+      assert render_chart(@configured_chart) =~ "stroke-width=\"7px\""
     end
   end
 
