@@ -62,9 +62,11 @@ defmodule UnchartedPhoenix.ComponentView do
     |> Enum.join(" ")
   end
 
-  def maybe_show_table(true), do: ""
+  def maybe_show_table(true), do: []
 
   def maybe_show_table(_),
-    do:
-      "position: absolute; left: -100000px; top: auto; height: 1px; width: 1px; overflow: hidden;"
+    do: [
+      style:
+        "position: absolute; left: -100000px; top: auto; height: 1px; width: 1px; overflow: hidden;"
+    ]
 end

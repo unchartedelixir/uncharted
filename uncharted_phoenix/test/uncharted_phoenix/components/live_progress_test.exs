@@ -31,5 +31,15 @@ defmodule UnchartedPhoenix.LiveProgressComponentTest do
     test "it renders the percentage" do
       assert render_chart(@chart) =~ "#{ProgressChart.progress(@chart)}"
     end
+
+    test "renders table without inline styles when show_table is true" do
+      refute render_chart(Map.put(@chart, :show_table, true)) =~
+               "style=\"position: absolute; left: -100000px; top: auto; height: 1px; width: 1px; overflow: hidden;\""
+    end
+
+    test "renders table with inline styles when show_table is false" do
+      assert render_chart(@chart) =~
+               "style=\"position: absolute; left: -100000px; top: auto; height: 1px; width: 1px; overflow: hidden;\""
+    end
   end
 end

@@ -31,6 +31,7 @@ defmodule UnchartedPhoenix.LiveLineComponent do
       |> assign(:y_grid_line_offsetter, y_grid_line_offsetter)
       |> assign(:y_axis, y_axis)
       |> assign(:show_gridlines, assigns.chart.dataset.axes.show_gridlines)
+      |> assign(:always_show_table, assigns.always_show_table)
 
     {:ok, socket}
   end

@@ -51,6 +51,16 @@ defmodule UnchartedPhoenix.LiveLineComponentTest do
 
       assert render_chart(@configured_chart) =~ "stroke-width=\"7px\""
     end
+
+    test "renders table without inline styles when show_table is true" do
+      refute render_chart(Map.put(@base_chart, :show_table, true)) =~
+               "style=\"position: absolute; left: -100000px; top: auto; height: 1px; width: 1px; overflow: hidden;\""
+    end
+
+    test "renders table with inline styles when show_table is false" do
+      assert render_chart(@base_chart) =~
+               "style=\"position: absolute; left: -100000px; top: auto; height: 1px; width: 1px; overflow: hidden;\""
+    end
   end
 
   def grid_line_fun({min, max}, _step) do

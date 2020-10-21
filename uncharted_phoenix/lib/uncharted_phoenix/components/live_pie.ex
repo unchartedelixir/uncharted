@@ -14,6 +14,7 @@ defmodule UnchartedPhoenix.LivePieComponent do
       socket
       |> assign(:chart, assigns.chart)
       |> assign(:pie_slices, Uncharted.PieChart.pie_slices(assigns.chart))
+      |> assign(:always_show_table, assigns.always_show_table)
 
     {:ok, socket}
   end

@@ -54,7 +54,7 @@
     </svg>
 </figure>
 
-<table tabindex="0" phx-target="<%= @myself %>" phx-blur="hide_table"  style="<%= maybe_show_table(@show_table) %>">
+<%= tag :table, [tabindex: "0", phx_target: @myself, phx_blur: "hide_table"] ++ maybe_show_table(@always_show_table || @show_table) %>
   <caption><%= Chart.title(@chart) %> for [Line Title]</caption>
   <thead>
     <tr>
