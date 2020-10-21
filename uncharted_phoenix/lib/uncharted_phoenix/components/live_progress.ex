@@ -7,7 +7,7 @@ defmodule UnchartedPhoenix.LiveProgressComponent do
   use Phoenix.LiveComponent
 
   def mount(socket) do
-    {:ok, socket}
+    {:ok, assign(socket, :show_table, false)}
   end
 
   def update(assigns, socket) do
@@ -16,7 +16,7 @@ defmodule UnchartedPhoenix.LiveProgressComponent do
       |> assign(:chart, assigns.chart)
       |> assign(:data, ProgressChart.data(assigns.chart))
       |> assign(:progress, ProgressChart.progress(assigns.chart))
-      |> assign(:show_table, assigns.show_table)
+      |> assign(:always_show_table, assigns.always_show_table)
 
     {:ok, socket}
   end

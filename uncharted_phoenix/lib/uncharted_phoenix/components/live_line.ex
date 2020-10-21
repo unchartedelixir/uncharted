@@ -6,7 +6,7 @@ defmodule UnchartedPhoenix.LiveLineComponent do
   use Phoenix.LiveComponent
 
   def mount(socket) do
-    {:ok, socket}
+    {:ok, assign(socket, :show_table, false)}
   end
 
   def update(assigns, socket) do
@@ -31,7 +31,7 @@ defmodule UnchartedPhoenix.LiveLineComponent do
       |> assign(:y_grid_line_offsetter, y_grid_line_offsetter)
       |> assign(:y_axis, y_axis)
       |> assign(:show_gridlines, assigns.chart.dataset.axes.show_gridlines)
-      |> assign(:show_table, assigns.show_table)
+      |> assign(:always_show_table, assigns.always_show_table)
 
     {:ok, socket}
   end

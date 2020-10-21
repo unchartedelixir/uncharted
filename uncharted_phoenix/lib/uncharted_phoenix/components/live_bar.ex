@@ -6,7 +6,7 @@ defmodule UnchartedPhoenix.LiveBarComponent do
   use Phoenix.LiveComponent
 
   def mount(socket) do
-    {:ok, socket}
+    {:ok, assign(socket, :show_table, false)}
   end
 
   def update(assigns, socket) do
@@ -26,7 +26,7 @@ defmodule UnchartedPhoenix.LiveBarComponent do
       |> assign(:grid_lines, grid_lines)
       |> assign(:offsetter, grid_line_offsetter)
       |> assign(:axis, x_axis)
-      |> assign(:show_table, assigns.show_table)
+      |> assign(:always_show_table, assigns.always_show_table)
 
     {:ok, socket}
   end
