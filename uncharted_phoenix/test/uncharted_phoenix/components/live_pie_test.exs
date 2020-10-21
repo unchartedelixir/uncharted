@@ -13,14 +13,13 @@ defmodule UnchartedPhoenix.LivePieComponentTest do
       assert render_chart(@base_chart) =~ @base_chart.title
     end
 
-    test "renders table without inline styles when hide_table is false" do
-      assert render_component(LivePieComponent, chart: Map.put(@base_chart, :hide_table, false)) =~
-               "<table>"
+    test "renders table without inline styles when show_table is true" do
+      assert render_chart(Map.put(@base_chart, :show_table, true)) =~ "style=\"\">"
     end
 
-    test "renders table with inline styles when hide_table is true" do
-      assert render_component(LivePieComponent, chart: @base_chart) =~
-               "<table style=\"position: absolute; left: -100000px; top: auto; height: 1px; width: 1px; overflow: hidden;\""
+    test "renders table with inline styles when show_table is calse" do
+      assert render_chart(@base_chart) =~
+               "style=\"position: absolute; left: -100000px; top: auto; height: 1px; width: 1px; overflow: hidden;\""
     end
   end
 end

@@ -6,7 +6,7 @@ defmodule UnchartedPhoenix.LivePieComponent do
   use Phoenix.LiveComponent
 
   def mount(socket) do
-    {:ok, assign(socket, :show_table, false)}
+    {:ok, socket}
   end
 
   def update(assigns, socket) do
@@ -14,7 +14,7 @@ defmodule UnchartedPhoenix.LivePieComponent do
       socket
       |> assign(:chart, assigns.chart)
       |> assign(:pie_slices, Uncharted.PieChart.pie_slices(assigns.chart))
-      |> assign(:show_table, assigns.chart.show_table)
+      |> assign(:show_table, assigns.show_table)
 
     {:ok, socket}
   end
