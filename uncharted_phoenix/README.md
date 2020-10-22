@@ -14,9 +14,27 @@ We've worked hard to ensure Uncharted Phoenix is both screen reader and keyboard
 
 ## HEX Installation
 Add this to your mix.exs deps:
-``` {:uncharted_phoenix, "~> 0.1.0"} ```
+``` {:uncharted_phoenix, "~> 0.2.0"} ```
 
 ## How To Use
+
+### Rendering Charts
+
+To render any of the built-in UnchartedPhoenix chart components, pass an `Uncharted.chart` to the `render/2` function:  
+
+```elixir
+my_chart = %Uncharted.BaseChart{...}
+
+# Inside of a LiveView or LiveComponent .leex template:
+
+<%= UnchartedPhoenix.render(@socket, @my_chart) %>
+```
+
+By defining an implementation of the `Uncharted.Component` protocol for all of Uncharted's built-in chart types, `UnchartedPhoenix.render/2` knows how to render the appropriate kind of chart based on the dataset of the `Uncharted.BaseChart` struct you pass in. For example, if you pass a chart with a `%Uncharted.BarChart.Dataset{}` to `UnchartedPhoenix.render/2`, UnchartedPhoenix will render the `UnchartedPhoenix.LiveBarComponent` for you and handle other setup the component needs to attach event handlers, such as giving the component an ID. 
+
+If you wish to render more than one of the same type of chart in the same view, you can override the default ID by defining a value for the `%Uncharted.BaseChart{}` struct's `:component_id` field. 
+
+By default, if you do not set the `:component_id` field on the `BaseChart`, UnchartedPhoenix will give the LiveComponent it renders an id equal to the stringified version of the dataset module defined on the BaseChart, i.e. if you pass a `BaseChart` with an `Uncharted.BarChart.Dataset` to `UnchartedPhoenix.render/2`, the id of the LiveBarComponent that gets rendered will be `"Uncharted.BarChart.Dataset"`. If you define a `component_id` on your `BaseChart` struct, the component_id will be appended to the default id like this: `"Uncharted.BarChart.Dataset__#{my_custom_component_id}"`.
 
 ### The Column Chart
 ![Column Chart](assets/images/column-chart.jpg "Column Chart")
