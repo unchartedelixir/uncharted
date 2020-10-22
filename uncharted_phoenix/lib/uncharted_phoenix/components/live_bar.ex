@@ -27,6 +27,8 @@ defmodule UnchartedPhoenix.LiveBarComponent do
       |> assign(:offsetter, grid_line_offsetter)
       |> assign(:axis, x_axis)
       |> assign(:always_show_table, assigns.always_show_table)
+      |> assign(:width, assigns.chart.width ||600)
+      |> assign(:height, assigns.chart.height || 400)
 
     {:ok, socket}
   end

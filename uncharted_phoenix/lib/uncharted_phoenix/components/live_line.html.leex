@@ -1,5 +1,5 @@
 <figure data-testid="lc-live-line-component" role="img" aria-label="Line chart visualizing <%= Chart.title(@chart) %>" alt="Line chart visualizing <%= Chart.title(@chart) %>" tabindex="0"  phx-target="<%= @myself %>" phx-focus="show_table">
-  <svg id="<%= svg_id(@chart, "chart") %>" class="line-chart" width="100%" height="100%" viewBox="0 0 700 400" style="overflow: visible;">
+  <svg id="<%= svg_id(@chart, "chart") %>" class="line-chart" width="100%" height="100%" viewBox="0 0 <%= "#{@width} #{@height}" %>" style="overflow: visible;">
     <title id="lineChartTitle">Line chart visualizing <%= Chart.title(@chart) %></title>
 
     <%= render "_y_axis.html", chart: @chart, grid_lines: @y_grid_lines, offsetter: @y_grid_line_offsetter %>

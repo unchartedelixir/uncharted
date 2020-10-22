@@ -25,6 +25,8 @@ Add this to your mix.exs deps:
 column_chart = %BaseChart{
   title: "Cheese Coney Consumption by Neighborhood",
   colors: colors,
+  width: 700,
+  height: 400,
   dataset: %ColumnChart.Dataset{
     axes: %BaseAxes{
       magnitude_axis: %MagnitudeAxis{
@@ -47,6 +49,8 @@ defp bar_chart do
 
   %BaseChart{
     title: "Live Beam Memory Stats",
+    width: 600,
+    height: 400,
     colors: %{
       blue: "#36D1DC",
       rosy_gradient: %Gradient{
@@ -121,6 +125,8 @@ pie_chart = %BaseChart{
 line_chart = %BaseChart{
   title: "Live Line Chart",
   colors: colors,
+  width: 700,
+  height: 400,
   dataset: %ColumnChart.Dataset{
     axes: %XYAxes{
       x: %MagnitudeAxis{
