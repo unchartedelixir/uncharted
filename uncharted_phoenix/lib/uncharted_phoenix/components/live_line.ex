@@ -4,10 +4,7 @@ defmodule UnchartedPhoenix.LiveLineComponent do
   """
 
   use Phoenix.LiveComponent
-
-  def mount(socket) do
-    {:ok, assign(socket, :show_table, false)}
-  end
+  use UnchartedPhoenix.TableEvents
 
   def update(assigns, socket) do
     x_axis = assigns.chart.dataset.axes.x
@@ -40,13 +37,5 @@ defmodule UnchartedPhoenix.LiveLineComponent do
 
   def render(assigns) do
     Phoenix.View.render(UnchartedPhoenix.ComponentView, "live_line.html", assigns)
-  end
-
-  def handle_event("show_table", _, socket) do
-    {:noreply, assign(socket, :show_table, true)}
-  end
-
-  def handle_event("hide_table", _, socket) do
-    {:noreply, assign(socket, :show_table, false)}
   end
 end
