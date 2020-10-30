@@ -12,7 +12,8 @@ defimpl Uncharted.PieChart, for: Uncharted.BaseChart do
       %PieSlice{
         label: datum.name,
         percentage: hd(datum.values),
-        fill_color: datum.fill_color
+        fill_color: datum.fill_color,
+        emphasize: datum.emphasize
       }
     end)
   end
