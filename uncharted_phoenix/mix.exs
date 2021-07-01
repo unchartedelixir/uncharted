@@ -60,13 +60,13 @@ defmodule UnchartedPhoenix.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-      {:credo, "~> 1.4", only: [:dev, :test], runtime: false},
-      {:dialyxir, "~> 1.0", only: [:dev, :test], runtime: false},
+      {:credo, "~> 1.5", only: [:dev, :test], runtime: false},
+      {:dialyxir, "~> 1.1", only: [:dev, :test], runtime: false},
       {:ex_doc, "~> 0.22", only: :docs, runtime: false},
-      {:excoveralls, "~> 0.11", only: :test},
-      {:jason, "~> 1.0"},
+      {:excoveralls, "~> 0.14", only: :test},
+      {:jason, "~> 1.2"},
       {:uncharted, path: "../uncharted"},
-      {:phoenix_live_view, "~> 0.14.4"}
+      {:phoenix_live_view, "~> 0.15"}
     ]
   end
 

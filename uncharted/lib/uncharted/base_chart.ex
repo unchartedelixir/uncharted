@@ -6,7 +6,7 @@ defmodule Uncharted.BaseChart do
   """
   alias __MODULE__
 
-  defstruct [:title, :colors, :component_id, :dataset, :width, :height show_table: false]
+  defstruct [:title, :colors, :component_id, :dataset, :width, :height, show_table: false]
 
   @typep color_name() :: atom()
 

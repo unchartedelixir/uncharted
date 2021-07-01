@@ -17,7 +17,7 @@ install_ghr: &install_ghr
 jobs:
   build:
     docker:
-      - image: circleci/elixir:1.10.4-node-browsers
+      - image: circleci/elixir:1.12-node-browsers
         environment:
           MIX_ENV: test
 
@@ -91,7 +91,7 @@ jobs:
         description: "project name"
         type: string
     docker:
-      - image: circleci/elixir:1.10.4-node-browsers
+      - image: circleci/elixir:1.12-node-browsers
         environment:
           MIX_ENV: test
 
@@ -116,7 +116,7 @@ jobs:
         description: "project name"
         type: string
     docker:
-      - image: circleci/elixir:1.10.4-node-browsers
+      - image: circleci/elixir:1.12-node-browsers
         environment:
           MIX_ENV: test
     steps:
@@ -154,7 +154,7 @@ jobs:
         description: "project name"
         type: string
     docker:
-      - image: circleci/elixir:1.10.4-node-browsers
+      - image: circleci/elixir:1.12-node-browsers
         environment:
           MIX_ENV: test
     steps:
@@ -171,7 +171,7 @@ jobs:
         description: "project name"
         type: string
     docker:
-      - image: circleci/elixir:1.10.4-node-browsers
+      - image: circleci/elixir:1.12-node-browsers
         environment:
           MIX_ENV: test
     steps:
