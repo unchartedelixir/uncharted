@@ -12,7 +12,7 @@ Build status: [![CircleCI](https://circleci.com/gh/spawnfest/livechart/tree/mast
 - Smooth animations for updating live data to the UI
 
 ## Uncharted Phoenix library
-[Uncharted Phoenix](/uncharted_phoenix) is a Hex package that generates SVGs as live view components. It builds on the
+Uncharted Phoenix is a Hex package that generates SVGs as live view components. It builds on the
 basic chart package Uncharted and adapts Uncharted charts for display as components in LiveView.
 
 ***Charts Included***:
@@ -22,8 +22,8 @@ basic chart package Uncharted and adapts Uncharted charts for display as compone
 - The Line Chart
 - The Bar Chart
 
-### Demo Application
-The [Uncharted Demo](/demo) is a working example of each of the Uncharted chart components.
+### Example Application
+The [Uncharted Demo](https://github.com/unchartedelixir/demo) is a working example of each of the Uncharted chart components.
 
 To start the demo Phoenix server:
 
