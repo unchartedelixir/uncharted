@@ -7,10 +7,12 @@ defimpl Uncharted.Component, for: Uncharted.BaseChart do
   alias Uncharted.PieChart
   alias Uncharted.ProgressChart
   alias Uncharted.ScatterPlot
+  alias Uncharted.StackedColumnChart
 
   def for_dataset(%BaseChart{dataset: dataset}) do
     case dataset do
       %BarChart.Dataset{} -> UnchartedPhoenix.LiveBarComponent
+      %StackedColumnChart.Dataset{} -> UnchartedPhoenix.LiveStackedColumnComponent
       %ColumnChart.Dataset{} -> UnchartedPhoenix.LiveColumnComponent
       %DoughnutChart.Dataset{} -> UnchartedPhoenix.LiveDoughnutComponent
       %LineChart.Dataset{} -> UnchartedPhoenix.LiveLineComponent

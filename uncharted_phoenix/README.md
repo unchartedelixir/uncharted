@@ -233,11 +233,7 @@ There are 3 potential data values per point. The first two are required. They re
 ```elixir
 scatter_plot = %BaseChart{
   title: "Live Scatter Plot",
-  colors: colors,
-  width: 700,
-  height: 400,
-  dataset: %ColumnChart.Dataset{
-    axes: %XYAxes{
+   axes: %XYAxes{
       x: %MagnitudeAxis{
         max: 700,
         min: 0
@@ -274,6 +270,56 @@ scatter_plot = %BaseChart{
         values: [550, 2000]
       }
     ]
+  }
+```
+
+### The Column Chart
+![Column Chart](assets/images/column-chart.jpg "Column Chart")
+
+```elixir
+column_chart = %BaseChart{
+  title: "Cheese Coney Consumption by Neighborhood",
+  colors: colors,
+  width: 700,
+  height: 400,
+  dataset: %ColumnChart.Dataset{
+    axes: %BaseAxes{
+      magnitude_axis: %MagnitudeAxis{
+        max: 10_000,
+        min: 0
+      }
+    },
+    data: Cincy.get()
+  }
+}
+```
+
+### The Stacked Column Chart
+![Stacked Column Chart](assets/images/stacked-column-chart.jpg "Stacked Column Chart")
+
+```elixir
+column_chart = %BaseChart{
+  title: "Cheese Coney Consumption by Neighborhood",
+  colors: colors,
+  dataset: %StackedColumnChart.Dataset{
+    axes: %BaseAxes{
+      magnitude_axis: %MagnitudeAxis{
+        max: 10_000,
+        min: 0
+      }
+    },
+    sections: [
+      %StackedSection{fill_color: :blue_gradient, label: "June", index: 1},
+      %StackedSection{fill_color: :red_gradient, label: "July", index: 2},
+      %StackedSection{fill_color: :rose_gradient, label: "May", index: 0}
+    ],
+    data: ~w(Landen Oakley Downtown Florence Erlanger)
+    |> Enum.map(fn neighborhood ->
+      %BaseDatum{
+        name: neighborhood,
+        values: [:rand.uniform() * 4_000, :rand.uniform() * 3_000, :rand.uniform() * 3_000]
+      }
+    end)
   }
 }
 ```

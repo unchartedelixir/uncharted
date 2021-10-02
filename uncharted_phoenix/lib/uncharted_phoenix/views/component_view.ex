@@ -8,6 +8,8 @@ defmodule UnchartedPhoenix.ComponentView do
 
   alias Uncharted.{Chart, Gradient}
   alias Uncharted.ColumnChart.Column
+  alias Uncharted.StackedColumnChart.Column, as: StackedColumn
+  alias Uncharted.StackedColumnChart.{ColumnSection, Section}
   alias Uncharted.LineChart.{Line, Point}
   alias Uncharted.ScatterPlot.Point, as: ScatterPoint
 
@@ -94,4 +96,14 @@ defmodule UnchartedPhoenix.ComponentView do
       style:
         "position: absolute; left: -100000px; top: auto; height: 1px; width: 1px; overflow: hidden;"
     ]
+
+  def center_key(section_count, index) do
+    key_section_placement(index) + key_offset(section_count)
+  end
+
+  defp key_section_placement(index), do: index * 12
+
+  defp key_offset(section_count), do: (100 - key_width(section_count)) / 2
+
+  defp key_width(section_count), do: (section_count * 12) - 7
 end
