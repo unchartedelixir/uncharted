@@ -227,6 +227,58 @@ defp progress_chart(from: %BaseChart{} = chart) do
 end
 ```
 
+### The Scatter Plot
+![Live Scatter Plot](assets/images/scatter-plot.jpg "Live Scatter Plot")
+There are 3 potential data values per point. The first two are required. They represent X and Y values. The third is optional and represents the radius of that point. Points default to a radius of `6`.
+
+```elixir
+scatter_plot = %BaseChart{
+  title: "Live Scatter Plot",
+  colors: colors,
+  width: 700,
+  height: 400,
+  dataset: %ColumnChart.Dataset{
+    axes: %XYAxes{
+      x: %MagnitudeAxis{
+        max: 700,
+        min: 0
+      },
+      y: %MagnitudeAxis{
+        max: 2500,
+        min: 0
+      }
+    },
+    data: [
+      %BaseDatum{
+        name: "Point 1",
+        fill_color: :blue_gradient,
+        values: [70, 500, 6]
+      },
+      %BaseDatum{
+        name: "Point 2",
+        fill_color: :blue_gradient,
+        values: [150, 1000, 8]
+      },
+      %BaseDatum{
+        name: "Point 3",
+        fill_color: :blue_gradient,
+        values: [350, 1600]
+      },
+      %BaseDatum{
+        name: "Point 4",
+        fill_color: :blue_gradient,
+        values: [450, 1500]
+      },
+      %BaseDatum{
+        name: "Point 5",
+        fill_color: :blue_gradient,
+        values: [550, 2000]
+      }
+    ]
+  }
+}
+```
+
 ### Base Chart Colors
 Base chart configuration allows you to define set solid colors and gradients for any chart you will use within the application.
 

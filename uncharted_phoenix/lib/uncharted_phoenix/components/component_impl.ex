@@ -5,6 +5,7 @@ defimpl Uncharted.Component, for: Uncharted.BaseChart do
   alias Uncharted.LineChart
   alias Uncharted.PieChart
   alias Uncharted.ProgressChart
+  alias Uncharted.ScatterPlot
 
   def for_dataset(%BaseChart{dataset: dataset}) do
     case dataset do
@@ -13,6 +14,7 @@ defimpl Uncharted.Component, for: Uncharted.BaseChart do
       %LineChart.Dataset{} -> UnchartedPhoenix.LiveLineComponent
       %PieChart.Dataset{} -> UnchartedPhoenix.LivePieComponent
       %ProgressChart.Dataset{} -> UnchartedPhoenix.LiveProgressComponent
+      %ScatterPlot.Dataset{} -> UnchartedPhoenix.LiveScatterComponent
       dataset -> raise UnchartedPhoenix.ComponentUndefinedError, message: error_message(dataset)
     end
   end
