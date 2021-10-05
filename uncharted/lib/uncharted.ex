@@ -18,7 +18,6 @@ defmodule Uncharted do
           | Uncharted.LineChart.Dataset.t()
           | Uncharted.PieChart.Dataset.t()
           | Uncharted.ProgressChart.Dataset.t()
-          | Uncharted.StackedColumnChart.Dataset.t()
   @type gen_chart :: %{
           title: String.t(),
           colors: %{color_name() => String.t() | Uncharted.Gradient.t()},

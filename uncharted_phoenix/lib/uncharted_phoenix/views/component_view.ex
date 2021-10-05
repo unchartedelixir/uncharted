@@ -7,9 +7,7 @@ defmodule UnchartedPhoenix.ComponentView do
   use Phoenix.HTML
 
   alias Uncharted.{Chart, Gradient}
-  alias Uncharted.ColumnChart.Column
-  alias Uncharted.StackedColumnChart.Column, as: StackedColumn
-  alias Uncharted.StackedColumnChart.{ColumnSection, Section}
+  alias Uncharted.ColumnChart.{Column, ColumnSection, Section}
   alias Uncharted.LineChart.{Line, Point}
   alias Uncharted.ScatterPlot.Point, as: ScatterPoint
 
@@ -105,5 +103,5 @@ defmodule UnchartedPhoenix.ComponentView do
 
   defp key_offset(section_count), do: (100 - key_width(section_count)) / 2
 
-  defp key_width(section_count), do: (section_count * 12) - 7
+  defp key_width(section_count), do: section_count * 12 - 7
 end

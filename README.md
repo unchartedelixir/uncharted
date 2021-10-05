@@ -23,7 +23,6 @@ basic chart package Uncharted and adapts Uncharted charts for display as compone
 - The Pie Chart
 - The Progress Chart
 - The Scatter Plot
-- The Stacked Column Chart
 
 ### Example Application
 The [Uncharted Demo](https://github.com/unchartedelixir/demo) is a working example of each of the Uncharted chart components.

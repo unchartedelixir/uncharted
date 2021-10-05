@@ -1,4 +1,4 @@
-defmodule Uncharted.StackedColumnChart.ColumnSection do
+defmodule Uncharted.ColumnChart.ColumnSection do
   @moduledoc """
   A struct representing column section-level display properties.
   """

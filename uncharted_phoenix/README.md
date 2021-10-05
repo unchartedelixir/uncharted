@@ -294,14 +294,15 @@ column_chart = %BaseChart{
 }
 ```
 
-### The Stacked Column Chart
+### Adding Stacks to the Column Chart
 ![Stacked Column Chart](assets/images/stacked-column-chart.jpg "Stacked Column Chart")
+You can add sections to a column chart by adding a sections array to the dataset.
 
 ```elixir
 column_chart = %BaseChart{
   title: "Cheese Coney Consumption by Neighborhood",
   colors: colors,
-  dataset: %StackedColumnChart.Dataset{
+  dataset: %ColumnChart.Dataset{
     axes: %BaseAxes{
       magnitude_axis: %MagnitudeAxis{
         max: 10_000,
@@ -309,9 +310,9 @@ column_chart = %BaseChart{
       }
     },
     sections: [
-      %StackedSection{fill_color: :blue_gradient, label: "June", index: 1},
-      %StackedSection{fill_color: :red_gradient, label: "July", index: 2},
-      %StackedSection{fill_color: :rose_gradient, label: "May", index: 0}
+      %Section{fill_color: :blue_gradient, label: "June", index: 1},
+      %Section{fill_color: :red_gradient, label: "July", index: 2},
+      %Section{fill_color: :rose_gradient, label: "May", index: 0}
     ],
     data: ~w(Landen Oakley Downtown Florence Erlanger)
     |> Enum.map(fn neighborhood ->

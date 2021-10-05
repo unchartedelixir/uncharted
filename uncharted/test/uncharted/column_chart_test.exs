@@ -11,13 +11,17 @@ defmodule Uncharted.ColumnChartTest do
   @y_axis %MagnitudeAxis{min: 0, max: 2500}
   @axes %BaseAxes{magnitude_axis: @y_axis}
   @data [
-    %BaseDatum{name: "Bar One", values: [750]},
-    %BaseDatum{name: "Bar Two", values: [1500]},
-    %BaseDatum{name: "Bar Three", values: [2500]},
+    %BaseDatum{name: "Bar One", values: [550, 200]},
+    %BaseDatum{name: "Bar Two", values: [1000, 100]},
+    %BaseDatum{name: "Bar Three", values: [2400, 100]},
     %BaseDatum{name: "Bar Four", values: [750]},
-    %BaseDatum{name: "Bar Five", values: [1750]}
+    %BaseDatum{name: "Bar Five", values: [1650, 100]}
   ]
-  @dataset %ColumnChart.Dataset{data: @data, axes: @axes}
+  @sections [
+    %ColumnChart.Section{fill_color: "blue", label: "Section 2", index: 1},
+    %ColumnChart.Section{fill_color: "blue", label: "Section 1", index: 0}
+  ]
+  @dataset %ColumnChart.Dataset{data: @data, axes: @axes, sections: @sections}
   @chart %BaseChart{title: "title", dataset: @dataset}
 
   describe "columns/1" do
@@ -62,11 +66,41 @@ defmodule Uncharted.ColumnChartTest do
       assert bar_offsets == expected_bar_offsets
     end
 
-    test "calculates column height as a percent of y-axis max value" do
-      column_heights = Enum.map(ColumnChart.columns(@chart), & &1.column_height)
-      expected_column_heights = [30.0, 60.0, 100.0, 30.0, 70.0]
+    test "returns proper number of column sections" do
+      section_count =
+        @chart
+        |> ColumnChart.columns()
+        |> Enum.reduce(0, fn %ColumnChart.Column{sections: sections}, acc ->
+          Enum.count(sections) + acc
+        end)
 
-      assert column_heights == expected_column_heights
+      assert section_count == 9
+    end
+
+    test "calculates column section height as a percent of y-axis max value" do
+      section_heights =
+        @chart
+        |> ColumnChart.columns()
+        |> Enum.flat_map(fn %ColumnChart.Column{sections: sections} ->
+          Enum.map(sections, & &1.column_height)
+        end)
+
+      expected_section_heights = [22.0, 8.0, 40.0, 4.0, 96.0, 4.0, 30.0, 66.0, 4.0]
+
+      assert section_heights == expected_section_heights
+    end
+
+    test "calculates column section offsets based on full column height" do
+      section_offsets =
+        @chart
+        |> ColumnChart.columns()
+        |> Enum.flat_map(fn %ColumnChart.Column{sections: sections} ->
+          Enum.map(sections, & &1.offset)
+        end)
+
+      expected_offsets = [30.0, 8.0, 44.0, 4.0, 100.0, 4.0, 30.0, 70.0, 4.0]
+
+      assert section_offsets == expected_offsets
     end
   end
 end

@@ -1,7 +1,7 @@
 defmodule UnchartedPhoenix.LiveColumnComponentTest do
   alias Uncharted.BaseChart
   alias Uncharted.Axes.{BaseAxes, MagnitudeAxis}
-  alias Uncharted.ColumnChart.Dataset
+  alias Uncharted.ColumnChart.{Dataset, Section}
   import UnchartedPhoenix.TestRenderer
   use ExUnit.Case
 
@@ -31,7 +31,24 @@ defmodule UnchartedPhoenix.LiveColumnComponentTest do
       display_lines: false
     }
   }
-  @base_chart %BaseChart{title: "this title", dataset: %Dataset{axes: @axes, data: []}}
+  @colors %{green: "green", blue: "blue"}
+  @base_chart %BaseChart{
+    title: "this title",
+    colors: @colors,
+    dataset: %Dataset{axes: @axes, data: []}
+  }
+  @sectioned_chart %BaseChart{
+    title: "this title",
+    colors: @colors,
+    dataset: %Dataset{
+      sections: [
+        %Section{label: "", index: 0, fill_color: :green},
+        %Section{label: "", index: 1, fill_color: :blue}
+      ],
+      axes: @axes,
+      data: []
+    }
+  }
   @configured_graph_chart %BaseChart{dataset: %Dataset{axes: @configured_axes, data: []}}
   @nondisplayed_graph_chart %BaseChart{dataset: %Dataset{axes: @nondisplayed_axes, data: []}}
 
@@ -62,6 +79,14 @@ defmodule UnchartedPhoenix.LiveColumnComponentTest do
     test "renders table with inline styles when show_table is false" do
       assert render_chart(@base_chart) =~
                "style=\"position: absolute; left: -100000px; top: auto; height: 1px; width: 1px; overflow: hidden;\""
+    end
+
+    test "renders color key when there are 2 or more sections" do
+      assert render_chart(@sectioned_chart) =~ ~s(data-testid="lc-color-key")
+    end
+
+    test "does not render color key when there are fewer than 2 sections" do
+      refute render_chart(@base_chart) =~ ~s(data-testid="lc-color-key")
     end
   end
 
