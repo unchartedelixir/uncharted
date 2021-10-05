@@ -16,11 +16,12 @@ Uncharted Phoenix is a Hex package that generates SVGs as live view components. 
 basic chart package Uncharted and adapts Uncharted charts for display as components in LiveView.
 
 ***Charts Included***:
-- The Pie Chart
-- The Column Chart
-- The Progress Chart
-- The Line Chart
 - The Bar Chart
+- The Column Chart
+- The Doughnut Chart
+- The Line Chart
+- The Pie Chart
+- The Progress Chart
 - The Scatter Plot
 
 ### Example Application

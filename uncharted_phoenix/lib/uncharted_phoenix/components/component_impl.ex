@@ -2,6 +2,7 @@ defimpl Uncharted.Component, for: Uncharted.BaseChart do
   alias Uncharted.BaseChart
   alias Uncharted.BarChart
   alias Uncharted.ColumnChart
+  alias Uncharted.DoughnutChart
   alias Uncharted.LineChart
   alias Uncharted.PieChart
   alias Uncharted.ProgressChart
@@ -11,6 +12,7 @@ defimpl Uncharted.Component, for: Uncharted.BaseChart do
     case dataset do
       %BarChart.Dataset{} -> UnchartedPhoenix.LiveBarComponent
       %ColumnChart.Dataset{} -> UnchartedPhoenix.LiveColumnComponent
+      %DoughnutChart.Dataset{} -> UnchartedPhoenix.LiveDoughnutComponent
       %LineChart.Dataset{} -> UnchartedPhoenix.LiveLineComponent
       %PieChart.Dataset{} -> UnchartedPhoenix.LivePieComponent
       %ProgressChart.Dataset{} -> UnchartedPhoenix.LiveProgressComponent

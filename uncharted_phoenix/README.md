@@ -226,7 +226,6 @@ defp progress_chart(from: %BaseChart{} = chart) do
   }
 end
 ```
-
 ### The Scatter Plot
 ![Live Scatter Plot](assets/images/scatter-plot.jpg "Live Scatter Plot")
 There are 3 potential data values per point. The first two are required. They represent X and Y values. The third is optional and represents the radius of that point. Points default to a radius of `6`.
@@ -273,6 +272,53 @@ scatter_plot = %BaseChart{
         name: "Point 5",
         fill_color: :blue_gradient,
         values: [550, 2000]
+      }
+    ]
+  }
+}
+```
+
+### The Doughnut Chart
+![Doughnut Chart](assets/images/doughnut-chart.jpg "Doughnut Chart")
+
+```elixir
+doughnut_chart = %BaseChart{
+  title: "Best kind of doughnut",
+  colors: %{
+    rose_gradient: %Gradient{
+      start_color: "#642B73",
+      stop_color: "#C6426E"
+    },
+    blue_gradient: %Gradient{
+      start_color: "#36D1DC",
+      stop_color: "#5B86E5"
+    },
+    red_gradient: %Gradient{
+      start_color: "#FF9486",
+      stop_color: "#FF1379"
+    }
+  },
+  dataset: %DoughnutChart.Dataset{
+    data: [
+      %BaseDatum{
+        name: "Cake",
+        fill_color: :red_gradient,
+        values: [30.0]
+      },
+      %BaseDatum{
+        name: "Creamstick",
+        fill_color: :blue_gradient,
+        values: [28.0]
+      },
+      %BaseDatum{
+        name: "Glazed",
+        fill_color: :rose_gradient,
+        values: [25.0]
+      },
+      %BaseDatum{
+        name: "Powdered",
+        fill_color: :blue_gradient,
+        values: [17.0]
       }
     ]
   }
