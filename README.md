@@ -21,6 +21,7 @@ basic chart package Uncharted and adapts Uncharted charts for display as compone
 - The Progress Chart
 - The Line Chart
 - The Bar Chart
+- The Scatter Plot
 
 ### Example Application
 The [Uncharted Demo](https://github.com/unchartedelixir/demo) is a working example of each of the Uncharted chart components.
