@@ -1,4 +1,4 @@
-<%= for %Section{fill_color: fill_color, label: label, index: index} <- Enum.sort_by(@chart.dataset.sections, &(&1.index)) do %>
+<%= for %{fill_color: fill_color, label: label, index: index} <- Enum.sort_by(@chart.dataset.sections, &(&1.index)) do %>
   <g>
     <rect id="<%= label %>_key"
             class="chart-color-key"

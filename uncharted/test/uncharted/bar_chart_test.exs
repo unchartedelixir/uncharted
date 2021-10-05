@@ -7,13 +7,17 @@ defmodule Uncharted.BarChartTest do
   @x_axis %MagnitudeAxis{min: 0, max: 2500}
   @axes %BaseAxes{magnitude_axis: @x_axis}
   @data [
-    %BaseDatum{name: "Bar One", values: [750]},
+    %BaseDatum{name: "Bar One", values: [750, 750]},
     %BaseDatum{name: "Bar Two", values: [1500]},
     %BaseDatum{name: "Bar Three", values: [2500]},
-    %BaseDatum{name: "Bar Four", values: [750]},
+    %BaseDatum{name: "Bar Four", values: [1500, 750]},
     %BaseDatum{name: "Bar Five", values: [1750]}
   ]
-  @dataset %BarChart.Dataset{data: @data, axes: @axes}
+  @sections [
+    %BarChart.Section{fill_color: "blue", label: "Section 2", index: 1},
+    %BarChart.Section{fill_color: "blue", label: "Section 1", index: 0}
+  ]
+  @dataset %BarChart.Dataset{data: @data, sections: @sections, axes: @axes}
   @chart %BaseChart{title: "title", dataset: @dataset}
 
   describe "bars/1" do
@@ -58,11 +62,41 @@ defmodule Uncharted.BarChartTest do
       assert bar_offsets == expected_bar_offsets
     end
 
-    test "calculates bar heights as a percent of y-axis max value" do
-      bar_widths = Enum.map(BarChart.bars(@chart), & &1.bar_width)
-      expected_bar_widths = [30.0, 60.0, 100.0, 30.0, 70.0]
+    test "returns proper number of bar sections" do
+      section_count =
+        @chart
+        |> BarChart.bars()
+        |> Enum.reduce(0, fn %BarChart.Bar{sections: sections}, acc ->
+          Enum.count(sections) + acc
+        end)
 
-      assert bar_widths == expected_bar_widths
+      assert section_count == 7
+    end
+
+    test "calculates bar section width as a percent of y-axis max value" do
+      section_heights =
+        @chart
+        |> BarChart.bars()
+        |> Enum.flat_map(fn %BarChart.Bar{sections: sections} ->
+          Enum.map(sections, & &1.bar_width)
+        end)
+
+      expected_section_heights = [30.0, 30.0, 60.0, 100.0, 60.0, 30.0, 70.0]
+
+      assert section_heights == expected_section_heights
+    end
+
+    test "calculates bar section offsets based on full bar height" do
+      section_offsets =
+        @chart
+        |> BarChart.bars()
+        |> Enum.flat_map(fn %BarChart.Bar{sections: sections} ->
+          Enum.map(sections, & &1.offset)
+        end)
+
+      expected_offsets = [0.0, 30.0, 0.0, 0.0, 0.0, 60.0, 0.0]
+
+      assert section_offsets == expected_offsets
     end
   end
 end

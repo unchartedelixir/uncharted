@@ -294,9 +294,9 @@ column_chart = %BaseChart{
 }
 ```
 
-### Adding Stacks to the Column Chart
+### Adding Stacked Sections to the Column or Bar Chart
 ![Stacked Column Chart](assets/images/stacked-column-chart.jpg "Stacked Column Chart")
-You can add sections to a column chart by adding a sections array to the dataset.
+You can add sections to a column or bar chart by adding a sections array to the dataset.
 
 ```elixir
 column_chart = %BaseChart{
