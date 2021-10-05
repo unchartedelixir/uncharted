@@ -1,6 +1,6 @@
 defmodule Uncharted.ScatterPlot.Dataset do
   @moduledoc """
-  Struct representing a dataset for a basic column chart.
+  Struct representing a dataset for a basic scatter plot.
   """
   defstruct [:axes, :data]
 
