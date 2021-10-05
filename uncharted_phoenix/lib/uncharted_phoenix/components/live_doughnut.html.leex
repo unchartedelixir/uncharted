@@ -1,0 +1,50 @@
+<figure data-testid="lc-live-doughnut-component" role="img" aria-label="Doughnut chart visualizing <%= Chart.title(@chart) %>" alt="Doughnut chart visualizing <%= Chart.title(@chart) %>" tabindex="0"  phx-target="<%= @myself %>" phx-focus="show_table">
+  <svg id="<%= svg_id(@chart, "chart") %>" class="doughnut-chart" height="100%" width="100%" viewBox="0 0 20 24" overflow="visible">
+    <title id="doughnutChartTitle">Doughnut chart visualizing <%= Chart.title(@chart) %></title>
+
+    <svg id="<%= svg_id(@chart, "title") %>" class="chart-data" y="0" x="0" width="100%" height="90%">
+      <circle r="10" cx="10" cy="10" fill="transparent" />
+      <%= for %{remaining_percentage: remaining_percentage, fill_color: fill_color} <- svg_doughnut_slices(@doughnut_slices) do %>
+        <circle class="data-slice" r="5" cx="10" cy="10" fill="transparent"
+          style="transition: all 0.5s ease"
+          stroke="<%= color_to_fill(Chart.colors(@chart), fill_color) %>"
+          stroke-width="2"
+          stroke-dasharray="calc(<%= remaining_percentage %> * 31.4 / 100) 31.4"
+          transform="rotate(-90) translate(-20)" >
+          <animate attributeName="stroke-dasharray" values=" calc(0 * 31.4 / 100) 31.4;calc(<%= remaining_percentage %> * 31.4 / 100) 31.4" dur="1s" repeatCount="freeze" />
+        </circle>
+      <% end %>
+    </svg>
+
+    <svg id="<%= svg_id(@chart, "key") %>" class="chart-key" height="10%" width="100%" y="90%" x="0" aria-hidden="true" overflow="visible">
+      <%= for %{label: label, fill_color: fill_color, label_width: label_width, label_position: label_position} <- svg_doughnut_slices(@doughnut_slices) do %>
+        <svg id="<%= label %>" class="chart-label" width="<%= label_width %>%" height="100%" y="0" x="<%= label_position %>%" overflow="visible">
+          <rect width="90%" x="5%" height=".5" rx=".3" ry=".3" fill="<%= color_to_fill(Chart.colors(@chart), fill_color) %>" />
+          <foreignObject x="0" y="25%" width="100%" height="100%" overflow="visible">
+            <p title="<%= label %>" style="font-size:.8px; text-align: center; letter-spacing: .1px; line-height: 2px; padding: 0 5%; overflow: hidden; text-overflow: ellipsis;">
+              <%= label %>
+            </p>
+          </foreignObject>
+        </svg>
+      <% end %>
+    </svg>
+
+    <%= render "_color_defs.html", chart: @chart %>
+  </svg>
+</figure>
+
+<%= tag :table, [tabindex: "0", phx_target: @myself, phx_blur: "hide_table"] ++ maybe_show_table(@always_show_table || @show_table) %>
+  <caption><%= Chart.title(@chart) %></caption>
+  <thead>
+    <tr>
+      <th scope="col">[Data title]</th>
+      <th scope="col">Percentage</th>
+    </tr>
+  </thead>
+  <%= for slice <- svg_doughnut_slices(@doughnut_slices) do %>
+    <tr>
+      <th scope="row"><%= slice.label %></th>
+      <td><%= slice.percentage %></td>
+    </tr>
+  <% end %>
+</table>

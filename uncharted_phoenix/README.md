@@ -227,6 +227,53 @@ defp progress_chart(from: %BaseChart{} = chart) do
 end
 ```
 
+### The Doughnut Chart
+![Doughnut Chart](assets/images/doughnut-chart.jpg "Doughnut Chart")
+
+```elixir
+doughnut_chart = %BaseChart{
+  title: "Best kind of doughnut",
+  colors: %{
+    rose_gradient: %Gradient{
+      start_color: "#642B73",
+      stop_color: "#C6426E"
+    },
+    blue_gradient: %Gradient{
+      start_color: "#36D1DC",
+      stop_color: "#5B86E5"
+    },
+    red_gradient: %Gradient{
+      start_color: "#FF9486",
+      stop_color: "#FF1379"
+    }
+  },
+  dataset: %DoughnutChart.Dataset{
+    data: [
+      %BaseDatum{
+        name: "Cake",
+        fill_color: :red_gradient,
+        values: [30.0]
+      },
+      %BaseDatum{
+        name: "Creamstick",
+        fill_color: :blue_gradient,
+        values: [28.0]
+      },
+      %BaseDatum{
+        name: "Glazed",
+        fill_color: :rose_gradient,
+        values: [25.0]
+      },
+      %BaseDatum{
+        name: "Powdered",
+        fill_color: :blue_gradient,
+        values: [17.0]
+      }
+    ]
+  }
+}
+```
+
 ### Base Chart Colors
 Base chart configuration allows you to define set solid colors and gradients for any chart you will use within the application.
 
