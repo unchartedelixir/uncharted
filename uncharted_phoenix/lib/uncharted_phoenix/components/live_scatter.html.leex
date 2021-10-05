@@ -1,0 +1,59 @@
+<figure data-testid="lc-live-scatter-component" role="img" aria-label="Scatter plot visualizing <%= Chart.title(@chart) %>" alt="Scatter plot visualizing <%= Chart.title(@chart) %>" tabindex="0"  phx-target="<%= @myself %>" phx-focus="show_table">
+  <svg id="<%= svg_id(@chart, "chart") %>" class="scatter-chart" width="100%" height="100%" viewBox="0 0 <%= "#{@width} #{@height}" %>" style="overflow: visible;">
+    <title id="ScatterPlotTitle">Scatter plot visualizing <%= Chart.title(@chart) %></title>
+
+    <%= render "_y_axis.html", chart: @chart, grid_lines: @y_grid_lines, offsetter: @y_grid_line_offsetter %>
+    <%= render "_bar_grid_line_labels.html", chart: @chart, grid_lines: @x_grid_lines, offsetter: @x_grid_line_offsetter %>
+
+    <svg id="<%= svg_id(@chart, "graph") %>" class="chart-lines" width="90%" height="92%" x="10%" y="0">
+      <g>
+        <%= if @show_gridlines do %>
+          <%= render "_bar_grid_lines.html", chart: @chart, grid_lines: @y_grid_lines, offsetter: @y_grid_line_offsetter, axis: @y_axis %>
+          <%= render "_chart_lines.html", chart: @chart, grid_lines: @x_grid_lines, offsetter: @x_grid_line_offsetter, axis: @x_axis %>
+        <% end %>
+      </g>
+
+      <svg id="<%= svg_id(@chart, "results") %>" class="line__results" width="100%" height="100%" x="0%" y="0%">
+        <svg width='100%' height='100%' viewBox="0 0 1000 1000" preserveAspectRatio="none">
+
+        </svg>
+        <g id="<%= svg_id(@chart, "dots") %>" class="line_dots">
+          <%= for %ScatterPoint{radius: radius, x_offset: x_offset, y_offset: y_offset, fill_color: fill_color} <- @points do %>
+            <circle
+              fill="<%= color_to_fill(@chart.colors(), fill_color) %>"
+              cx="<%= x_offset %>%"
+              cy="<%= 100 - y_offset %>%"
+              r="<%= radius %>">
+              <animate attributeName="cx" values="0;<%= x_offset %>" dur="0.5s" repeatCount="freeze" />
+            </circle>
+          <% end %>
+        </g>
+      </svg>
+
+      <defs>
+        <linearGradient id="grad" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" style="stop-color:rgba(54, 209, 220, .5);stop-opacity:1"></stop>
+          <stop offset="100%" style="stop-color:white;stop-opacity:0"></stop>
+        </linearGradient>
+        <%= render "_color_defs.html", chart: @chart %>
+      </defs>
+    </svg>
+</figure>
+
+<%= tag :table, [tabindex: "0", phx_target: @myself, phx_blur: "hide_table"] ++ maybe_show_table(@always_show_table || @show_table) %>
+  <caption><%= Chart.title(@chart) %></caption>
+  <thead>
+    <tr>
+      <th scope="col">Point</th>
+      <th scope="col">[Data Title]</th>
+      <th scope="col">[Data Title]</th>
+    </tr>
+  </thead>
+  <%= for {point, index} <- Enum.with_index(@points, 1) do %>
+    <tr>
+      <th scope="row">Point <%= index %></th>
+      <td><%= point.x_value %></td>
+      <td><%= point.y_value %></td>
+    </tr>
+  <% end %>
+</table>

@@ -9,6 +9,7 @@ defmodule UnchartedPhoenix.ComponentView do
   alias Uncharted.{Chart, Gradient}
   alias Uncharted.ColumnChart.Column
   alias Uncharted.LineChart.{Line, Point}
+  alias Uncharted.ScatterPlot.Point, as: ScatterPoint
 
   def color_to_fill(colors, name, is_line \\ false) do
     case Map.get(colors, name, nil) do
