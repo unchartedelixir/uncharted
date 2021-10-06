@@ -3,16 +3,29 @@
     <title id="doughnutChartTitle">Doughnut chart visualizing <%= Chart.title(@chart) %></title>
 
     <svg id="<%= svg_id(@chart, "title") %>" class="chart-data" y="0" x="0" width="100%" height="90%">
-      <circle r="10" cx="10" cy="10" fill="transparent" />
+      <circle class="doughnut-hole" r="8" cx="10" cy="10" fill="transparent" />
+      <circle class="doughnut-ring" r="8" cx="10" cy="10" fill="transparent" stroke-width="3" />
       <%= for %{remaining_percentage: remaining_percentage, fill_color: fill_color} <- svg_doughnut_slices(@doughnut_slices) do %>
-        <circle class="data-slice" r="5" cx="10" cy="10" fill="transparent"
+        <circle class="data-slice" r="8" cx="10" cy="10" fill="transparent"
           style="transition: all 0.5s ease"
           stroke="<%= color_to_fill(Chart.colors(@chart), fill_color) %>"
-          stroke-width="2"
-          stroke-dasharray="calc(<%= remaining_percentage %> * 31.4 / 100) 31.4"
+          stroke-width="3"
+          stroke-dasharray="calc(<%= remaining_percentage %> * 50.24 / 100) 50.24"
           transform="rotate(-90) translate(-20)" >
-          <animate attributeName="stroke-dasharray" values=" calc(0 * 31.4 / 100) 31.4;calc(<%= remaining_percentage %> * 31.4 / 100) 31.4" dur="1s" repeatCount="freeze" />
+          <animate attributeName="stroke-dasharray" values=" calc(0 * 50.24 / 100) 50.24;calc(<%= remaining_percentage %> * 50.24 / 100) 50.24" dur="1s" repeatCount="freeze" />
         </circle>
+      <% end %>
+    </svg>
+
+    <svg class="chart-label" width="100%" height="100%" y="-4" x="0">
+      <%= if @chart.dataset.center_value do %>
+        <text class="label-value" x="50%" y="50%" fill="<%= color_to_fill(Chart.colors(@chart), @chart.dataset.center_value_fill_color) %>" font-size="5px" font-weight="100" font-family="sans-serif" alignment-baseline="middle" text-anchor="middle"><%= @chart.dataset.center_value %></text>
+      <% end %>
+      <%= if @chart.dataset.label do %>
+        <text class="label" x="50%" y="62%" fill="<%= color_to_fill(Chart.colors(@chart), @chart.dataset.label_fill_color)%>" font-size="2px" font-weight="300" font-family="sans-serif" alignment-baseline="middle" text-anchor="middle"><%= @chart.dataset.label %></text>
+      <% end %>
+      <%= if @chart.dataset.secondary_label do %>
+        <text class="label" x="50%" y="70%" fill="<%= color_to_fill(Chart.colors(@chart), @chart.dataset.label_fill_color)%>" font-size="1px" font-weight="300" font-family="sans-serif" alignment-baseline="middle" text-anchor="middle"><%= @chart.dataset.secondary_label %></text>
       <% end %>
     </svg>
 
@@ -37,7 +50,7 @@
   <caption><%= Chart.title(@chart) %></caption>
   <thead>
     <tr>
-      <th scope="col">[Data title]</th>
+      <th scope="col"><%= @chart.title %></th>
       <th scope="col">Percentage</th>
     </tr>
   </thead>
