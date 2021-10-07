@@ -2,7 +2,7 @@
 A simple ***Elixir*** charting library that generates easy to customize charts for ***Phoenix*** and ***LiveView***.
 
 ## Features
-- Easily generate pie charts, column charts, bar charts, progress counters, and line charts
+- Easily generate pie charts, doughnut charts, column charts, bar charts, progress counters, and line charts
 - Generates responsive and accessible SVGs as LiveView components
 - Provides advanced styling like gradients and rounded corners
 - Smooth animations for updating live data to the UI
@@ -320,7 +320,12 @@ doughnut_chart = %BaseChart{
         fill_color: :blue_gradient,
         values: [17.0]
       }
-    ]
+    ],
+    center_value: 100,
+    center_value_fill_color: :blue_gradient,
+    label: "Donuts Tasted",
+    label_fill_color: :rose_gradient,
+    secondary_label: "(all by me)",
   }
 }
 ```
