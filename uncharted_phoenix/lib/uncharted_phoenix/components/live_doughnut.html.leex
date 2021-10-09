@@ -50,8 +50,8 @@
   <caption><%= Chart.title(@chart) %></caption>
   <thead>
     <tr>
-      <th scope="col"><%= @chart.title %></th>
-      <th scope="col">Percentage</th>
+      <th scope="col"><%= Dataset.data_name_label(@chart.dataset) %></th>
+      <th scope="col"><%= Dataset.data_value_label(@chart.dataset) %></th>
     </tr>
   </thead>
   <%= for slice <- svg_doughnut_slices(@doughnut_slices) do %>

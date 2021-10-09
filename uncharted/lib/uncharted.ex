@@ -9,12 +9,13 @@ defmodule Uncharted do
   @type color_name :: atom()
 
   @typedoc """
-  a struct representing the dataset that the chart uses. Dfferent charts needs similar but differing information so this
-  is a union type
+  a struct representing the dataset that the chart uses. Dfferent charts need similar but differing
+  information so this is a union type
   """
   @type dataset ::
           Uncharted.BarChart.Dataset.t()
           | Uncharted.ColumnChart.Dataset.t()
+          | Uncharted.DoughnutChart.Dataset.t()
           | Uncharted.LineChart.Dataset.t()
           | Uncharted.PieChart.Dataset.t()
           | Uncharted.ProgressChart.Dataset.t()

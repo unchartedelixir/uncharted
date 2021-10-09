@@ -321,6 +321,8 @@ doughnut_chart = %BaseChart{
         values: [17.0]
       }
     ],
+    data_name_label: "Doughnut Type",
+    data_value_label: "Percentage",
     center_value: 100,
     center_value_fill_color: :blue_gradient,
     label: "Donuts Tasted",

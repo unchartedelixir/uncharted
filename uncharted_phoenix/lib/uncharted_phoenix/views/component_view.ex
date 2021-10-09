@@ -6,7 +6,7 @@ defmodule UnchartedPhoenix.ComponentView do
 
   use Phoenix.HTML
 
-  alias Uncharted.{Chart, Gradient}
+  alias Uncharted.{Chart, Dataset, Gradient}
   alias Uncharted.ColumnChart.Column
   alias Uncharted.LineChart.{Line, Point}
   alias Uncharted.ScatterPlot.Point, as: ScatterPoint
