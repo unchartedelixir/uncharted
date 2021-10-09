@@ -15,7 +15,7 @@ defmodule Uncharted do
   @type dataset ::
           Uncharted.BarChart.Dataset.t()
           | Uncharted.ColumnChart.Dataset.t()
-          | Uncharted.DoughnutChart.Dataset.t()
+          | Uncharted.DonutChart.Dataset.t()
           | Uncharted.LineChart.Dataset.t()
           | Uncharted.PieChart.Dataset.t()
           | Uncharted.ProgressChart.Dataset.t()

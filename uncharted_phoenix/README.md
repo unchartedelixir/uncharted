@@ -2,7 +2,7 @@
 A simple ***Elixir*** charting library that generates easy to customize charts for ***Phoenix*** and ***LiveView***.
 
 ## Features
-- Easily generate pie charts, doughnut charts, column charts, bar charts, progress counters, and line charts
+- Easily generate pie charts, donut charts, column charts, bar charts, progress counters, and line charts
 - Generates responsive and accessible SVGs as LiveView components
 - Provides advanced styling like gradients and rounded corners
 - Smooth animations for updating live data to the UI
@@ -220,7 +220,7 @@ defp progress_chart(from: %BaseChart{} = chart) do
         percentage_text_fill_color: :blue_gradient,
         percentage_fill_color: :rose_gradient,
         label_fill_color: :rose_gradient,
-        doughnut_width: 5,
+        donut_width: 5,
         progress_shape: :round
       }
   }
@@ -278,12 +278,12 @@ scatter_plot = %BaseChart{
 }
 ```
 
-### The Doughnut Chart
-![Doughnut Chart](assets/images/doughnut-chart.jpg "Doughnut Chart")
+### The Donut Chart
+![Donut Chart](assets/images/donut-chart.jpg "Donut Chart")
 
 ```elixir
-doughnut_chart = %BaseChart{
-  title: "Best kind of doughnut",
+donut_chart = %BaseChart{
+  title: "Best kind of donut",
   colors: %{
     rose_gradient: %Gradient{
       start_color: "#642B73",
@@ -298,7 +298,7 @@ doughnut_chart = %BaseChart{
       stop_color: "#FF1379"
     }
   },
-  dataset: %DoughnutChart.Dataset{
+  dataset: %DonutChart.Dataset{
     data: [
       %BaseDatum{
         name: "Cake",
@@ -321,7 +321,7 @@ doughnut_chart = %BaseChart{
         values: [17.0]
       }
     ],
-    data_name_label: "Doughnut Type",
+    data_name_label: "Donut Type",
     data_value_label: "Percentage",
     center_value: 100,
     center_value_fill_color: :blue_gradient,

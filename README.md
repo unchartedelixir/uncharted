@@ -18,7 +18,7 @@ basic chart package Uncharted and adapts Uncharted charts for display as compone
 ***Charts Included***:
 - The Bar Chart
 - The Column Chart
-- The Doughnut Chart
+- The Donut Chart
 - The Line Chart
 - The Pie Chart
 - The Progress Chart

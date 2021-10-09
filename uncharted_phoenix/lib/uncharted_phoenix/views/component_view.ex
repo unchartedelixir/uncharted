@@ -53,20 +53,20 @@ defmodule UnchartedPhoenix.ComponentView do
     |> Enum.reverse()
   end
 
-  def svg_doughnut_slices(nil), do: []
-  def svg_doughnut_slices([]), do: []
+  def svg_donut_slices(nil), do: []
+  def svg_donut_slices([]), do: []
 
-  def svg_doughnut_slices(doughnut_slices) do
-    label_width = 100 / Enum.count(doughnut_slices)
+  def svg_donut_slices(donut_slices) do
+    label_width = 100 / Enum.count(donut_slices)
 
-    doughnut_slices
+    donut_slices
     |> Enum.with_index()
-    |> Enum.reduce([], fn {doughnut_slice, index}, acc ->
+    |> Enum.reduce([], fn {donut_slice, index}, acc ->
       remaining_percentage =
         100 - Enum.reduce(acc, 0, fn slice, sum -> sum + slice.percentage end)
 
       svg_slice =
-        doughnut_slice
+        donut_slice
         |> Map.from_struct()
         |> Map.put(:remaining_percentage, remaining_percentage)
         |> Map.put(:label_width, label_width)

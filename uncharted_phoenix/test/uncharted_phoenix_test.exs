@@ -7,7 +7,7 @@ defmodule UnchartedPhoenixTest do
     BarChart,
     BaseChart,
     ColumnChart,
-    DoughnutChart,
+    DonutChart,
     LineChart,
     PieChart,
     ProgressChart
@@ -65,13 +65,13 @@ defmodule UnchartedPhoenixTest do
                ~s(data-testid="lc-live-progress-component")
     end
 
-    test "creates doughnut chart components" do
-      doughnut_chart = %BaseChart{
+    test "creates donut chart components" do
+      donut_chart = %BaseChart{
         @base_chart
-        | dataset: %DoughnutChart.Dataset{data: []}
+        | dataset: %DonutChart.Dataset{data: []}
       }
 
-      assert render_chart(doughnut_chart) =~ ~s(data-testid="lc-live-doughnut-component")
+      assert render_chart(donut_chart) =~ ~s(data-testid="lc-live-donut-component")
     end
 
     test "raises an UnchartedPhoenix.ComponentUndefinedError exception when an invalid chart type is given" do

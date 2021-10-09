@@ -1,5 +1,5 @@
-defmodule UnchartedPhoenix.LiveDoughnutComponentTest do
-  alias Uncharted.DoughnutChart.Dataset
+defmodule UnchartedPhoenix.LiveDonutComponentTest do
+  alias Uncharted.DonutChart.Dataset
   import UnchartedPhoenix.TestRenderer
   use ExUnit.Case
 
@@ -13,9 +13,9 @@ defmodule UnchartedPhoenix.LiveDoughnutComponentTest do
     }
   }
 
-  describe "LiveDoughnut" do
-    test "renders doughnut" do
-      assert render_chart(@base_chart) =~ ~s(data-testid="lc-live-doughnut-component")
+  describe "LiveDonut" do
+    test "renders donut" do
+      assert render_chart(@base_chart) =~ ~s(data-testid="lc-live-donut-component")
     end
 
     test "renders a chart's title" do

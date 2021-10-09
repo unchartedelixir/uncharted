@@ -1,6 +1,6 @@
-defmodule Uncharted.DoughnutChart.DoughnutSlice do
+defmodule Uncharted.DonutChart.DonutSlice do
   @moduledoc """
-  A struct representing doughnut chart slice display properties.
+  A struct representing donut chart slice display properties.
   """
 
   defstruct [:label, :percentage, :fill_color]

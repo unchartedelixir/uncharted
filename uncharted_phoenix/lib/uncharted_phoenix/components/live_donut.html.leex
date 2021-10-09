@@ -1,11 +1,11 @@
-<figure data-testid="lc-live-doughnut-component" role="img" aria-label="Doughnut chart visualizing <%= Chart.title(@chart) %>" alt="Doughnut chart visualizing <%= Chart.title(@chart) %>" tabindex="0"  phx-target="<%= @myself %>" phx-focus="show_table">
-  <svg id="<%= svg_id(@chart, "chart") %>" class="doughnut-chart" height="100%" width="100%" viewBox="0 0 20 24" overflow="visible">
-    <title id="doughnutChartTitle">Doughnut chart visualizing <%= Chart.title(@chart) %></title>
+<figure data-testid="lc-live-donut-component" role="img" aria-label="Donut chart visualizing <%= Chart.title(@chart) %>" alt="Donut chart visualizing <%= Chart.title(@chart) %>" tabindex="0"  phx-target="<%= @myself %>" phx-focus="show_table">
+  <svg id="<%= svg_id(@chart, "chart") %>" class="donut-chart" height="100%" width="100%" viewBox="0 0 20 24" overflow="visible">
+    <title id="donutChartTitle">Donut chart visualizing <%= Chart.title(@chart) %></title>
 
     <svg id="<%= svg_id(@chart, "title") %>" class="chart-data" y="0" x="0" width="100%" height="90%">
-      <circle class="doughnut-hole" r="8" cx="10" cy="10" fill="transparent" />
-      <circle class="doughnut-ring" r="8" cx="10" cy="10" fill="transparent" stroke-width="3" />
-      <%= for %{remaining_percentage: remaining_percentage, fill_color: fill_color} <- svg_doughnut_slices(@doughnut_slices) do %>
+      <circle class="donut-hole" r="8" cx="10" cy="10" fill="transparent" />
+      <circle class="donut-ring" r="8" cx="10" cy="10" fill="transparent" stroke-width="3" />
+      <%= for %{remaining_percentage: remaining_percentage, fill_color: fill_color} <- svg_donut_slices(@donut_slices) do %>
         <circle class="data-slice" r="8" cx="10" cy="10" fill="transparent"
           style="transition: all 0.5s ease"
           stroke="<%= color_to_fill(Chart.colors(@chart), fill_color) %>"
@@ -30,7 +30,7 @@
     </svg>
 
     <svg id="<%= svg_id(@chart, "key") %>" class="chart-key" height="10%" width="100%" y="90%" x="0" aria-hidden="true" overflow="visible">
-      <%= for %{label: label, fill_color: fill_color, label_width: label_width, label_position: label_position} <- svg_doughnut_slices(@doughnut_slices) do %>
+      <%= for %{label: label, fill_color: fill_color, label_width: label_width, label_position: label_position} <- svg_donut_slices(@donut_slices) do %>
         <svg id="<%= label %>" class="chart-label" width="<%= label_width %>%" height="100%" y="0" x="<%= label_position %>%" overflow="visible">
           <rect width="90%" x="5%" height=".5" rx=".3" ry=".3" fill="<%= color_to_fill(Chart.colors(@chart), fill_color) %>" />
           <foreignObject x="0" y="25%" width="100%" height="100%" overflow="visible">
@@ -54,7 +54,7 @@
       <th scope="col"><%= Dataset.data_value_label(@chart.dataset) %></th>
     </tr>
   </thead>
-  <%= for slice <- svg_doughnut_slices(@doughnut_slices) do %>
+  <%= for slice <- svg_donut_slices(@donut_slices) do %>
     <tr>
       <th scope="row"><%= slice.label %></th>
       <td><%= slice.percentage %></td>

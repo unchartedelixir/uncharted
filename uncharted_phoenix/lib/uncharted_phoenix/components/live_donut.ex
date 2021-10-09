@@ -1,6 +1,6 @@
-defmodule UnchartedPhoenix.LiveDoughnutComponent do
+defmodule UnchartedPhoenix.LiveDonutComponent do
   @moduledoc """
-  Doughnut Chart Component
+  Donut Chart Component
   """
 
   use Phoenix.LiveComponent
@@ -13,14 +13,14 @@ defmodule UnchartedPhoenix.LiveDoughnutComponent do
     socket =
       socket
       |> assign(:chart, assigns.chart)
-      |> assign(:doughnut_slices, Uncharted.DoughnutChart.doughnut_slices(assigns.chart))
+      |> assign(:donut_slices, Uncharted.DonutChart.donut_slices(assigns.chart))
       |> assign(:always_show_table, assigns.always_show_table)
 
     {:ok, socket}
   end
 
   def render(assigns) do
-    Phoenix.View.render(UnchartedPhoenix.ComponentView, "live_doughnut.html", assigns)
+    Phoenix.View.render(UnchartedPhoenix.ComponentView, "live_donut.html", assigns)
   end
 
   def handle_event("show_table", _, socket) do

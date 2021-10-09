@@ -13,7 +13,7 @@ defmodule Uncharted.ProgressChart.Dataset do
     :percentage_fill_color,
     :label_fill_color,
     progress_shape: :round,
-    doughnut_width: 5
+    donut_width: 5
   ]
 
   @typep color :: atom()
@@ -27,6 +27,6 @@ defmodule Uncharted.ProgressChart.Dataset do
           percentage_fill_color: color(),
           label_fill_color: color(),
           progress_shape: :round | :butt | :square,
-          doughnut_width: number()
+          donut_width: number()
         }
 end

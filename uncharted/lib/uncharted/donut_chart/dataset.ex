@@ -1,6 +1,6 @@
-defmodule Uncharted.DoughnutChart.Dataset do
+defmodule Uncharted.DonutChart.Dataset do
   @moduledoc """
-  Struct representing a dataset for a basic doughnut chart.
+  Struct representing a dataset for a basic donut chart.
   """
   defstruct [
     :data,
@@ -26,8 +26,8 @@ defmodule Uncharted.DoughnutChart.Dataset do
         }
 end
 
-defimpl Uncharted.Dataset, for: Uncharted.DoughnutChart.Dataset do
-  alias Uncharted.DoughnutChart.Dataset
+defimpl Uncharted.Dataset, for: Uncharted.DonutChart.Dataset do
+  alias Uncharted.DonutChart.Dataset
 
   def data_name_label(%Dataset{data_name_label: data_name_label}), do: data_name_label
   def data_value_label(%Dataset{data_value_label: data_value_label}), do: data_value_label
