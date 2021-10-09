@@ -15,7 +15,7 @@ defmodule Uncharted.DonutChart.Dataset do
 
   @typep color :: atom()
   @type t() :: %__MODULE__{
-          data: list(Uncharted.Datum.t()),
+          data: list(Uncharted.BaseDatum.t()),
           data_name_label: String.t(),
           data_value_label: String.t(),
           center_value: number(),
