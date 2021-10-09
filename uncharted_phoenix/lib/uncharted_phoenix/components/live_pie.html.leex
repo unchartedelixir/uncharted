@@ -37,7 +37,7 @@
   <caption><%= Chart.title(@chart) %></caption>
   <thead>
     <tr>
-      <th scope="col">[Data title]</th>
+      <th scope="col"><%= Dataset.data_name_label(@chart.dataset) %></th>
       <th scope="col">Percentage</th>
     </tr>
   </thead>

@@ -59,8 +59,8 @@
   <thead>
     <tr>
       <th scope="col">Point</th>
-      <th scope="col">[Data Title]</th>
-      <th scope="col">[Data Title]</th>
+      <th scope="col"><%= Dataset.data_name_label(@chart.dataset) %></th>
+      <th scope="col"><%= Dataset.data_value_label(@chart.dataset) %></th>
     </tr>
   </thead>
   <%= for {point, index} <- Enum.with_index(@points, 1) do %>
