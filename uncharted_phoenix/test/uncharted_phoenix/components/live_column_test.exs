@@ -1,7 +1,7 @@
 defmodule UnchartedPhoenix.LiveColumnComponentTest do
-  alias Uncharted.BaseChart
+  alias Uncharted.{BaseChart, Section}
   alias Uncharted.Axes.{BaseAxes, MagnitudeAxis}
-  alias Uncharted.ColumnChart.{Dataset, Section}
+  alias Uncharted.ColumnChart.Dataset
   import UnchartedPhoenix.TestRenderer
   use ExUnit.Case
 

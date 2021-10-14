@@ -7,6 +7,6 @@ defmodule Uncharted.ColumnChart.Dataset do
   @type t() :: %__MODULE__{
           axes: Uncharted.Axes.BaseAxes.t(),
           data: list(Uncharted.BaseDatum.t()),
-          sections: list(Uncharted.ColumnChart.ColumnSection.t())
+          sections: list(Uncharted.Section.t())
         }
 end

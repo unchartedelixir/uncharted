@@ -6,7 +6,7 @@ defmodule Uncharted.BarChart.Dataset do
 
   @type t() :: %__MODULE__{
           axes: Uncharted.Axes.BaseAxes.t(),
-          sections: list(Uncharted.BarChart.Section.t()),
+          sections: list(Uncharted.Section.t()),
           data: list(Uncharted.BaseDatum.t())
         }
 end

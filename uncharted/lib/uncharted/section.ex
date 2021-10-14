@@ -1,6 +1,6 @@
-defmodule Uncharted.ColumnChart.Section do
+defmodule Uncharted.Section do
   @moduledoc """
-  A struct representing column section-level configurations.
+  A struct representing bar/column section-level configurations.
   """
 
   defstruct [

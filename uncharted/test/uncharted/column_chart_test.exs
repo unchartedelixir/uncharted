@@ -18,8 +18,8 @@ defmodule Uncharted.ColumnChartTest do
     %BaseDatum{name: "Bar Five", values: [1650, 100]}
   ]
   @sections [
-    %ColumnChart.Section{fill_color: "blue", label: "Section 2", index: 1},
-    %ColumnChart.Section{fill_color: "blue", label: "Section 1", index: 0}
+    %Uncharted.Section{fill_color: "blue", label: "Section 2", index: 1},
+    %Uncharted.Section{fill_color: "blue", label: "Section 1", index: 0}
   ]
   @dataset %ColumnChart.Dataset{data: @data, axes: @axes, sections: @sections}
   @chart %BaseChart{title: "title", dataset: @dataset}

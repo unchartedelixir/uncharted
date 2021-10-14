@@ -1,7 +1,7 @@
 defmodule UnchartedPhoenix.LiveBarComponentTest do
-  alias Uncharted.BaseChart
+  alias Uncharted.{BaseChart, Section}
   alias Uncharted.Axes.{BaseAxes, MagnitudeAxis}
-  alias Uncharted.BarChart.{Dataset, Section}
+  alias Uncharted.BarChart.Dataset
   import UnchartedPhoenix.TestRenderer
   use ExUnit.Case
 

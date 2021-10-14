@@ -1,6 +1,6 @@
 defimpl Uncharted.ColumnChart, for: Uncharted.BaseChart do
-  alias Uncharted.BaseChart
-  alias Uncharted.ColumnChart.{Column, ColumnSection, Dataset, Section}
+  alias Uncharted.{BaseChart, Section}
+  alias Uncharted.ColumnChart.{Column, ColumnSection, Dataset}
 
   def columns(%BaseChart{dataset: nil}), do: []
   def columns(%BaseChart{dataset: dataset}), do: columns(dataset)

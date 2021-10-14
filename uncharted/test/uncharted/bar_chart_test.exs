@@ -14,8 +14,8 @@ defmodule Uncharted.BarChartTest do
     %BaseDatum{name: "Bar Five", values: [1750]}
   ]
   @sections [
-    %BarChart.Section{fill_color: "blue", label: "Section 2", index: 1},
-    %BarChart.Section{fill_color: "blue", label: "Section 1", index: 0}
+    %Uncharted.Section{fill_color: "blue", label: "Section 2", index: 1},
+    %Uncharted.Section{fill_color: "blue", label: "Section 1", index: 0}
   ]
   @dataset %BarChart.Dataset{data: @data, sections: @sections, axes: @axes}
   @chart %BaseChart{title: "title", dataset: @dataset}
