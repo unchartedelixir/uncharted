@@ -105,4 +105,25 @@ defmodule UnchartedPhoenix.ComponentView do
   defp key_offset(section_count), do: (100 - key_width(section_count)) / 2
 
   defp key_width(section_count), do: section_count * 12 - 7
+
+  defp funnel_y_offset(height, bar_height, bar_index, section_index) do
+    funnel_chart_height(height) * bar_height / 100 * bar_index
+  end
+
+  defp funnel_y_end(height, bar_height, bar_index, section_index) do
+    funnel_chart_height(height) * bar_height / 100 * (bar_index + 1)
+  end
+
+  defp funnel_chart_offset(percentage, chart_size), do: percentage * chart_size / 100
+
+  defp funnel_chart_width(width), do: width * 0.8 * 0.96
+  defp funnel_chart_height(height), do: height * 0.92
+
+  def funnel_chart_points(offset, offset_end, lower_offset, lower_offset_end, bar_index, bar_height, height, width) do
+    chart_width = funnel_chart_width(width)
+    chart_height = funnel_chart_height(height)
+    this_bar_height = bar_index * bar_height
+    next_bar_height = (bar_index + 1) * bar_height
+    "#{  funnel_chart_offset(offset, chart_width) },#{ funnel_chart_offset(this_bar_height, chart_height) } #{ funnel_chart_offset(offset_end, chart_width) },#{ funnel_chart_offset(this_bar_height, chart_height) } #{ funnel_chart_offset(lower_offset_end, chart_width) },#{ funnel_chart_offset(next_bar_height, chart_height) } #{ funnel_chart_offset(lower_offset, chart_width) },#{ funnel_chart_offset(next_bar_height, chart_height) }"
+  end
 end

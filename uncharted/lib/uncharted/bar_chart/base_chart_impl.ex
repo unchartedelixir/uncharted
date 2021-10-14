@@ -21,6 +21,7 @@ defimpl Uncharted.BarChart, for: Uncharted.BaseChart do
         offset: offset,
         bar_offset: offset + margin,
         bar_height: height / 2.0,
+        full_bar_value: Enum.sum(datum.values),
         sections: bar_sections(datum, max, sections)
       }
     end)

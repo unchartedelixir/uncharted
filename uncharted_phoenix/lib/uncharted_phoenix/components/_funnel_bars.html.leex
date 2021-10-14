@@ -1,0 +1,17 @@
+<svg id="<%= svg_id(@chart, "bars") %>" width="96%" height="100%" x="2%" y="0">
+  <%= for {%{bar_height: bar_height, sections: sections}, bar_index} <- @bars |> Enum.with_index do %>
+    <%= for {%{offset: offset, offset_end: offset_end, lower_offset: lower_offset, lower_offset_end: lower_offset_end, label: label, fill_color: fill_color}, section_index} <- sections |> Enum.with_index do %>
+      <g class="chart-bar">
+        <polygon
+          points="<%= funnel_chart_points(offset, offset_end, lower_offset, lower_offset_end, bar_index, bar_height, @height, @width) %>"
+          id="<%= label %>"
+          rx="10"
+          ry="10"
+          fill="<%= color_to_fill(Chart.colors(@chart), fill_color)  %>"
+          style="transition: all 1s ease;">
+            <animate attributeName="width" values="0%;30%" dur="1s" repeatCount="freeze" />
+        </polygon>
+      </g>
+    <% end %>
+  <% end %>
+</svg>

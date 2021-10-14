@@ -1,0 +1,58 @@
+<figure data-testid="lc-live-funnel-component" role="img" aria-label="Funnel chart visualizing <%= Chart.title(@chart) %>" alt="Funnel chart visualizing <%= Chart.title(@chart) %>" tabindex="0"  phx-target="<%= @myself %>" phx-focus="show_table">
+  <%= if Enum.count(@chart.dataset.sections) > 1 do %>
+    <svg data-testid="lc-color-key" id="<%= svg_id(@chart, "chart") %>-color_key" class="color-key" width="100%" height="100%" viewBox="0 0 <%= @width %> 50">
+      <%= render "_color_key.html", chart: @chart %>
+    </svg>
+  <% end %>
+  <svg class="funnel-chart" width="100%" height="100%" viewBox="0 0 <%= "#{@width} #{@height}" %>" style="overflow: visible;">
+
+    <title id="funnelChartTitle">Funnel chart visualizing <%= Chart.title(@chart) %></title>
+
+    <%= render "_color_defs.html", chart: @chart %>
+    <%= render "_funnel_bar_labels.html", chart: @chart %>
+    <svg class="" width="80%" height="92%" x="10%" y="0">
+      <%= if @chart.dataset.axes.show_gridlines do %>
+        <%= render "_chart_lines.html", chart: @chart, grid_lines: @grid_lines, offsetter: @offsetter, axis: @axis %>
+      <% end %>
+      <%= render "_funnel_bars.html", chart: @chart, bars: @bars, width: @width, height: @height %>
+    </svg>
+    <%= render "_funnel_bar_value_labels.html", chart: @chart %>
+  </svg>
+</figure>
+
+<%= tag :table, [tabindex: "0", phx_target: @myself, phx_blur: "hide_table"] ++ maybe_show_table(@always_show_table || @show_table) %>
+  <caption><%= Chart.title(@chart) %></caption>
+  <thead>
+    <tr>
+      <th scope="col">[Data Title]</th>
+      <th scope="col">[Data Title]</th>
+      <%= if Enum.count(@chart.dataset.sections) > 1 do %>
+        <th scope="col" colspan="2">[Data Title]</th>
+      <% end %>
+    </tr>
+  </thead>
+  <%= for bar <- @bars do %>
+    <tr>
+      <th scope="row"><%= bar.label %></th>
+      <td><%= bar.full_bar_value %> / <%= bar.full_bar_percentage %>%</td>
+        <%= if Enum.count(bar.sections) > 1 do %>
+          <td>
+            <table>
+              <thead>
+                <th scope="col">[Data Title]</th>
+                <th scope="col">[Data Title]</th>
+              </thead>
+              <tbody>
+                <%= for section <- bar.sections do %>
+                  <tr>
+                    <th scope="row"><%= section.label %></th>
+                    <td><%= section.bar_value %></td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </td>
+        <% end %>
+    </tr>
+  <% end %>
+</table>

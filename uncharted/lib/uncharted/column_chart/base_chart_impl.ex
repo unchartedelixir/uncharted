@@ -21,6 +21,7 @@ defimpl Uncharted.ColumnChart, for: Uncharted.BaseChart do
         offset: offset,
         bar_offset: offset + margin,
         bar_width: width / 2.0,
+        full_column_value: Enum.sum(datum.values),
         sections: column_sections(datum, max, sections)
       }
     end)

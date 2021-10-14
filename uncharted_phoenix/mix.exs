@@ -66,7 +66,7 @@ defmodule UnchartedPhoenix.MixProject do
       {:excoveralls, "~> 0.14", only: :test},
       {:jason, "~> 1.2"},
       {:uncharted, path: "../uncharted"},
-      {:phoenix_live_view, "~> 0.15"}
+      {:phoenix_live_view, ">= 0.15.0"}
     ]
   end
 
