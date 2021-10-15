@@ -1,7 +1,7 @@
-defmodule UnchartedPhoenix.LiveColumnComponentTest do
+defmodule UnchartedPhoenix.LiveBarComponentTest do
   alias Uncharted.{BaseChart, Section}
   alias Uncharted.Axes.{BaseAxes, MagnitudeAxis}
-  alias Uncharted.ColumnChart.Dataset
+  alias Uncharted.BarChart.Dataset
   import UnchartedPhoenix.TestRenderer
   use ExUnit.Case
 
@@ -52,9 +52,9 @@ defmodule UnchartedPhoenix.LiveColumnComponentTest do
   @configured_graph_chart %BaseChart{dataset: %Dataset{axes: @configured_axes, data: []}}
   @nondisplayed_graph_chart %BaseChart{dataset: %Dataset{axes: @nondisplayed_axes, data: []}}
 
-  describe "LiveColumnComponent" do
+  describe "LiveBarComponent" do
     test "renders" do
-      assert render_chart(@base_chart) =~ ~s(data-testid="lc-live-column-component")
+      assert render_chart(@base_chart) =~ ~s(data-testid="lc-live-bar-component")
     end
 
     test "renders the chart's title" do

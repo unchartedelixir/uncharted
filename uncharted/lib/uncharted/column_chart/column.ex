@@ -9,9 +9,7 @@ defmodule Uncharted.ColumnChart.Column do
     :label,
     :bar_width,
     :bar_offset,
-    :column_height,
-    :column_value,
-    :fill_color
+    :sections
   ]
 
   @type t() :: %__MODULE__{
@@ -20,8 +18,6 @@ defmodule Uncharted.ColumnChart.Column do
           label: String.t(),
           bar_width: float(),
           bar_offset: float(),
-          column_height: float(),
-          column_value: float(),
-          fill_color: atom()
+          sections: list(Uncharted.ColumnChart.ColumnSection.t())
         }
 end

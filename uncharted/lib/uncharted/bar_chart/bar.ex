@@ -9,9 +9,7 @@ defmodule Uncharted.BarChart.Bar do
     :label,
     :bar_height,
     :bar_offset,
-    :bar_width,
-    :bar_value,
-    :fill_color
+    :sections
   ]
 
   @type t() :: %__MODULE__{
@@ -20,8 +18,6 @@ defmodule Uncharted.BarChart.Bar do
           label: String.t(),
           bar_height: float(),
           bar_offset: float(),
-          bar_width: float(),
-          bar_value: float(),
-          fill_color: atom()
+          sections: list(Uncharted.BarChart.BarSection.t())
         }
 end
