@@ -19,6 +19,7 @@ defimpl Uncharted.ScatterPlot, for: Uncharted.BaseChart do
       %Point{
         label: datum.name,
         fill_color: datum.fill_color,
+        fill_opacity: datum.fill_opacity || Point.__struct__().fill_opacity,
         radius: Enum.at(datum.values, 2) || Point.__struct__().radius,
         x_offset: x_offset,
         y_offset: y_offset,

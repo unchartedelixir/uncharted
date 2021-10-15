@@ -18,10 +18,10 @@
 
         </svg>
         <g id="<%= svg_id(@chart, "dots") %>" class="line_dots">
-          <%= for %ScatterPoint{radius: radius, x_offset: x_offset, y_offset: y_offset, fill_color: fill_color} <- @points do %>
+          <%= for %ScatterPoint{radius: radius, x_offset: x_offset, y_offset: y_offset, fill_color: fill_color, fill_opacity: fill_opacity} <- @points do %>
             <circle
               fill="<%= color_to_fill(@chart.colors(), fill_color) %>"
-              fill-opacity="0.6"
+              fill-opacity="<%= fill_opacity %>"
               cx="<%= x_offset %>%"
               cy="<%= 100 - y_offset %>%"
               r="<%= radius %>">
