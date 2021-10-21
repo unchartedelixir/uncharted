@@ -1,6 +1,6 @@
 # Uncharted
 A simple ***Elixir*** charting library with beautiful dynamic charts.
-View our [demo](https://unchartedelixir.herokuapp.com/) of all the uncharted examples.
+View our [demo](https://unchartedelixir.herokuapp.com/) of all the uncharted possibilities.
 
 Build status: [![CircleCI](https://circleci.com/gh/unchartedelixir/uncharted/tree/master.svg?style=svg)](https://circleci.com/gh/unchartedelixir/uncharted/tree/master)
 
