@@ -1,9 +1,8 @@
 # Uncharted
-A simple ***Elixir*** charting library that generates easy to customize charts.
+A simple ***Elixir*** charting library with beautiful dynamic charts.
+View our [![demo](https://unchartedelixir.herokuapp.com/)] of all the uncharted examples.
 
 Build status: [![CircleCI](https://circleci.com/gh/unchartedelixir/uncharted/tree/master.svg?style=svg)](https://circleci.com/gh/unchartedelixir/uncharted/tree/master)
-
-![Bar Chart](uncharted_phoenix/assets/images/uncharted.jpg?raw=true "Uncharted Charts")
 
 ## Features
 - Easily generate pie charts, column charts, bar charts, progress counters, and line charts
@@ -15,7 +14,7 @@ Build status: [![CircleCI](https://circleci.com/gh/unchartedelixir/uncharted/tre
 Uncharted Phoenix is a Hex package that generates SVGs as live view components. It builds on the
 basic chart package Uncharted and adapts Uncharted charts for display as components in LiveView.
 
-***Charts Included***:
+***Uncharted Visuals***:
 - The Bar Chart
 - The Column Chart
 - The Doughnut Chart
@@ -23,6 +22,7 @@ basic chart package Uncharted and adapts Uncharted charts for display as compone
 - The Pie Chart
 - The Progress Chart
 - The Scatter Plot
+- The Stacked Column Chart
 
 ### Example Application
 The [Uncharted Demo](https://github.com/unchartedelixir/demo) is a working example of each of the Uncharted chart components.
