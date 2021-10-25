@@ -8,7 +8,6 @@ defmodule Uncharted.FunnelChart.Bar do
     :offset,
     :label,
     :bar_height,
-    :bar_offset,
     :full_bar_value,
     :full_bar_percentage,
     :sections
@@ -19,7 +18,6 @@ defmodule Uncharted.FunnelChart.Bar do
           offset: float(),
           label: String.t(),
           bar_height: float(),
-          bar_offset: float(),
           full_bar_value: float(),
           full_bar_percentage: float(),
           sections: list(Uncharted.FunnelChart.BarSection.t())

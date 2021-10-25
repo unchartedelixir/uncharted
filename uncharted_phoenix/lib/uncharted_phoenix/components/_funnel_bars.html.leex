@@ -1,16 +1,14 @@
 <svg id="<%= svg_id(@chart, "bars") %>" width="96%" height="100%" x="2%" y="0">
-  <%= for {%{bar_height: bar_height, sections: sections}, bar_index} <- @bars |> Enum.with_index do %>
-    <%= for {%{offset: offset, offset_end: offset_end, lower_offset: lower_offset, lower_offset_end: lower_offset_end, label: label, fill_color: fill_color}, section_index} <- sections |> Enum.with_index do %>
+  <%= for %{sections: sections} <- @bars do %>
+    <%= for %{label: label, fill_color: fill_color, x_points: [x_left, x_right, x_lower_right, x_lower_left], y_points: [y_top, y_middle, y_bottom]} <- sections do %>
       <g class="chart-bar">
-        <polygon
-          points="<%= funnel_chart_points(offset, offset_end, lower_offset, lower_offset_end, bar_index, bar_height, @height, @width) %>"
+        <path
+          d="M<%= x_left %>,<%= y_top %> L<%= x_right %>,<%= y_top %> C<%= x_right %>,<%= y_middle %>,<%= x_lower_right %>,<%= y_middle %>,<%= x_lower_right %>,<%= y_bottom %> L<%= x_lower_left %>,<%= y_bottom %> C<%= x_lower_left %>,<%= y_middle %>,<%= x_left %>,<%= y_middle %>,<%= x_left %>,<%= y_top %>z"
           id="<%= label %>"
-          rx="10"
-          ry="10"
           fill="<%= color_to_fill(Chart.colors(@chart), fill_color)  %>"
-          style="transition: all 1s ease;">
+          style="transition: all 1s ease; stroke-linejoin: round;">
             <animate attributeName="width" values="0%;30%" dur="1s" repeatCount="freeze" />
-        </polygon>
+        </path>
       </g>
     <% end %>
   <% end %>
