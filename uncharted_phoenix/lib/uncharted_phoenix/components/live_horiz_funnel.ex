@@ -1,4 +1,4 @@
-defmodule UnchartedPhoenix.LiveFunnelComponent do
+defmodule UnchartedPhoenix.LiveHorizontalFunnelComponent do
   @moduledoc """
   Funnel Chart Component
   """
@@ -23,7 +23,7 @@ defmodule UnchartedPhoenix.LiveFunnelComponent do
     socket =
       socket
       |> assign(:chart, assigns.chart)
-      |> assign(:bars, Uncharted.FunnelChart.bars(assigns.chart))
+      |> assign(:columns, Uncharted.HorizontalFunnelChart.bars(assigns.chart))
       |> assign(:grid_lines, grid_lines)
       |> assign(:offsetter, grid_line_offsetter)
       |> assign(:axis, x_axis)
@@ -35,7 +35,7 @@ defmodule UnchartedPhoenix.LiveFunnelComponent do
   end
 
   def render(assigns) do
-    Phoenix.View.render(UnchartedPhoenix.ComponentView, "live_funnel.html", assigns)
+    Phoenix.View.render(UnchartedPhoenix.ComponentView, "live_horiz_funnel.html", assigns)
   end
 
   def handle_event("show_table", _, socket) do

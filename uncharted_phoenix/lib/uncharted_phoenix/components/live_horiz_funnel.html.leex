@@ -1,22 +1,20 @@
-<figure data-testid="lc-live-funnel-component" role="img" aria-label="Funnel chart visualizing <%= Chart.title(@chart) %>" alt="Funnel chart visualizing <%= Chart.title(@chart) %>" tabindex="0"  phx-target="<%= @myself %>" phx-focus="show_table">
+<figure data-testid="lc-live-horiz-funnel-component" role="img" aria-label="Horizontal funnel chart visualizing <%= Chart.title(@chart) %>" alt="Horizontal funnel chart visualizing <%= Chart.title(@chart) %>" tabindex="0"  phx-target="<%= @myself %>" phx-focus="show_table">
   <%= if Enum.count(@chart.dataset.sections) > 1 do %>
     <svg data-testid="lc-color-key" id="<%= svg_id(@chart, "chart") %>-color_key" class="color-key" width="100%" height="100%" viewBox="0 0 <%= @width %> 50">
       <%= render "_color_key.html", chart: @chart %>
     </svg>
   <% end %>
-  <svg class="funnel-chart" width="100%" height="100%" viewBox="0 0 <%= "#{@width} #{@height}" %>" style="overflow: visible;">
+  <svg class="horiz-funnel-chart" width="100%" height="100%" viewBox="0 0 <%= "#{@width} #{@height}" %>" style="overflow: visible;">
 
-    <title id="funnelChartTitle">Funnel chart visualizing <%= Chart.title(@chart) %></title>
+    <title id="horizFunnelChartTitle">Horizontal funnel chart visualizing <%= Chart.title(@chart) %></title>
 
     <%= render "_color_defs.html", chart: @chart %>
-    <%= render "_funnel_bar_labels.html", chart: @chart, bars: @bars %>
-    <svg class="" width="80%" height="92%" x="10%" y="0">
-      <%= if @chart.dataset.axes.show_gridlines do %>
-        <%= render "_chart_lines.html", chart: @chart, grid_lines: @grid_lines, offsetter: @offsetter, axis: @axis %>
-      <% end %>
-      <%= render "_funnel_bars.html", chart: @chart, bars: @bars, width: @width, height: @height %>
+    <%= render "_funnel_x_axis.html", chart: @chart, columns: @columns %>
+    <svg class="" width="92%" height="80%" x="0" y="10%">
+      <%= render "_bar_grid_lines.html", chart: @chart, grid_lines: @grid_lines, offsetter: @offsetter, axis: @axis %>
+      <%= render "_funnel_chart_graph.html", chart: @chart, columns: @columns, width: @width, height: @height %>
     </svg>
-    <%= render "_funnel_bar_value_labels.html", chart: @chart, bars: @bars %>
+    <%= render "_funnel_chart_value_labels.html", chart: @chart, columns: @columns %>
   </svg>
 </figure>
 
@@ -31,7 +29,7 @@
       <% end %>
     </tr>
   </thead>
-  <%= for bar <- @bars do %>
+  <%= for bar <- @columns do %>
     <tr>
       <th scope="row"><%= bar.label %></th>
       <td><%= bar.full_bar_value %> / <%= bar.full_bar_percentage %>%</td>

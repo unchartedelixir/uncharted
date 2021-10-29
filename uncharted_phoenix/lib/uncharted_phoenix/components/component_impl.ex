@@ -1,13 +1,26 @@
 defimpl Uncharted.Component, for: Uncharted.BaseChart do
   alias Uncharted.BaseChart
-  alias Uncharted.{BarChart, ColumnChart, DoughnutChart, FunnelChart, LineChart, PieChart, ProgressChart, ScatterPlot}
 
+  alias Uncharted.{
+    BarChart,
+    ColumnChart,
+    DoughnutChart,
+    FunnelChart,
+    HorizontalFunnelChart,
+    LineChart,
+    PieChart,
+    ProgressChart,
+    ScatterPlot
+  }
+
+  # credo:disable-for-next-line Credo.Check.Refactor.CyclomaticComplexity
   def for_dataset(%BaseChart{dataset: dataset}) do
     case dataset do
       %BarChart.Dataset{} -> UnchartedPhoenix.LiveBarComponent
       %ColumnChart.Dataset{} -> UnchartedPhoenix.LiveColumnComponent
       %DoughnutChart.Dataset{} -> UnchartedPhoenix.LiveDoughnutComponent
       %FunnelChart.Dataset{} -> UnchartedPhoenix.LiveFunnelComponent
+      %HorizontalFunnelChart.Dataset{} -> UnchartedPhoenix.LiveHorizontalFunnelComponent
       %LineChart.Dataset{} -> UnchartedPhoenix.LiveLineComponent
       %PieChart.Dataset{} -> UnchartedPhoenix.LivePieComponent
       %ProgressChart.Dataset{} -> UnchartedPhoenix.LiveProgressComponent

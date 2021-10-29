@@ -1,6 +1,6 @@
-defimpl Uncharted.FunnelChart, for: Uncharted.BaseChart do
+defimpl Uncharted.HorizontalFunnelChart, for: Uncharted.BaseChart do
   alias Uncharted.{BaseChart, Section}
-  alias Uncharted.FunnelChart.{Bar, BarSection, Dataset}
+  alias Uncharted.HorizontalFunnelChart.{Bar, BarSection, Dataset}
 
   def bars(%BaseChart{dataset: nil}), do: []
 
@@ -10,7 +10,7 @@ defimpl Uncharted.FunnelChart, for: Uncharted.BaseChart do
   def bars(%Dataset{data: []}, _chart_width, _chart_height), do: []
 
   def bars(%Dataset{data: data, sections: sections}, chart_width, chart_height) do
-    height = 100.0 / Enum.count(data)
+    width = 100.0 / Enum.count(data)
 
     longest_bar =
       data
@@ -23,26 +23,25 @@ defimpl Uncharted.FunnelChart, for: Uncharted.BaseChart do
     data
     |> Enum.with_index()
     |> Enum.map(fn {datum, index} ->
-      offset = index * height
+      offset = index * width
       bar_value = full_bar_value(datum.values)
       bar_percentage = bar_value / longest_bar_value * 100
-      funnel_width = (chart_width || 600) * 0.8 * 0.96
-      funnel_height = (chart_height || 400) * 0.92
+      funnel_width = (chart_width || 600) * 0.92
+      funnel_height = (chart_height || 400) * 0.96 * 0.8
 
       %Bar{
         label: datum.name,
-        height: height,
+        width: width,
         offset: offset,
         full_bar_value: bar_value,
         full_bar_percentage: bar_percentage,
-        bar_height: height,
         sections:
           bar_sections(
             datum,
             data,
             longest_bar_value,
             %{width: funnel_width, height: funnel_height},
-            height,
+            width,
             bar_value,
             sections,
             index
@@ -56,14 +55,14 @@ defimpl Uncharted.FunnelChart, for: Uncharted.BaseChart do
         bars,
         max,
         %{width: chart_width, height: chart_height},
-        bar_height,
+        bar_width,
         full_bar_value,
         sections,
         bar_index
       )
       when length(sections) < 2 do
     value = hd(datum.values)
-    bar_width = hd(datum.values) / max * 100
+    bar_height = hd(datum.values) / max * 100
     section_offset = section_offset(datum.values, 0, max, full_bar_value)
     next_section_offset_start = next_section_offset(0, bar_index, bars, max, false)
     next_section_offset_end = next_section_offset(0, bar_index, bars, max, true)
@@ -71,20 +70,20 @@ defimpl Uncharted.FunnelChart, for: Uncharted.BaseChart do
     [
       %BarSection{
         label: datum.name,
-        bar_width: bar_width,
+        bar_height: bar_height,
         bar_value: value,
         fill_color: datum.fill_color,
-        x_points:
+        y_points:
           [
             section_offset,
             section_offset + value,
             next_section_offset_end,
             next_section_offset_start
           ]
-          |> Enum.map(&(&1 / max * chart_width)),
-        y_points:
+          |> Enum.map(&(&1 / max * chart_height)),
+        x_points:
           [bar_index, bar_index + 0.5, bar_index + 1]
-          |> Enum.map(&(&1 * bar_height * chart_height / 100))
+          |> Enum.map(&(&1 * bar_width * chart_width / 100))
       }
     ]
   end
@@ -94,7 +93,7 @@ defimpl Uncharted.FunnelChart, for: Uncharted.BaseChart do
         bars,
         max,
         %{width: chart_width, height: chart_height},
-        bar_height,
+        bar_width,
         full_bar_value,
         sections,
         bar_index
@@ -102,7 +101,7 @@ defimpl Uncharted.FunnelChart, for: Uncharted.BaseChart do
     values
     |> Enum.with_index()
     |> Enum.map(fn {value, index} ->
-      bar_width = percentage(value, max)
+      bar_height = percentage(value, max)
 
       %Section{label: section_label, fill_color: fill_color} =
         sections
@@ -116,20 +115,20 @@ defimpl Uncharted.FunnelChart, for: Uncharted.BaseChart do
 
       %BarSection{
         label: "#{data.name}, #{section_label}",
-        bar_width: bar_width,
+        bar_height: bar_height,
         bar_value: value,
         fill_color: fill_color,
-        x_points:
+        y_points:
           [
             section_offset,
             section_offset + value,
             next_section_offset_end,
             next_section_offset_start
           ]
-          |> Enum.map(&(&1 / max * chart_width)),
-        y_points:
+          |> Enum.map(&(&1 / max * chart_height)),
+        x_points:
           [bar_index, bar_index + 0.5, bar_index + 1]
-          |> Enum.map(&(&1 * bar_height * chart_height / 100))
+          |> Enum.map(&(&1 * bar_width * chart_width / 100))
       }
     end)
   end
