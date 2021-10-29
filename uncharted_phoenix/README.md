@@ -294,37 +294,6 @@ column_chart = %BaseChart{
 }
 ```
 
-### Adding Stacked Sections to the Column or Bar Chart
-![Stacked Column Chart](assets/images/stacked-column-chart.jpg "Stacked Column Chart")
-You can add sections to a column or bar chart by adding a sections array to the dataset.
-
-```elixir
-column_chart = %BaseChart{
-  title: "Cheese Coney Consumption by Neighborhood",
-  colors: colors,
-  dataset: %ColumnChart.Dataset{
-    axes: %BaseAxes{
-      magnitude_axis: %MagnitudeAxis{
-        max: 10_000,
-        min: 0
-      }
-    },
-    sections: [
-      %Section{fill_color: :blue_gradient, label: "June", index: 1},
-      %Section{fill_color: :red_gradient, label: "July", index: 2},
-      %Section{fill_color: :rose_gradient, label: "May", index: 0}
-    ],
-    data: ~w(Landen Oakley Downtown Florence Erlanger)
-    |> Enum.map(fn neighborhood ->
-      %BaseDatum{
-        name: neighborhood,
-        values: [:rand.uniform() * 4_000, :rand.uniform() * 3_000, :rand.uniform() * 3_000]
-      }
-    end)
-  }
-}
-```
-
 ### The Doughnut Chart
 ![Doughnut Chart](assets/images/doughnut-chart.jpg "Doughnut Chart")
 
@@ -373,6 +342,76 @@ doughnut_chart = %BaseChart{
     label: "Donuts Tasted",
     label_fill_color: :rose_gradient,
     secondary_label: "(all by me)",
+  }
+}
+```
+
+### Funnel and Horizontal Funnel Chart
+![Funnel Chart](assets/images/funnel-chart.jpg "Funnel Chart")
+![Horizontal Funnel Chart](assets/images/horizontal-funnel-chart.jpg "Horizontal Funnel Chart")
+```elixir
+  %BaseChart{
+        title: "Live Beam Memory Stats",
+        colors: @colors,
+        dataset: %FunnelChart.Dataset{
+          axes: %BaseAxes{
+            magnitude_axis: %MagnitudeAxis{
+              max: MemoryChart.chart_max(memory_data),
+              min: 0,
+              line_color: :line_blue,
+              display_lines: false
+            }
+          },
+          data: Enum.sort(data, & Enum.sum(&1.values) > Enum.sum(&2.values))
+        }
+      }
+    end
+
+  %BaseChart{
+      title: "Live Beam Memory Stats",
+      colors: @colors,
+      dataset: %HorizontalFunnelChart.Dataset{
+        axes: %BaseAxes{
+          magnitude_axis: %MagnitudeAxis{
+            max: MemoryChart.chart_max(memory_data),
+            min: 0,
+            line_color: :line_blue,
+            display_lines: false
+          }
+        },
+        data: Enum.sort(data, & Enum.sum(&1.values) > Enum.sum(&2.values))
+      }
+    }
+  end
+```
+
+### Adding Stacked Sections to the Column, Bar, Funnel, or Horizontal Funnel Chart
+![Stacked Column Chart](assets/images/stacked-column-chart.jpg "Stacked Column Chart")
+You can add sections to a column, bar, or funnel chart by adding a sections array to the dataset.
+
+```elixir
+column_chart = %BaseChart{
+  title: "Cheese Coney Consumption by Neighborhood",
+  colors: colors,
+  dataset: %ColumnChart.Dataset{
+    axes: %BaseAxes{
+      magnitude_axis: %MagnitudeAxis{
+        max: 10_000,
+        min: 0
+      }
+    },
+    sections: [
+      %Section{fill_color: :blue_gradient, label: "June", index: 1},
+      %Section{fill_color: :red_gradient, label: "July", index: 2},
+      %Section{fill_color: :rose_gradient, label: "May", index: 0}
+    ],
+    data: ~w(Landen Oakley Downtown Florence Erlanger)
+    |> Enum.map(fn neighborhood ->
+      %BaseDatum{
+        name: neighborhood,
+        values: [:rand.uniform() * 4_000, :rand.uniform() * 3_000, :rand.uniform() * 3_000]
+      }
+    end)
   }
 }
 ```
