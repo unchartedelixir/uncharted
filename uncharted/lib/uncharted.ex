@@ -16,6 +16,7 @@ defmodule Uncharted do
           Uncharted.BarChart.Dataset.t()
           | Uncharted.ColumnChart.Dataset.t()
           | Uncharted.FunnelChart.Dataset.t()
+          | Uncharted.HorizontalFunnelChart.Dataset.t()
           | Uncharted.LineChart.Dataset.t()
           | Uncharted.PieChart.Dataset.t()
           | Uncharted.ProgressChart.Dataset.t()
