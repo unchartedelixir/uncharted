@@ -1,31 +1,19 @@
 defimpl Uncharted.Component, for: Uncharted.BaseChart do
   alias Uncharted.BaseChart
 
-  alias Uncharted.{
-    BarChart,
-    ColumnChart,
-    DoughnutChart,
-    FunnelChart,
-    HorizontalFunnelChart,
-    LineChart,
-    PieChart,
-    ProgressChart,
-    ScatterPlot
-  }
+  @components ~w(Bar Column Doughnut Funnel HorizontalFunnel Line Pie Progress Scatter)
 
-  # credo:disable-for-next-line Credo.Check.Refactor.CyclomaticComplexity
   def for_dataset(%BaseChart{dataset: dataset}) do
-    case dataset do
-      %BarChart.Dataset{} -> UnchartedPhoenix.LiveBarComponent
-      %ColumnChart.Dataset{} -> UnchartedPhoenix.LiveColumnComponent
-      %DoughnutChart.Dataset{} -> UnchartedPhoenix.LiveDoughnutComponent
-      %FunnelChart.Dataset{} -> UnchartedPhoenix.LiveFunnelComponent
-      %HorizontalFunnelChart.Dataset{} -> UnchartedPhoenix.LiveHorizontalFunnelComponent
-      %LineChart.Dataset{} -> UnchartedPhoenix.LiveLineComponent
-      %PieChart.Dataset{} -> UnchartedPhoenix.LivePieComponent
-      %ProgressChart.Dataset{} -> UnchartedPhoenix.LiveProgressComponent
-      %ScatterPlot.Dataset{} -> UnchartedPhoenix.LiveScatterComponent
-      dataset -> raise UnchartedPhoenix.ComponentUndefinedError, message: error_message(dataset)
+    if is_map(dataset) do
+      dataset_type = chart_name(Atom.to_string(dataset.__struct__))
+
+      if dataset_type in @components do
+        "Elixir.UnchartedPhoenix.Live#{dataset_type}Component" |> String.to_existing_atom()
+      else
+        no_component(dataset)
+      end
+    else
+      no_component(dataset)
     end
   end
 
@@ -50,5 +38,13 @@ defimpl Uncharted.Component, for: Uncharted.BaseChart do
 
   defp strip_prefix(id) do
     String.replace(id, "Elixir.", "")
+  end
+
+  defp chart_name(struct_name) do
+    String.replace(struct_name, ~r/Elixir.Uncharted.|Plot|Chart|.Dataset/, "")
+  end
+
+  defp no_component(dataset) do
+    raise UnchartedPhoenix.ComponentUndefinedError, message: error_message(dataset)
   end
 end
