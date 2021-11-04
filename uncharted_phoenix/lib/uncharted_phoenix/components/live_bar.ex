@@ -4,7 +4,7 @@ defmodule UnchartedPhoenix.LiveBarComponent do
   """
 
   use Phoenix.LiveComponent
-  use UnchartedPhoenix.TableEvents
+  use UnchartedPhoenix.SharedEvents
 
   def update(assigns, socket) do
     x_axis = assigns.chart.dataset.axes.magnitude_axis
@@ -18,19 +18,14 @@ defmodule UnchartedPhoenix.LiveBarComponent do
 
     socket =
       socket
-      |> assign(:chart, assigns.chart)
+      |> shared_update(assigns)
       |> assign(:bars, Uncharted.BarChart.bars(assigns.chart))
       |> assign(:grid_lines, grid_lines)
       |> assign(:offsetter, grid_line_offsetter)
       |> assign(:axis, x_axis)
-      |> assign(:always_show_table, assigns.always_show_table)
       |> assign(:width, assigns.chart.width || 600)
       |> assign(:height, assigns.chart.height || 400)
 
     {:ok, socket}
-  end
-
-  def render(assigns) do
-    Phoenix.View.render(UnchartedPhoenix.ComponentView, "live_bar.html", assigns)
   end
 end

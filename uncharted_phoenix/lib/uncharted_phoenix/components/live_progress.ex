@@ -5,20 +5,15 @@ defmodule UnchartedPhoenix.LiveProgressComponent do
 
   alias Uncharted.ProgressChart
   use Phoenix.LiveComponent
-  use UnchartedPhoenix.TableEvents
+  use UnchartedPhoenix.SharedEvents
 
   def update(assigns, socket) do
     socket =
       socket
-      |> assign(:chart, assigns.chart)
+      |> shared_update(assigns)
       |> assign(:data, ProgressChart.data(assigns.chart))
       |> assign(:progress, ProgressChart.progress(assigns.chart))
-      |> assign(:always_show_table, assigns.always_show_table)
 
     {:ok, socket}
-  end
-
-  def render(assigns) do
-    Phoenix.View.render(UnchartedPhoenix.ComponentView, "live_progress.html", assigns)
   end
 end

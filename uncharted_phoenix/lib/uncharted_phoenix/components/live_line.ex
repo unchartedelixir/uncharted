@@ -4,7 +4,7 @@ defmodule UnchartedPhoenix.LiveLineComponent do
   """
 
   use Phoenix.LiveComponent
-  use UnchartedPhoenix.TableEvents
+  use UnchartedPhoenix.SharedEvents
 
   def update(assigns, socket) do
     x_axis = assigns.chart.dataset.axes.x
@@ -18,7 +18,7 @@ defmodule UnchartedPhoenix.LiveLineComponent do
 
     socket =
       socket
-      |> assign(:chart, assigns.chart)
+      |> shared_update(assigns)
       |> assign(:points, Uncharted.LineChart.points(assigns.chart))
       |> assign(:lines, Uncharted.LineChart.lines(assigns.chart))
       |> assign(:x_grid_lines, x_grid_lines)
@@ -28,14 +28,9 @@ defmodule UnchartedPhoenix.LiveLineComponent do
       |> assign(:y_grid_line_offsetter, y_grid_line_offsetter)
       |> assign(:y_axis, y_axis)
       |> assign(:show_gridlines, assigns.chart.dataset.axes.show_gridlines)
-      |> assign(:always_show_table, assigns.always_show_table)
       |> assign(:width, assigns.chart.width || 700)
       |> assign(:height, assigns.chart.height || 400)
 
     {:ok, socket}
-  end
-
-  def render(assigns) do
-    Phoenix.View.render(UnchartedPhoenix.ComponentView, "live_line.html", assigns)
   end
 end

@@ -4,7 +4,7 @@ defmodule UnchartedPhoenix.LiveColumnComponent do
   """
 
   use Phoenix.LiveComponent
-  use UnchartedPhoenix.TableEvents
+  use UnchartedPhoenix.SharedEvents
 
   def update(assigns, socket) do
     y_axis = assigns.chart.dataset.axes.magnitude_axis
@@ -14,19 +14,14 @@ defmodule UnchartedPhoenix.LiveColumnComponent do
 
     socket =
       socket
-      |> assign(:chart, assigns.chart)
+      |> shared_update(assigns)
       |> assign(:columns, Uncharted.ColumnChart.columns(assigns.chart))
       |> assign(:grid_lines, grid_lines)
       |> assign(:grid_line_offsetter, grid_line_offsetter)
       |> assign(:axis, y_axis)
-      |> assign(:always_show_table, assigns.always_show_table)
       |> assign(:width, assigns.chart.width || 700)
       |> assign(:height, assigns.chart.height || 400)
 
     {:ok, socket}
-  end
-
-  def render(assigns) do
-    Phoenix.View.render(UnchartedPhoenix.ComponentView, "live_column.html", assigns)
   end
 end
