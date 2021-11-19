@@ -26,14 +26,33 @@
     <tr>
       <th scope="col">[Data Title]</th>
       <th scope="col">[Data Title]</th>
+      <%= if Enum.count(@chart.dataset.sections) > 1 do %>
+        <th scope="col" colspan="2">[Data Title]</th>
+      <% end %>
     </tr>
   </thead>
   <%= for bar <- @bars do %>
-    <%= for section <- bar.sections do %>
-      <tr>
-        <th scope="row"><%= section.label %></th>
-        <td><%= section.bar_value %></td>
-      </tr>
-    <% end %>
+    <tr>
+      <th scope="row"><%= bar.label %></th>
+      <td><%= bar.full_bar_value %></td>
+      <%= if Enum.count(bar.sections) > 1 do %>
+        <td>
+          <table>
+            <thead>
+              <th scope="col">[Data Title]</th>
+              <th scope="col">[Data Title]</th>
+            </thead>
+            <tbody>
+              <%= for section <- bar.sections do %>
+                <tr>
+                  <th scope="row"><%= section.label %></th>
+                  <td><%= section.bar_value %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </td>
+      <% end %>
+    </tr>
   <% end %>
 </table>

@@ -1,25 +1,23 @@
-defmodule Uncharted.BarChart.Bar do
+defmodule Uncharted.HorizontalFunnelChart.Bar do
   @moduledoc """
   A struct representing bar-level display properties.
   """
 
   defstruct [
-    :height,
+    :width,
     :offset,
     :label,
-    :bar_height,
-    :bar_offset,
     :full_bar_value,
+    :full_bar_percentage,
     :sections
   ]
 
   @type t() :: %__MODULE__{
-          height: float(),
+          width: float(),
           offset: float(),
           label: String.t(),
-          bar_height: float(),
-          bar_offset: float(),
           full_bar_value: float(),
-          sections: list(Uncharted.BarChart.BarSection.t())
+          full_bar_percentage: float(),
+          sections: list(Uncharted.FunnelChart.BarSection.t())
         }
 end

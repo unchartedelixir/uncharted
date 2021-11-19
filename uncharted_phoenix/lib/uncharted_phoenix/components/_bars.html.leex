@@ -1,6 +1,6 @@
 <svg id="<%= svg_id(@chart, "bars") %>" width="96%" height="100%" x="2%" y="0">
-  <%= for %Bar{bar_height: bar_height, bar_offset: bar_offset, sections: sections} <- @bars do %>
-    <%= for %BarSection{offset: section_offset, label: label, fill_color: fill_color, bar_width: bar_width} <- sections do %>
+  <%= for %{bar_height: bar_height, bar_offset: bar_offset, sections: sections} <- @bars do %>
+    <%= for %{offset: section_offset, label: label, fill_color: fill_color, bar_width: bar_width} <- sections do %>
       <g class="chart-bar">
         <rect
           id="<%= label %>"

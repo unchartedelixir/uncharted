@@ -18,6 +18,8 @@ basic chart package Uncharted and adapts Uncharted charts for display as compone
 - The Bar Chart
 - The Column Chart
 - The Doughnut Chart
+- The Funnel Chart
+- The Horizontal Funnel Chart
 - The Line Chart
 - The Pie Chart
 - The Progress Chart

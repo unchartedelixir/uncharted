@@ -1,4 +1,4 @@
-defmodule Uncharted.BarChart.Bar do
+defmodule Uncharted.FunnelChart.Bar do
   @moduledoc """
   A struct representing bar-level display properties.
   """
@@ -8,8 +8,8 @@ defmodule Uncharted.BarChart.Bar do
     :offset,
     :label,
     :bar_height,
-    :bar_offset,
     :full_bar_value,
+    :full_bar_percentage,
     :sections
   ]
 
@@ -18,8 +18,8 @@ defmodule Uncharted.BarChart.Bar do
           offset: float(),
           label: String.t(),
           bar_height: float(),
-          bar_offset: float(),
           full_bar_value: float(),
-          sections: list(Uncharted.BarChart.BarSection.t())
+          full_bar_percentage: float(),
+          sections: list(Uncharted.FunnelChart.BarSection.t())
         }
 end

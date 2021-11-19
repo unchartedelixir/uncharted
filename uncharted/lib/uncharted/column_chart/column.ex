@@ -9,6 +9,7 @@ defmodule Uncharted.ColumnChart.Column do
     :label,
     :bar_width,
     :bar_offset,
+    :full_column_value,
     :sections
   ]
 
@@ -18,6 +19,7 @@ defmodule Uncharted.ColumnChart.Column do
           label: String.t(),
           bar_width: float(),
           bar_offset: float(),
+          full_column_value: float(),
           sections: list(Uncharted.ColumnChart.ColumnSection.t())
         }
 end
