@@ -1,4 +1,6 @@
 defmodule UnchartedPhoenix.SharedEvents do
+  @moduledoc false
+
   defmacro __using__(_) do
     quote do
       def mount(socket) do
@@ -10,7 +12,7 @@ defmodule UnchartedPhoenix.SharedEvents do
       end
 
       def handle_event("hide_table", _, socket) do
-          {:noreply, assign(socket, :show_table, false)}
+        {:noreply, assign(socket, :show_table, false)}
       end
 
       def render(%{chart: %{dataset: dataset}} = assigns) do
