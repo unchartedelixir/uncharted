@@ -4,10 +4,7 @@ defmodule UnchartedPhoenix.LiveScatterComponent do
   """
 
   use Phoenix.LiveComponent
-
-  def mount(socket) do
-    {:ok, assign(socket, :show_table, false)}
-  end
+  use UnchartedPhoenix.SharedEvents
 
   def update(assigns, socket) do
     x_axis = assigns.chart.dataset.axes.x
@@ -21,7 +18,7 @@ defmodule UnchartedPhoenix.LiveScatterComponent do
 
     socket =
       socket
-      |> assign(:chart, assigns.chart)
+      |> shared_update(assigns)
       |> assign(:points, Uncharted.ScatterPlot.points(assigns.chart))
       |> assign(:x_grid_lines, x_grid_lines)
       |> assign(:x_grid_line_offsetter, x_grid_line_offsetter)
@@ -30,22 +27,9 @@ defmodule UnchartedPhoenix.LiveScatterComponent do
       |> assign(:y_grid_line_offsetter, y_grid_line_offsetter)
       |> assign(:y_axis, y_axis)
       |> assign(:show_gridlines, assigns.chart.dataset.axes.show_gridlines)
-      |> assign(:always_show_table, assigns.always_show_table)
       |> assign(:width, assigns.chart.width || 700)
       |> assign(:height, assigns.chart.height || 400)
 
     {:ok, socket}
-  end
-
-  def render(assigns) do
-    Phoenix.View.render(UnchartedPhoenix.ComponentView, "live_scatter.html", assigns)
-  end
-
-  def handle_event("show_table", _, socket) do
-    {:noreply, assign(socket, :show_table, true)}
-  end
-
-  def handle_event("hide_table", _, socket) do
-    {:noreply, assign(socket, :show_table, false)}
   end
 end
